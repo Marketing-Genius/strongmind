@@ -149,3 +149,37 @@ nav button:hover {
     width: 100%;
   }
 }
+
+.wallet-balance {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #4ea6c0;
+  font-weight: bold;
+}
+
+.wallet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.wallet-actions button {
+  background: #4ea6c0;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.wallet-history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.wallet-history li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}

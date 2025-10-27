@@ -247,6 +247,26 @@ nav button:hover {
   overflow: visible;
 }
 
+.modal-header-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-header-text h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.modal-header-text p {
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
 .close {
   position: absolute;
   top: 12px;

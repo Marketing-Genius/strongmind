@@ -28,6 +28,14 @@ function openSparkModal() {
     const card = document.createElement("div");
     card.className = "token-card";
 
+    // Assign background color based on tier
+    card.style.backgroundColor = {
+      1000: "#e87d66",
+      2000: "#4ea6c0",
+      5000: "#a178c9",
+      10000: "#f3b51b"
+    }[tier.amount];
+
     // Add bonus image if applicable
     const bonusImg = tier.bonus ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />` : "";
 
@@ -42,6 +50,10 @@ function openSparkModal() {
   });
 
   modal.classList.remove("hidden");
+}
+
+function closeSparkModal() {
+  document.getElementById("sparkModal").classList.add("hidden");
 }
 
 function confirmPurchase(amount, price) {
@@ -69,7 +81,6 @@ function loadView(role) {
 document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
 
-  // Event binding
   const sparkBtn = document.querySelector(".spark-button");
   const closeBtn = document.querySelector(".close");
   sparkBtn.addEventListener("click", openSparkModal);

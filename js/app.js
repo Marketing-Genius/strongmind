@@ -28,7 +28,7 @@ function openSparkModal() {
     const card = document.createElement("div");
     card.className = "token-card";
 
-    // Assign background color based on tier
+    // Assign background color
     card.style.backgroundColor = {
       1000: "#e87d66",
       2000: "#4ea6c0",
@@ -36,8 +36,10 @@ function openSparkModal() {
       10000: "#f3b51b"
     }[tier.amount];
 
-    // Add bonus image if applicable
-    const bonusImg = tier.bonus ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />` : "";
+    // Bonus badge
+    const bonusImg = tier.bonus
+      ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />`
+      : "";
 
     card.innerHTML = `
       ${bonusImg}
@@ -46,6 +48,7 @@ function openSparkModal() {
       <p>$${tier.price.toFixed(2)}</p>
       <button onclick="confirmPurchase(${tier.amount}, ${tier.price})">BUY NOW</button>
     `;
+
     container.appendChild(card);
   });
 
@@ -68,14 +71,37 @@ function confirmPurchase(amount, price) {
 }
 
 function loadView(role) {
-  const app = document.getElementById('app');
-  if (role === 'parent') {
+  const app = document.getElementById("app");
+  if (role === "parent") {
     app.innerHTML = `<h2>Parent Dashboard</h2><p>Manage your school, students, and subscriptions here.</p>`;
-  } else if (role === 'learner') {
+  } else if (role === "learner") {
     app.innerHTML = `<h2>Adult Learner View</h2><p>Track your progress and explore courses.</p>`;
-  } else if (role === 'edutect') {
+  } else if (role === "edutect") {
     app.innerHTML = `<h2>Edutect Dashboard</h2><p>Create and manage your courses.</p>`;
   }
+}
+
+// === GLOBAL FUNCTIONS (not nested!) ===
+function toggleHamburger() {
+  const dropdown = document.getElementById("dropdownMenu");
+  dropdown.classList.toggle("hidden");
+}
+
+function resetDemo() {
+  if (confirm("Are you sure you want to reset the demo? This will clear all your data.")) {
+    localStorage.clear();
+    location.reload();
+  }
+}
+
+function showInfoModal() {
+  const infoModal = document.getElementById("infoModal");
+  infoModal.classList.remove("hidden");
+}
+
+function hideInfoModal() {
+  const infoModal = document.getElementById("infoModal");
+  infoModal.classList.add("hidden");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -83,33 +109,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sparkBtn = document.querySelector(".spark-button");
   const closeBtn = document.querySelector(".close");
-  sparkBtn.addEventListener("click", openSparkModal);
-  closeBtn.addEventListener("click", closeSparkModal);
+  sparkBtn?.addEventListener("click", openSparkModal);
+  closeBtn?.addEventListener("click", closeSparkModal);
+
+  // Hamburger dropdown handling
   const hamburger = document.getElementById("hamburger");
-const dropdown = document.getElementById("dropdownMenu");
-const infoModal = document.getElementById("infoModal");
-const closeInfoModal = document.getElementById("closeInfoModal");
-const infoItem = document.getElementById("infoItem");
+  const dropdown = document.getElementById("dropdownMenu");
 
-// Toggle dropdown
-hamburger.addEventListener("click", () => {
-  dropdown.classList.toggle("hidden");
-});
+  hamburger?.addEventListener("click", toggleHamburger);
 
-// Close dropdown if clicking outside
-window.addEventListener("click", (e) => {
-  if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+  window.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+
+  // Info modal
+  const infoItem = document.getElementById("infoItem");
+  const closeInfoModalBtn = document.getElementById("closeInfoModal");
+
+  infoItem?.addEventListener("click", () => {
+    showInfoModal();
     dropdown.classList.add("hidden");
-  }
-});
+  });
 
-// Open info modal
-infoItem.addEventListener("click", () => {
-  infoModal.classList.remove("hidden");
-  dropdown.classList.add("hidden");
-});
+  closeInfoModalBtn?.addEventListener("click", hideInfoModal);
 
-// Close info modal
-closeInfoModal.addEventListener("click", () => {
-  infoModal.classList.add("hidden");
+  // Reset Demo
+  const resetItem = document.getElementById("resetItem");
+  resetItem?.addEventListener("click", () => {
+    dropdown.classList.add("hidden");
+    resetDemo();
+  });
 });

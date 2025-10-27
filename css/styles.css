@@ -237,7 +237,7 @@ nav button:hover {
   position: relative;
   width: 220px;
   height: 320px;
-  border-radius: 20px;
+  border-radius: 28px; /* bigger rounding */
   padding: 20px;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -245,6 +245,7 @@ nav button:hover {
   flex-direction: column;
   justify-content: flex-end;
   color: white;
+  overflow: hidden; /* ensures nothing spills outside rounded edges */
 }
 
 .token-logo {

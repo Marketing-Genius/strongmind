@@ -1,4 +1,5 @@
-/* Reset some basics */
+
+/* === Reset and Base Styles === */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +7,6 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* Background gradient */
 body {
   min-height: 100vh;
   background: linear-gradient(160deg, #e97e66, #f0b21a);
@@ -17,9 +17,9 @@ body {
   color: #333;
 }
 
-/* === Top Navigation Bar === */
+/* === Top Navigation === */
 .top-nav {
-  background-color: #fdf6ec; /* light cream */
+  background-color: #fdf6ec;
   height: 50px;
   width: 100%;
   display: flex;
@@ -44,13 +44,13 @@ body {
   margin-left: 4px;
 }
 
-/* Right side of nav */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* === Hamburger Menu === */
 .hamburger-menu {
   position: relative;
 }
@@ -91,6 +91,7 @@ body {
   display: none;
 }
 
+/* === Plan Button === */
 .plan-button {
   padding: 6px 12px;
   border: none;
@@ -101,125 +102,11 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
-.subscription-content {
-  max-width: 900px;
-  padding: 32px;
-  border-radius: 16px;
-  text-align: center;
+.plan-button:hover {
+  transform: scale(1.05);
 }
 
-.sub-header {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.subtext {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 24px;
-}
-
-.plans-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.plan-card {
-  background: #fff;
-  border: 3px solid transparent;
-  border-radius: 16px;
-  padding: 20px;
-  width: 260px;
-  position: relative;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-}
-
-.plan-card h3 {
-  font-size: 1.5rem;
-  margin: 12px 0;
-}
-
-.plan-card p {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-.plan-card ul {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  margin-bottom: 16px;
-}
-
-.plan-card ul li {
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-}
-
-.plan-card button {
-  width: 100%;
-  padding: 14px 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: #fbd561;
-  color: #222;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.plan-card button:hover {
-  transform: scale(1.03);
-}
-
-/* Banners */
-.plan-banner {
-  position: absolute;
-  top: -16px;
-  right: -16px;
-  width: 100px;
-}
-
-/* Plan styles */
-.plan-card.starter {
-  border-color: #ffc944;
-}
-
-.plan-card.starter h3,
-.plan-card.starter h3 .highlight {
-  color: #ffc944;
-}
-
-.plan-card.plus {
-  border-color: #a178c9;
-}
-
-.plan-card.plus h3 {
-  color: #a178c9;
-}
-
-.plan-card.plus h3 strong {
-  font-weight: 900;
-}
-
-.plan-card.premium {
-  border-color: #000;
-}
-
-.plan-card.premium h3 {
-  color: #000;
-}
-
-.plan-card.premium h3 strong {
-  font-weight: 900;
-}
-
-/* SparkTokens button */
+/* === SparkTokens Button === */
 .spark-button {
   display: flex;
   align-items: center;
@@ -244,106 +131,7 @@ body {
   margin-left: 6px;
 }
 
-/* Header */
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-header h1 {
-  font-size: 2rem;
-  color: white;
-  margin-bottom: 10px;
-}
-
-/* Navigation Buttons */
-nav {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-nav button {
-  background-color: white;
-  color: #e97e66;
-  border: 2px solid #fff;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-nav button:hover {
-  background-color: #e97e66;
-  color: white;
-  border-color: #fff;
-}
-
-/* Main content area */
-#app {
-  background: rgba(255, 255, 255, 0.95);
-  width: 100%;
-  max-width: 600px;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  margin-top: 70px; /* Leaves room for the fixed nav */
-}
-
-/* Headings inside the app */
-#app h2 {
-  margin-bottom: 12px;
-  font-size: 1.5rem;
-  color: #e97e66;
-}
-
-/* Responsive tweaks */
-@media (max-width: 500px) {
-  nav {
-    flex-direction: column;
-  }
-
-  nav button {
-    width: 100%;
-  }
-}
-
-.wallet-balance {
-  font-size: 1.2rem;
-  margin-bottom: 16px;
-  color: #4ea6c0;
-  font-weight: bold;
-}
-
-.wallet-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.wallet-actions button {
-  background: #4ea6c0;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.wallet-history ul {
-  list-style: none;
-  padding: 0;
-}
-
-.wallet-history li {
-  margin-bottom: 6px;
-  font-size: 0.95rem;
-}
+/* === Modals and Content === */
 .modal {
   position: fixed;
   top: 0;
@@ -354,10 +142,9 @@ nav button:hover {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 60px
   z-index: 2000;
-  padding-top: 120px; /* space under nav bar */
-  overflow-y: auto;  /* allow scroll if needed */
+  padding-top: 120px;
+  overflow-y: auto;
 }
 
 .modal.hidden {
@@ -366,10 +153,11 @@ nav button:hover {
 
 .modal-content {
   background: white;
-  padding: 40px; /* more room */
+  padding: 40px;
   border-radius: 20px;
   width: 95%;
-  max-width: 1200px; /* allows cards to fit */
+  max-width: 1200px;
+  margin: 0 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   position: relative;
   overflow: visible;
@@ -403,71 +191,4 @@ nav button:hover {
   cursor: pointer;
 }
 
-.token-options {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  justify-content: center; /* center the grid horizontally */
-  margin-top: 20px;
-  padding: 0 20px;
-}
-
-@media (max-width: 800px) {
-  .token-options {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.token-card {
-  position: relative;
-  width: 220px;
-  height: 320px;
-  border-radius: 28px; /* bigger rounding */
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: white;
-  overflow: visible; /* previously hidden by mistake */
-}
-
-.token-logo {
-  width: 100%;
-  max-height: 80px; /* was 60px */
-  object-fit: contain;
-  margin-bottom: 16px;
-  margin-top: 0; /* pull it up */
-}
-
-.token-card h3 {
-  font-size: 2.4rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.token-card p {
-  font-size: 1.1rem;
-  margin-bottom: 16px;
-}
-
-.token-card button {
-  background: #fbd561;
-  border: none;
-  padding: 12px 16px;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  color: #222;
-}
-
-.bonus-img {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 100px; /* slightly larger */
-  transform: rotate(-5deg);
-  z-index: 2;
-}
+/* === Exported Token Cards and Subscriptions coming next... */

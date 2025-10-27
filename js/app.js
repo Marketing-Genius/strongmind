@@ -8,3 +8,6 @@ function loadView(role) {
     app.innerHTML = `<h2>Edutect Dashboard</h2><p>Create and manage your courses.</p>`;
   }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  updateSparkButtonLabel();
+});

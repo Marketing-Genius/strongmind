@@ -80,6 +80,71 @@ nav button:hover {
   border-color: #fff;
 }
 
+.top-nav {
+  background-color: #fdf6ec; /* light cream */
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 32px;
+  width: auto;
+  margin-left: 4px;
+}
+
+/* Right side of nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* SparkTokens button */
+.spark-button {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #4ea6c0, #a178c9);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.spark-button:hover {
+  transform: scale(1.05);
+}
+
+.spark-icon {
+  height: 16px;
+  width: auto;
+  margin-left: 6px;
+}
+
+/* Placeholder for hamburger */
+.hamburger-placeholder {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+}
+
 /* Main content area */
 #app {
   background: rgba(255, 255, 255, 0.95);

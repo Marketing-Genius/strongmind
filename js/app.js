@@ -1,3 +1,11 @@
+function updateSparkButtonLabel() {
+  const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+  const label = document.getElementById("token-label");
+  if (label) {
+    label.textContent = balance > 0 ? balance.toLocaleString() : "SparkTokens";
+  }
+}
+
 const sparkTiers = [
   { amount: 1000, price: 14.99 },
   { amount: 2000, price: 24.99, bonus: "20% Extra!" },

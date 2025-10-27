@@ -195,7 +195,7 @@ nav button:hover {
   justify-content: center;
   padding-top: 60px
   z-index: 2000;
-  padding-top: 80px; /* space under nav bar */
+  padding-top: 120px; /* space under nav bar */
   overflow-y: auto;  /* allow scroll if needed */
 }
 

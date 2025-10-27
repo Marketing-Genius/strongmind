@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StrongMind PWA</title>
+  <title>StrongMind - Ultimate Learning Platform</title>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="manifest" href="manifest.json" />
 </head>
@@ -18,18 +18,18 @@
         <span id="token-label">SparkTokens</span>
         <img src="assets/spark-tokens-white.png" class="spark-icon" />
       </button>
-      <div class="hamburger" id="hamburger">&#9776;</div>
-<div class="dropdown-menu hidden" id="dropdownMenu">
-  <ul>
-    <li>Profile</li>
-    <li>Settings</li>
-    <li>Wallet</li>
-    <li>Subscriptions</li>
-    <li>Log-Out</li>
-    <li id="infoItem">Information</li>
-  </ul>
+<div class="hamburger-menu">
+  <div class="hamburger-icon" onclick="toggleHamburger()">☰</div>
+  <div class="hamburger-dropdown hidden" id="hamburgerDropdown">
+    <div>Profile</div>
+    <div>Settings</div>
+    <div>Wallet</div>
+    <div>Subscriptions</div>
+    <div>Log-Out</div>
+    <div onclick="showInfoModal()">Information</div>
+    <div onclick="resetDemo()">Reset Demo</div>
+  </div>
 </div>
-    </div>
   </nav>
 
   <!-- Main Content Area -->

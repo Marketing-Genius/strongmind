@@ -83,8 +83,10 @@ function loadView(role) {
 
 // === GLOBAL FUNCTIONS (not nested!) ===
 function toggleHamburger() {
-  const dropdown = document.getElementById("dropdownMenu");
-  dropdown.classList.toggle("hidden");
+  const dropdown = document.getElementById("hamburgerDropdown");
+  if (dropdown) {
+    dropdown.classList.toggle("hidden");
+  }
 }
 
 function resetDemo() {
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Hamburger dropdown handling
   const hamburger = document.getElementById("hamburger");
-  const dropdown = document.getElementById("dropdownMenu");
+  const dropdown = document.getElementById("hamburgerDropdown");
 
   hamburger?.addEventListener("click", toggleHamburger);
 

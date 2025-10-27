@@ -109,6 +109,10 @@ function hideInfoModal() {
 document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
 
+  document.getElementById("plan-button").addEventListener("click", openSubscriptionModal);
+document.getElementById("closeSubscriptionModal").addEventListener("click", closeSubscriptionModal);
+updatePlanButton();
+
   const sparkBtn = document.querySelector(".spark-button");
   const closeBtn = document.querySelector(".close");
   sparkBtn?.addEventListener("click", openSparkModal);
@@ -143,4 +147,45 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdown.classList.add("hidden");
     resetDemo();
   });
+
+  function updatePlanButton() {
+  const plan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const button = document.getElementById("plan-button");
+
+  let text = `Plan: ${plan}`;
+  let style = {};
+
+  if (plan === "SparkPlus") {
+    style = { background: "#a178c9", color: "#fff" };
+  } else if (plan === "SparkPremium") {
+    style = { background: "#000", color: "#fbd561" };
+  } else {
+    style = { background: "#fbd561", color: "#000" }; // Starter
+  }
+
+  button.textContent = text;
+  Object.assign(button.style, style);
+}
+
+  function selectPlan(plan) {
+  localStorage.setItem("subscriptionPlan", plan);
+
+  // Grant monthly SparkTokens
+  let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+  if (plan === "SparkPlus") balance += 1000;
+  if (plan === "SparkPremium") balance += 2500;
+
+  localStorage.setItem("sparkBalance", balance);
+
+  updatePlanButton();
+  updateSparkButtonLabel();
+  closeSubscriptionModal();
+}
+
+  function openSubscriptionModal() {
+  document.getElementById("subscriptionModal").classList.remove("hidden");
+}
+function closeSubscriptionModal() {
+  document.getElementById("subscriptionModal").classList.add("hidden");
+}
 });

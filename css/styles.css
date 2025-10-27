@@ -275,3 +275,19 @@ nav button:hover {
   padding: 4px 6px;
   border-radius: 4px;
 }
+
+.spark-logo {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.spark-logo img {
+  width: 250px;
+}
+
+.bonus-ribbon-img {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 60px;
+  height: auto;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My SparkTokens Wallet</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="top-nav">
+    <div class="nav-left">
+      <img src="assets/sm-icon.png" class="nav-logo" />
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="wallet.html" class="nav-link">Wallet</a>
+    </div>
+  </div>
+
+  <main id="app">
+    <h2>My SparkTokens Wallet</h2>
+
+    <div class="wallet-balance">
+      Current Balance: <span id="balance">0</span> SparkTokens
+    </div>
+
+    <div class="wallet-actions">
+      <button onclick="addTokens(1000)">Buy 1000 Tokens</button>
+      <button onclick="addTokens(2000)">Buy 2000 Tokens</button>
+      <button onclick="spendTokens(500)">Spend 500 (Mock Purchase)</button>
+    </div>
+
+    <div class="wallet-history">
+      <h3>Transaction History</h3>
+      <ul id="history"></ul>
+    </div>
+  </main>
+
+  <script src="wallet.js"></script>
+</body>
+</html>

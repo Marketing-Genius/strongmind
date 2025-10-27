@@ -17,11 +17,18 @@
   <!-- Rest of your content -->
   <header>
     <h1>Welcome to StrongMind</h1>
-    <nav>
-      <button onclick="loadView('parent')">Parent</button>
-      <button onclick="loadView('learner')">Adult Learner</button>
-      <button onclick="loadView('edutect')">Edutect</button>
-    </nav>
+    <nav class="top-nav">
+  <div class="nav-left">
+    <img src="assets/sm-icon.png" alt="StrongMind Logo" class="nav-logo">
+  </div>
+  <div class="nav-right">
+    <button class="spark-button">
+      SparkTokens
+      <img src="assets/spark-tokens-white.png" alt="Spark Icon" class="spark-icon">
+    </button>
+    <div class="hamburger-placeholder"></div>
+  </div>
+</nav>
   </header>
   <main id="app"></main>
   <script src="js/app.js"></script>

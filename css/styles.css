@@ -1,0 +1,84 @@
+/* Reset some basics */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Background gradient */
+body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e97e66, #f0b21a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #333;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+nav button {
+  background-color: white;
+  color: #e97e66;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+nav button:hover {
+  background-color: #e97e66;
+  color: white;
+  border-color: #fff;
+}
+
+/* Main content area */
+#app {
+  background: rgba(255, 255, 255, 0.95);
+  width: 100%;
+  max-width: 600px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings inside the app */
+#app h2 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  color: #e97e66;
+}
+
+/* Responsive tweaks */
+@media (max-width: 500px) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav button {
+    width: 100%;
+  }
+}

@@ -54,7 +54,6 @@ function openSparkModal() {
 
   modal.classList.remove("hidden");
 }
-}
 
 function confirmPurchase(amount, price) {
   const confirmed = confirm(`Purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)} with your credit card on file?`);

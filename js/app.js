@@ -18,20 +18,7 @@ function openSparkModal() {
   const container = modal.querySelector(".token-options");
   container.innerHTML = "";
 
-  // Create and insert header logo
-  const header = document.createElement("div");
-  header.className = "spark-logo";
-  header.innerHTML = `<img src="assets/sparkTokens-by-strongmind.png" alt="SparkTokens by StrongMind" />`;
-  modal.querySelector(".modal-content").insertBefore(header, container);
-
-  const colors = {
-    1000: "#e87d66",
-    2000: "#4ea6c0",
-    5000: "#a178c9",
-    10000: "#f3b51b"
-  };
-
-  const bonuses = {
+  const extraMap = {
     2000: "20-extra.png",
     5000: "36-extra.png",
     10000: "59-extra.png"
@@ -40,15 +27,17 @@ function openSparkModal() {
   sparkTiers.forEach(tier => {
     const card = document.createElement("div");
     card.className = "token-card";
-    card.style.backgroundColor = colors[tier.amount];
+
+    // Add bonus image if applicable
+    const bonusImg = tier.bonus ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />` : "";
 
     card.innerHTML = `
-      ${bonuses[tier.amount] ? `<img src="assets/${bonuses[tier.amount]}" class="bonus-ribbon-img" />` : ""}
+      ${bonusImg}
+      <img src="assets/sparkTokens-by-strongmind.png" class="token-logo" alt="SparkTokens Logo" />
       <h3>${tier.amount.toLocaleString()}</h3>
       <p>$${tier.price.toFixed(2)}</p>
       <button onclick="confirmPurchase(${tier.amount}, ${tier.price})">BUY NOW</button>
     `;
-
     container.appendChild(card);
   });
 

@@ -19,68 +19,6 @@ body {
 
 /* === Top Navigation Bar === */
 .top-nav {
-  background-color: #fdf6ec; /* light cream color */
-  height: 50px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.nav-logo {
-  height: 32px;
-  width: auto;
-}
-
-/* Header */
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-header h1 {
-  font-size: 2rem;
-  color: white;
-  margin-bottom: 10px;
-}
-
-/* Navigation */
-nav {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-nav button {
-  background-color: white;
-  color: #e97e66;
-  border: 2px solid #fff;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-nav button:hover {
-  background-color: #e97e66;
-  color: white;
-  border-color: #fff;
-}
-
-.top-nav {
   background-color: #fdf6ec; /* light cream */
   height: 50px;
   width: 100%;
@@ -145,6 +83,44 @@ nav button:hover {
   background-color: transparent;
 }
 
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Navigation Buttons */
+nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+nav button {
+  background-color: white;
+  color: #e97e66;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+nav button:hover {
+  background-color: #e97e66;
+  color: white;
+  border-color: #fff;
+}
+
 /* Main content area */
 #app {
   background: rgba(255, 255, 255, 0.95);
@@ -153,6 +129,7 @@ nav button:hover {
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 70px; /* Leaves room for the fixed nav */
 }
 
 /* Headings inside the app */

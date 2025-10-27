@@ -85,4 +85,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".close");
   sparkBtn.addEventListener("click", openSparkModal);
   closeBtn.addEventListener("click", closeSparkModal);
+  const hamburger = document.getElementById("hamburger");
+const dropdown = document.getElementById("dropdownMenu");
+const infoModal = document.getElementById("infoModal");
+const closeInfoModal = document.getElementById("closeInfoModal");
+const infoItem = document.getElementById("infoItem");
+
+// Toggle dropdown
+hamburger.addEventListener("click", () => {
+  dropdown.classList.toggle("hidden");
+});
+
+// Close dropdown if clicking outside
+window.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+    dropdown.classList.add("hidden");
+  }
+});
+
+// Open info modal
+infoItem.addEventListener("click", () => {
+  infoModal.classList.remove("hidden");
+  dropdown.classList.add("hidden");
+});
+
+// Close info modal
+closeInfoModal.addEventListener("click", () => {
+  infoModal.classList.add("hidden");
 });

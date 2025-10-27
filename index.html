@@ -18,7 +18,17 @@
         <span id="token-label">SparkTokens</span>
         <img src="assets/spark-tokens-white.png" class="spark-icon" />
       </button>
-      <div class="hamburger-placeholder"></div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+<div class="dropdown-menu hidden" id="dropdownMenu">
+  <ul>
+    <li>Profile</li>
+    <li>Settings</li>
+    <li>Wallet</li>
+    <li>Subscriptions</li>
+    <li>Log-Out</li>
+    <li id="infoItem">Information</li>
+  </ul>
+</div>
     </div>
   </nav>
 
@@ -37,5 +47,13 @@
 
   <!-- App Logic -->
   <script src="js/app.js"></script>
+  <!-- Info Modal -->
+<div id="infoModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" id="closeInfoModal">&times;</span>
+    <h2>About This PWA</h2>
+    <p>This is a proof-of-concept for the StrongMind experience. Features are simulated for demonstration purposes.</p>
+  </div>
+</div>
 </body>
 </html>

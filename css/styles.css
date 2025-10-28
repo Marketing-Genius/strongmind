@@ -191,4 +191,128 @@ body {
   cursor: pointer;
 }
 
-/* === Exported Token Cards and Subscriptions coming next... */
+/* Subscription Modal Layout */
+.subscription-content {
+  max-width: 1200px;
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.sub-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.plans-container {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Plan Cards */
+.plan-card {
+  background: #fff;
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 20px;
+  width: 280px;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-card h3 {
+  font-size: 1.4rem;
+  margin: 12px 0;
+}
+
+.plan-card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.plan-card ul li {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+/* Plan Action Buttons */
+.plan-card button {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #fbd561;
+  color: #222;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.plan-card button:hover {
+  transform: scale(1.03);
+}
+
+/* Positioning plan banners like "Popular" and "1mo Free!" */
+.plan-banner {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 100px;
+  z-index: 2;
+}
+
+/* Per-plan color outlines + titles */
+.plan-card.starter {
+  border-color: #ffc944;
+}
+
+.plan-card.starter h3 {
+  color: #ffc944;
+}
+
+.plan-card.plus {
+  border-color: #a178c9;
+}
+
+.plan-card.plus h3 {
+  color: #a178c9;
+}
+
+.plan-card.plus h3 strong {
+  font-weight: 900;
+}
+
+.plan-card.premium {
+  border-color: #000;
+}
+
+.plan-card.premium h3 {
+  color: #000;
+}
+
+.plan-card.premium h3 strong {
+  font-weight: 900;
+}

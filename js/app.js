@@ -94,7 +94,7 @@ function selectPlan(plan) {
   modal.innerHTML = `
     <div class="modal-content">
       <h2>${isDowngrade ? "Downgrade" : "Upgrade"} Plan</h2>
-      <p>Are you sure you want to ${isDowngrade ? "downgrade from" : "upgrade to"} <strong>${plan}</strong>?</p>
+      <p>Are you sure you want to ${isDowngrade ? "downgrade to" : "upgrade to"} <strong>${plan}</strong>?</p>
       <div style="margin-top: 20px; display: flex; justify-content: center; gap: 16px;">
         <button id="confirmUpgrade" style="padding: 10px 18px; font-weight: bold;">Yes</button>
         <button id="cancelUpgrade" style="padding: 10px 18px;">Cancel</button>

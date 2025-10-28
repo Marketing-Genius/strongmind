@@ -27,8 +27,6 @@ function openSparkModal() {
   sparkTiers.forEach(tier => {
     const card = document.createElement("div");
     card.className = "token-card";
-
-    // Assign background color
     card.style.backgroundColor = {
       1000: "#e87d66",
       2000: "#4ea6c0",
@@ -36,7 +34,6 @@ function openSparkModal() {
       10000: "#f3b51b"
     }[tier.amount];
 
-    // Bonus badge
     const bonusImg = tier.bonus
       ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />`
       : "";
@@ -60,95 +57,88 @@ function closeSparkModal() {
 }
 
 function confirmPurchase(amount, price) {
-  const confirmed = confirm(`Purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)} with your credit card on file?`);
+  const confirmed = confirm(`Purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)}?`);
   if (confirmed) {
-    let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-    balance += amount;
-    localStorage.setItem("sparkBalance", balance);
-    updateSparkButtonLabel();
+    addTokens(amount);
     closeSparkModal();
   }
 }
 
-function loadView(role) {
-  const app = document.getElementById("app");
-  if (role === "parent") {
-    app.innerHTML = `<h2>Parent Dashboard</h2><p>Manage your school, students, and subscriptions here.</p>`;
-  } else if (role === "learner") {
-    app.innerHTML = `<h2>Adult Learner View</h2><p>Track your progress and explore courses.</p>`;
-  } else if (role === "edutect") {
-    app.innerHTML = `<h2>Edutect Dashboard</h2><p>Create and manage your courses.</p>`;
-  }
-}
-
-// === GLOBAL FUNCTIONS (not nested!) ===
-function toggleHamburger() {
-  const dropdown = document.getElementById("hamburgerDropdown");
-  if (dropdown) {
-    dropdown.classList.toggle("hidden");
-  }
-}
-
-function resetDemo() {
-  if (confirm("Are you sure you want to reset the demo? This will clear all your data.")) {
-    localStorage.clear();
-    location.reload();
-  }
-}
-
-function showInfoModal() {
-  const infoModal = document.getElementById("infoModal");
-  infoModal.classList.remove("hidden");
-}
-
-function hideInfoModal() {
-  const infoModal = document.getElementById("infoModal");
-  infoModal.classList.add("hidden");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
+function addTokens(amount) {
+  let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+  balance += amount;
+  localStorage.setItem("sparkBalance", balance);
   updateSparkButtonLabel();
+  showSuccessAnimation(`+${amount.toLocaleString()} SparkTokens added`);
+}
 
-  document.getElementById("plan-button").addEventListener("click", openSubscriptionModal);
-document.getElementById("closeSubscriptionModal").addEventListener("click", closeSubscriptionModal);
-updatePlanButton();
+function showSuccessAnimation(message) {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.position = "fixed";
+  toast.style.top = "80px";
+  toast.style.right = "20px";
+  toast.style.background = "#4caf50";
+  toast.style.color = "white";
+  toast.style.padding = "12px 20px";
+  toast.style.borderRadius = "8px";
+  toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
+  toast.style.zIndex = 5000;
+  toast.style.opacity = 1;
+  document.body.appendChild(toast);
 
-  const sparkBtn = document.querySelector(".spark-button");
-  const closeBtn = document.querySelector(".close");
-  sparkBtn?.addEventListener("click", openSparkModal);
-  closeBtn?.addEventListener("click", closeSparkModal);
+  setTimeout(() => {
+    toast.style.opacity = 0;
+    setTimeout(() => toast.remove(), 500);
+  }, 2000);
+}
 
-  // Hamburger dropdown handling
-  const hamburger = document.getElementById("hamburger");
-  const dropdown = document.getElementById("hamburgerDropdown");
+// === Subscription Modal ===
+function openSubscriptionModal() {
+  document.getElementById("subscriptionModal").classList.remove("hidden");
+}
 
-  hamburger?.addEventListener("click", toggleHamburger);
+function closeSubscriptionModal() {
+  document.getElementById("subscriptionModal").classList.add("hidden");
+}
 
-  window.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
-      dropdown.classList.add("hidden");
-    }
-  });
+function selectPlan(plan) {
+  if (!["SparkPlus", "SparkPremium"].includes(plan)) return;
 
-  // Info modal
-  const infoItem = document.getElementById("infoItem");
-  const closeInfoModalBtn = document.getElementById("closeInfoModal");
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <h2>Upgrade Plan</h2>
+      <p>Are you sure you want to upgrade to <strong>${plan}</strong>?</p>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 16px;">
+        <button id="confirmUpgrade" style="padding: 10px 18px; font-weight: bold;">Yes</button>
+        <button id="cancelUpgrade" style="padding: 10px 18px;">Cancel</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
 
-  infoItem?.addEventListener("click", () => {
-    showInfoModal();
-    dropdown.classList.add("hidden");
-  });
+  document.getElementById("confirmUpgrade").onclick = () => {
+    localStorage.setItem("subscriptionPlan", plan);
 
-  closeInfoModalBtn?.addEventListener("click", hideInfoModal);
+    let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+    if (plan === "SparkPlus") balance += 1000;
+    if (plan === "SparkPremium") balance += 2500;
 
-  // Reset Demo
-  const resetItem = document.getElementById("resetItem");
-  resetItem?.addEventListener("click", () => {
-    dropdown.classList.add("hidden");
-    resetDemo();
-  });
+    localStorage.setItem("sparkBalance", balance);
 
-  function updatePlanButton() {
+    updatePlanButton();
+    updateSparkButtonLabel();
+    showSuccessAnimation(`Upgraded to ${plan} + SparkTokens added`);
+    closeSubscriptionModal();
+    modal.remove();
+  };
+
+  document.getElementById("cancelUpgrade").onclick = () => modal.remove();
+}
+
+function updatePlanButton() {
   const plan = localStorage.getItem("subscriptionPlan") || "Starter";
   const button = document.getElementById("plan-button");
 
@@ -167,25 +157,65 @@ updatePlanButton();
   Object.assign(button.style, style);
 }
 
-  function selectPlan(plan) {
-  localStorage.setItem("subscriptionPlan", plan);
+// === Global Setup ===
+function toggleHamburger() {
+  const dropdown = document.getElementById("hamburgerDropdown");
+  if (dropdown) dropdown.classList.toggle("hidden");
+}
 
-  // Grant monthly SparkTokens
-  let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-  if (plan === "SparkPlus") balance += 1000;
-  if (plan === "SparkPremium") balance += 2500;
+function resetDemo() {
+  if (confirm("Are you sure you want to reset the demo? This will clear all your data.")) {
+    localStorage.clear();
+    location.reload();
+  }
+}
 
-  localStorage.setItem("sparkBalance", balance);
+function showInfoModal() {
+  document.getElementById("infoModal").classList.remove("hidden");
+}
 
-  updatePlanButton();
+function hideInfoModal() {
+  document.getElementById("infoModal").classList.add("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
-  closeSubscriptionModal();
-}
+  updatePlanButton();
 
-  function openSubscriptionModal() {
-  document.getElementById("subscriptionModal").classList.remove("hidden");
-}
-function closeSubscriptionModal() {
-  document.getElementById("subscriptionModal").classList.add("hidden");
-}
+  document.getElementById("plan-button").addEventListener("click", openSubscriptionModal);
+  document.getElementById("closeSubscriptionModal").addEventListener("click", closeSubscriptionModal);
+
+  const sparkBtn = document.querySelector(".spark-button");
+  const closeBtns = document.querySelectorAll(".close");
+  sparkBtn?.addEventListener("click", openSparkModal);
+  closeBtns.forEach(btn => btn.addEventListener("click", e => {
+    e.target.closest(".modal").classList.add("hidden");
+  }));
+
+  // Hamburger dropdown
+  const hamburger = document.getElementById("hamburger");
+  const dropdown = document.getElementById("hamburgerDropdown");
+
+  hamburger?.addEventListener("click", toggleHamburger);
+
+  window.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+
+  // Info modal
+  const closeInfoModalBtn = document.getElementById("closeInfoModal");
+  document.getElementById("infoItem")?.addEventListener("click", () => {
+    showInfoModal();
+    dropdown.classList.add("hidden");
+  });
+  closeInfoModalBtn?.addEventListener("click", hideInfoModal);
+
+  // Reset Demo
+  const resetItem = document.getElementById("resetItem");
+  resetItem?.addEventListener("click", () => {
+    dropdown.classList.add("hidden");
+    resetDemo();
+  });
 });

@@ -1,3 +1,11 @@
+
+// === Constants ===
+const PLAN_TIERS = {
+  Starter: { tokens: 0, color: "#fbd561", text: "#000" },
+  SparkPlus: { tokens: 1000, color: "#a178c9", text: "#fff" },
+  SparkPremium: { tokens: 2500, color: "#000", text: "#fbd561" }
+};
+
 function updateSparkButtonLabel() {
   const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
   const label = document.getElementById("token-label");
@@ -6,70 +14,14 @@ function updateSparkButtonLabel() {
   }
 }
 
-const sparkTiers = [
-  { amount: 1000, price: 14.99 },
-  { amount: 2000, price: 24.99, bonus: "20% Extra!" },
-  { amount: 5000, price: 54.99, bonus: "36% Extra!" },
-  { amount: 10000, price: 94.99, bonus: "58% Extra!" },
-];
+function updatePlanButton() {
+  const plan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const button = document.getElementById("plan-button");
 
-function openSparkModal() {
-  const modal = document.getElementById("sparkModal");
-  const container = modal.querySelector(".token-options");
-  container.innerHTML = "";
-
-  const extraMap = {
-    2000: "20-extra.png",
-    5000: "36-extra.png",
-    10000: "59-extra.png"
-  };
-
-  sparkTiers.forEach(tier => {
-    const card = document.createElement("div");
-    card.className = "token-card";
-    card.style.backgroundColor = {
-      1000: "#e87d66",
-      2000: "#4ea6c0",
-      5000: "#a178c9",
-      10000: "#f3b51b"
-    }[tier.amount];
-
-    const bonusImg = tier.bonus
-      ? `<img class="bonus-img" src="assets/${extraMap[tier.amount]}" alt="${tier.bonus}" />`
-      : "";
-
-    card.innerHTML = `
-      ${bonusImg}
-      <img src="assets/sparkTokens-by-strongmind.png" class="token-logo" alt="SparkTokens Logo" />
-      <h3>${tier.amount.toLocaleString()}</h3>
-      <p>$${tier.price.toFixed(2)}</p>
-      <button onclick="confirmPurchase(${tier.amount}, ${tier.price})">BUY NOW</button>
-    `;
-
-    container.appendChild(card);
-  });
-
-  modal.classList.remove("hidden");
-}
-
-function closeSparkModal() {
-  document.getElementById("sparkModal").classList.add("hidden");
-}
-
-function confirmPurchase(amount, price) {
-  const confirmed = confirm(`Purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)}?`);
-  if (confirmed) {
-    addTokens(amount);
-    closeSparkModal();
-  }
-}
-
-function addTokens(amount) {
-  let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-  balance += amount;
-  localStorage.setItem("sparkBalance", balance);
-  updateSparkButtonLabel();
-  showSuccessAnimation(`+${amount.toLocaleString()} SparkTokens added`);
+  const { color, text } = PLAN_TIERS[plan];
+  button.textContent = `Plan: ${plan}`;
+  button.style.background = color;
+  button.style.color = text;
 }
 
 function showSuccessAnimation(message) {
@@ -93,24 +45,56 @@ function showSuccessAnimation(message) {
   }, 2000);
 }
 
-// === Subscription Modal ===
 function openSubscriptionModal() {
-  document.getElementById("subscriptionModal").classList.remove("hidden");
+  const modal = document.getElementById("subscriptionModal");
+  modal.classList.remove("hidden");
+  updatePlanCards();
 }
 
 function closeSubscriptionModal() {
   document.getElementById("subscriptionModal").classList.add("hidden");
 }
 
+function updatePlanCards() {
+  const currentPlan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const cards = document.querySelectorAll(".plan-card");
+
+  cards.forEach(card => {
+    const title = card.querySelector("h3").textContent.trim();
+    const button = card.querySelector("button");
+    if (title === currentPlan) {
+      button.textContent = "Current Plan";
+      button.disabled = true;
+      button.style.background = "#ccc";
+      button.style.color = "#333";
+    } else {
+      button.textContent = title === "SparkPremium" ? "Subscribe" : "Subscribe";
+      button.disabled = false;
+      if (title === "SparkPremium") {
+        button.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+        button.style.color = "#000";
+      } else {
+        button.style.background = "#fbd561";
+        button.style.color = "#000";
+      }
+    }
+  });
+}
+
 function selectPlan(plan) {
-  if (!["SparkPlus", "SparkPremium"].includes(plan)) return;
+  const current = localStorage.getItem("subscriptionPlan") || "Starter";
+  const isDowngrade =
+    (current === "SparkPremium" && plan !== "SparkPremium") ||
+    (current === "SparkPlus" && plan === "Starter");
+
+  if (plan === current) return;
 
   const modal = document.createElement("div");
   modal.className = "modal";
   modal.innerHTML = `
     <div class="modal-content">
-      <h2>Upgrade Plan</h2>
-      <p>Are you sure you want to upgrade to <strong>${plan}</strong>?</p>
+      <h2>${isDowngrade ? "Downgrade" : "Upgrade"} Plan</h2>
+      <p>Are you sure you want to ${isDowngrade ? "downgrade from" : "upgrade to"} <strong>${plan}</strong>?</p>
       <div style="margin-top: 20px; display: flex; justify-content: center; gap: 16px;">
         <button id="confirmUpgrade" style="padding: 10px 18px; font-weight: bold;">Yes</button>
         <button id="cancelUpgrade" style="padding: 10px 18px;">Cancel</button>
@@ -121,61 +105,16 @@ function selectPlan(plan) {
 
   document.getElementById("confirmUpgrade").onclick = () => {
     localStorage.setItem("subscriptionPlan", plan);
-
-    let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-    if (plan === "SparkPlus") balance += 1000;
-    if (plan === "SparkPremium") balance += 2500;
-
-    localStorage.setItem("sparkBalance", balance);
-
+    const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+    localStorage.setItem("sparkBalance", balance + PLAN_TIERS[plan].tokens);
     updatePlanButton();
     updateSparkButtonLabel();
-    showSuccessAnimation(`Upgraded to ${plan} + SparkTokens added`);
+    showSuccessAnimation(`Switched to ${plan} + Tokens added!`);
     closeSubscriptionModal();
     modal.remove();
   };
 
   document.getElementById("cancelUpgrade").onclick = () => modal.remove();
-}
-
-function updatePlanButton() {
-  const plan = localStorage.getItem("subscriptionPlan") || "Starter";
-  const button = document.getElementById("plan-button");
-
-  let text = `Plan: ${plan}`;
-  let style = {};
-
-  if (plan === "SparkPlus") {
-    style = { background: "#a178c9", color: "#fff" };
-  } else if (plan === "SparkPremium") {
-    style = { background: "#000", color: "#fbd561" };
-  } else {
-    style = { background: "#fbd561", color: "#000" }; // Starter
-  }
-
-  button.textContent = text;
-  Object.assign(button.style, style);
-}
-
-// === Global Setup ===
-function toggleHamburger() {
-  const dropdown = document.getElementById("hamburgerDropdown");
-  if (dropdown) dropdown.classList.toggle("hidden");
-}
-
-function resetDemo() {
-  if (confirm("Are you sure you want to reset the demo? This will clear all your data.")) {
-    localStorage.clear();
-    location.reload();
-  }
-}
-
-function showInfoModal() {
-  document.getElementById("infoModal").classList.remove("hidden");
-}
-
-function hideInfoModal() {
-  document.getElementById("infoModal").classList.add("hidden");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -185,37 +124,29 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("plan-button").addEventListener("click", openSubscriptionModal);
   document.getElementById("closeSubscriptionModal").addEventListener("click", closeSubscriptionModal);
 
-  const sparkBtn = document.querySelector(".spark-button");
-  const closeBtns = document.querySelectorAll(".close");
-  sparkBtn?.addEventListener("click", openSparkModal);
-  closeBtns.forEach(btn => btn.addEventListener("click", e => {
-    e.target.closest(".modal").classList.add("hidden");
-  }));
-
-  // Hamburger dropdown
   const hamburger = document.getElementById("hamburger");
-  const dropdown = document.getElementById("hamburgerDropdown");
+  hamburger?.addEventListener("click", () => {
+    document.getElementById("hamburgerDropdown").classList.toggle("hidden");
+  });
 
-  hamburger?.addEventListener("click", toggleHamburger);
+  const infoItem = document.getElementById("infoItem");
+  infoItem?.addEventListener("click", () => {
+    document.getElementById("infoModal").classList.remove("hidden");
+  });
 
-  window.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
-      dropdown.classList.add("hidden");
+  const closeInfoModalBtn = document.getElementById("closeInfoModal");
+  closeInfoModalBtn?.addEventListener("click", () => {
+    document.getElementById("infoModal").classList.add("hidden");
+  });
+
+  const resetItem = document.getElementById("resetItem");
+  resetItem?.addEventListener("click", () => {
+    if (confirm("Reset all demo data?")) {
+      localStorage.clear();
+      location.reload();
     }
   });
 
-  // Info modal
-  const closeInfoModalBtn = document.getElementById("closeInfoModal");
-  document.getElementById("infoItem")?.addEventListener("click", () => {
-    showInfoModal();
-    dropdown.classList.add("hidden");
-  });
-  closeInfoModalBtn?.addEventListener("click", hideInfoModal);
-
-  // Reset Demo
-  const resetItem = document.getElementById("resetItem");
-  resetItem?.addEventListener("click", () => {
-    dropdown.classList.add("hidden");
-    resetDemo();
-  });
+  updatePlanCards();
 });
+    

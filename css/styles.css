@@ -89,10 +89,11 @@ body {
 
 .avatar-container {
   position: absolute;
-  top: -30px;
-  left: 16px;
-  width: 48px;
-  height: 48px;
+  top: -36px;
+  left: 20px;
+  width: 64px;
+  height: 64px;
+  z-index: 2;
 }
 
 .avatar-container img {
@@ -103,6 +104,15 @@ body {
 .onboarding-logo img {
   width: 120px;
   margin-bottom: 12px;
+}
+
+.onboarding-option.edutect {
+  background-color: #4ea6c0;
+}
+
+.onboarding-option:hover {
+  filter: brightness(0.95);
+  cursor: pointer;
 }
 
 .hamburger-dropdown div {

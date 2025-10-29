@@ -132,8 +132,8 @@ body {
 }
 
 .onboard-btn {
-  margin: 20px 0;
-  padding: 24px;
+  margin: 40px 0;
+  padding: 24px 24px 24px 72px; /* extra left padding for icon space */
   border-radius: 40px;
   position: relative;
   cursor: pointer;
@@ -143,15 +143,18 @@ body {
   overflow: visible;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 60px;
+  justify-content: flex-start; /* text aligned left of the button */
+  height: 70px;
+  text-align: left;
 }
 
 .onboard-btn img {
   position: absolute;
-  top: -40px;
-  height: 60px;
+  height: 80px;
   width: auto;
+  left: 24px;
+  bottom: 60%; /* positions icon so bottom edge is flush with button top */
+  transform: translateY(50%);
   pointer-events: none;
 }
 

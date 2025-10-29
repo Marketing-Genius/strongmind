@@ -105,6 +105,10 @@ body {
   font-family: 'Arial Rounded MT Bold', sans-serif;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .onboarding-box {
   background: #fff4e9;
   padding: 40px;
@@ -115,7 +119,7 @@ body {
 }
 
 .onboard-logo {
-  max-width: 120px;
+  max-width: 180px;
   margin-bottom: 24px;
 }
 
@@ -132,8 +136,8 @@ body {
 }
 
 .onboard-btn {
-  margin: 40px 0;
-  padding: 24px 24px 24px 72px; /* extra left padding for icon space */
+  margin: 20px 0;
+  padding: 24px 24px 24px 96px; /* increased left padding */
   border-radius: 40px;
   position: relative;
   cursor: pointer;
@@ -143,17 +147,17 @@ body {
   overflow: visible;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* text aligned left of the button */
+  justify-content: flex-start;
   height: 70px;
   text-align: left;
 }
 
 .onboard-btn img {
   position: absolute;
-  height: 80px;
+  height: 88px;
   width: auto;
-  left: 24px;
-  bottom: 60%; /* positions icon so bottom edge is flush with button top */
+  left: 20px;
+  bottom: 60%;
   transform: translateY(50%);
   pointer-events: none;
 }

@@ -111,24 +111,24 @@
   <script src="js/app.js"></script>
 
 <!-- Onboarding Modal -->
-<div id="onboardingModal" style="display: flex;">
+<div id="onboardingModal">
   <div class="onboarding-box">
-    <img src="assets/sm-logo-1.png" class="onboard-logo" alt="StrongMind logo" />
-    <h2>Welcome! We're glad to see you!</h2>
+    <img src="assets/sm-logo-1.png" alt="StrongMind logo" class="onboard-logo" />
+    <h2>Welcome! We’re glad to see you!</h2>
     <p>Choose an option below to get started.</p>
 
-    <div class="onboard-btn" style="background-color: #e87661;" onclick="selectUserType('homeschool')">
-      <img src="assets/homeschool.png" alt="Homeschool" />
+    <div class="onboard-btn homeschool" data-usertype="homeschool">
+      <img src="assets/homeschool.png" alt="Homeschool Family" />
       <span>We are a homeschool family</span>
     </div>
 
-    <div class="onboard-btn" style="background-color: #7ed6b5;" onclick="alertComingSoon()">
+    <div class="onboard-btn learner" data-usertype="learner">
       <img src="assets/learner.png" alt="Independent Learner" />
       <span>I am an independent learner</span>
     </div>
 
-    <div class="onboard-btn" style="background-color: #4ea6c0;" onclick="alertComingSoon()">
-      <img src="assets/edutect.png" alt="Content Creator" />
+    <div class="onboard-btn edutech" data-usertype="edutech">
+      <img src="assets/edutect.png" alt="Educational Content Creator" />
       <span>I am an educational content creator</span>
     </div>
   </div>

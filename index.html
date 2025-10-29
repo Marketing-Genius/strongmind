@@ -111,32 +111,26 @@
   <script src="js/app.js"></script>
 
 <!-- Onboarding Modal -->
-<div id="onboardingModal" class="modal">
-  <div class="modal-content onboarding">
-    <img src="assets/sm-Logo-1.png" class="onboarding-logo" alt="StrongMind logo" />
+<div id="onboardingModal" style="display: flex;">
+  <div class="onboarding-box">
+    <img src="assets/sm-logo-1.png" class="onboard-logo" alt="StrongMind logo" />
     <h2>Welcome! We're glad to see you!</h2>
     <p>Choose an option below to get started.</p>
 
-    <div class="onboarding-option homeschool" onclick="selectUserType('homeschool')">
-  <div class="avatar-container">
-    <img src="assets/homeschool.png" alt="Homeschool Icon" />
-  </div>
-  We are a homeschool family
-</div>
+    <div class="onboard-btn" style="background-color: #e87661;" onclick="selectUserType('homeschool')">
+      <img src="assets/homeschool.png" alt="Homeschool" />
+      <span>We are a homeschool family</span>
+    </div>
 
-<div class="onboarding-option learner" onclick="alertComingSoon()">
-  <div class="avatar-container">
-    <img src="assets/learner.png" alt="Learner Icon" />
-  </div>
-  I am an independent learner
-</div>
+    <div class="onboard-btn" style="background-color: #7ed6b5;" onclick="alertComingSoon()">
+      <img src="assets/learner.png" alt="Independent Learner" />
+      <span>I am an independent learner</span>
+    </div>
 
-<div class="onboarding-option edutect" onclick="alertComingSoon()">
-  <div class="avatar-container">
-    <img src="assets/edutect.png" alt="Content Creator Icon" />
-  </div>
-  I am an educational content creator
-</div>
+    <div class="onboard-btn" style="background-color: #4ea6c0;" onclick="alertComingSoon()">
+      <img src="assets/edutect.png" alt="Content Creator" />
+      <span>I am an educational content creator</span>
+    </div>
   </div>
 </div>
   

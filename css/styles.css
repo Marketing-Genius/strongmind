@@ -75,6 +75,31 @@ body {
   min-width: 180px;
 }
 
+.onboarding-option {
+  position: relative;
+  padding-top: 40px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  padding-bottom: 16px;
+}
+
+.avatar-container {
+  position: absolute;
+  top: -30px;
+  left: 16px;
+  width: 48px;
+  height: 48px;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: auto;
+}
+
 .hamburger-dropdown div {
   padding: 10px 16px;
   cursor: pointer;

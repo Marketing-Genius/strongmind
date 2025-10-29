@@ -145,7 +145,7 @@ function selectPlan(plan) {
 function openSparkModal() {
   const modal = document.getElementById("sparkModal");
   const container = modal.querySelector(".token-options");
-  container.innerHTML = ""; // Clear existing content
+  container.innerHTML = "";
 
   const tiers = [
     { amount: 1000, price: 14.99 },
@@ -176,11 +176,15 @@ function openSparkModal() {
       ? `<img class="bonus-img" src="assets/${bonusMap[tier.amount]}" alt="${tier.bonus}" />`
       : "";
 
+    const formattedAmount =
+      tier.amount === 10000 ? tier.amount.toLocaleString() : tier.amount.toString();
+
     card.innerHTML = `
       ${bonusImg}
       <img src="assets/sparkTokens-by-strongmind.png" class="token-logo" alt="SparkTokens Logo" />
-      <h3>${tier.amount.toLocaleString()}</h3>
+      <h3>${formattedAmount}</h3>
       <p>$${tier.price.toFixed(2)}</p>
+      <small style="margin-top: -8px; display: block; font-size: 0.75rem;">USD</small>
       <button onclick="confirmPurchase(${tier.amount}, ${tier.price})">BUY NOW</button>
     `;
 

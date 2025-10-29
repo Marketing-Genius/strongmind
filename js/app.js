@@ -23,6 +23,15 @@ function updatePlanButton() {
   button.style.color = text;
 }
 
+function confirmPurchase(amount, price) {
+  const currentBalance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+  const newBalance = currentBalance + amount;
+  localStorage.setItem("sparkBalance", newBalance);
+  updateSparkButtonLabel();
+  showSuccessAnimation(`Purchased ${amount.toLocaleString()} SparkTokens!`);
+  closeSparkModal();
+}
+
 function showSuccessAnimation(message) {
   const toast = document.createElement("div");
   toast.textContent = message;
@@ -46,9 +55,6 @@ function showSuccessAnimation(message) {
 }
 
 // === Modal Controls ===
-function openSparkModal() {
-  document.getElementById("sparkModal").classList.remove("hidden");
-}
 
 function closeSparkModal() {
   document.getElementById("sparkModal").classList.add("hidden");
@@ -128,6 +134,54 @@ function selectPlan(plan) {
   };
 
   document.getElementById("cancelUpgrade").onclick = () => modal.remove();
+}
+
+function openSparkModal() {
+  const modal = document.getElementById("sparkModal");
+  const container = modal.querySelector(".token-options");
+  container.innerHTML = ""; // Clear existing content
+
+  const tiers = [
+    { amount: 1000, price: 14.99 },
+    { amount: 2000, price: 24.99, bonus: "20% Extra!" },
+    { amount: 5000, price: 54.99, bonus: "36% Extra!" },
+    { amount: 10000, price: 94.99, bonus: "58% Extra!" },
+  ];
+
+  const colorMap = {
+    1000: "#e87d66",
+    2000: "#4ea6c0",
+    5000: "#a178c9",
+    10000: "#f3b51b",
+  };
+
+  const bonusMap = {
+    2000: "20-extra.png",
+    5000: "36-extra.png",
+    10000: "59-extra.png",
+  };
+
+  tiers.forEach(tier => {
+    const card = document.createElement("div");
+    card.className = "token-card";
+    card.style.backgroundColor = colorMap[tier.amount];
+
+    const bonusImg = tier.bonus
+      ? `<img class="bonus-img" src="assets/${bonusMap[tier.amount]}" alt="${tier.bonus}" />`
+      : "";
+
+    card.innerHTML = `
+      ${bonusImg}
+      <img src="assets/sparkTokens-by-strongmind.png" class="token-logo" alt="SparkTokens Logo" />
+      <h3>${tier.amount.toLocaleString()}</h3>
+      <p>$${tier.price.toFixed(2)}</p>
+      <button onclick="confirmPurchase(${tier.amount}, ${tier.price})">BUY NOW</button>
+    `;
+
+    container.appendChild(card);
+  });
+
+  modal.classList.remove("hidden");
 }
 
 // === DOM Ready Setup ===

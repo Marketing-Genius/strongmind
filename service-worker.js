@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = "strongmind-v2"; // bump this when changes are made
+const CACHE_NAME = "strongmind-v2.001"; // bump this when changes are made
 const urlsToCache = [
   "/",
   "/index.html",

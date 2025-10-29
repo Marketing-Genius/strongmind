@@ -14,21 +14,25 @@ function updateSparkButtonLabel() {
   }
 }
 
-function selectUserType(type) {
-  localStorage.setItem("userType", type);
-
-  const modal = document.getElementById("onboardingModal");
-  if (modal) modal.classList.add("hidden");
-
-  // Redirect if homeschool
-  if (type === "homeschool") {
-    window.location.href = "index.html";
+// Check if userType already set
+window.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("userType")) {
+    document.getElementById("onboardingModal").style.display = "flex";
   }
-}
+});
 
-function alertComingSoon() {
-  alert("This option is coming soon.");
-}
+// Onboarding button logic
+document.querySelectorAll(".onboarding-option").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.usertype;
+    if (type === "homeschool") {
+      localStorage.setItem("userType", type);
+      document.getElementById("onboardingModal").style.display = "none";
+    } else {
+      alert("This option is coming soon.");
+    }
+  });
+});
 
 function updatePlanButton() {
   const plan = localStorage.getItem("subscriptionPlan") || "Starter";

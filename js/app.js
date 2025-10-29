@@ -14,6 +14,20 @@ function updateSparkButtonLabel() {
   }
 }
 
+function selectUserType(type) {
+  localStorage.setItem("userType", type);
+  document.getElementById("onboardingModal").style.display = "none";
+
+  // Redirect logic if needed
+  if (type === "homeschool") {
+    window.location.href = "index.html"; // Change if homeschool has its own page
+  }
+}
+
+function alertComingSoon() {
+  alert("This option is coming soon.");
+}
+
 function updatePlanButton() {
   const plan = localStorage.getItem("subscriptionPlan") || "Starter";
   const button = document.getElementById("plan-button");
@@ -199,6 +213,13 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();
+
+    // Onboarding modal check
+  const hasType = localStorage.getItem("userType");
+  if (!hasType) {
+    const modal = document.getElementById("onboardingModal");
+    if (modal) modal.style.display = "flex";
+  }
 
   // Plan modal
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);

@@ -159,8 +159,10 @@ body {
 }
 
 .onboard-btn span {
-  z-index: 2;
+  display: inline-block;
   position: relative;
+  z-index: 2;
+  text-align: left;
 }
 
 /* === Plan Button === */

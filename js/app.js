@@ -5,6 +5,7 @@ const PLAN_TIERS = {
   SparkPremium: { tokens: 2500, color: "#000", text: "#fbd561" }
 };
 
+// === UI Update Functions ===
 function updateSparkButtonLabel() {
   const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
   const label = document.getElementById("token-label");
@@ -42,6 +43,15 @@ function showSuccessAnimation(message) {
     toast.style.opacity = 0;
     setTimeout(() => toast.remove(), 500);
   }, 2000);
+}
+
+// === Modal Controls ===
+function openSparkModal() {
+  document.getElementById("sparkModal").classList.remove("hidden");
+}
+
+function closeSparkModal() {
+  document.getElementById("sparkModal").classList.add("hidden");
 }
 
 function openSubscriptionModal() {
@@ -113,21 +123,28 @@ function selectPlan(plan) {
     updateSparkButtonLabel();
     showSuccessAnimation(`Switched to ${plan} + Tokens added!`);
     closeSubscriptionModal();
+    updatePlanCards();
     modal.remove();
   };
 
   document.getElementById("cancelUpgrade").onclick = () => modal.remove();
 }
 
+// === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();
 
+  // Plan modal
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
   document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);
 
-  // Hamburger toggle
+  // SparkTokens modal
+  document.querySelector(".spark-button")?.addEventListener("click", openSparkModal);
+  document.querySelector("#sparkModal .close")?.addEventListener("click", closeSparkModal);
+
+  // Hamburger menu
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
 
@@ -135,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdown.classList.toggle("hidden");
   });
 
-  // Hide dropdown when clicking outside
+  // Close hamburger if click outside
   window.addEventListener("click", (e) => {
     if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
       dropdown.classList.add("hidden");
@@ -152,11 +169,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("infoModal").classList.add("hidden");
   });
 
-  // Reset demo
+  // Reset Demo
   document.getElementById("resetItem")?.addEventListener("click", () => {
     if (confirm("Reset all demo data?")) {
       localStorage.clear();
       location.reload();
     }
   });
+});
+
+// Optional: click outside SparkTokens modal to close
+window.addEventListener("click", function (e) {
+  const modal = document.getElementById("sparkModal");
+  if (!modal.classList.contains("hidden") && e.target === modal) {
+    closeSparkModal();
+  }
 });

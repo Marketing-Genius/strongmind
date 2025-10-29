@@ -16,11 +16,13 @@ function updateSparkButtonLabel() {
 
 function selectUserType(type) {
   localStorage.setItem("userType", type);
-  document.getElementById("onboardingModal").style.display = "none";
 
-  // Redirect logic if needed
+  const modal = document.getElementById("onboardingModal");
+  if (modal) modal.classList.add("hidden");
+
+  // Redirect if homeschool
   if (type === "homeschool") {
-    window.location.href = "index.html"; // Change if homeschool has its own page
+    window.location.href = "index.html";
   }
 }
 

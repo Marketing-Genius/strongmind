@@ -109,5 +109,31 @@
   </div>
 
   <script src="js/app.js"></script>
+
+<!-- Onboarding Modal -->
+<div id="onboardingModal" class="modal">
+  <div class="modal-content onboarding">
+    <img src="assets/sm-logo-1.png" class="onboarding-logo" alt="StrongMind logo" />
+    <h2>Welcome! We're glad to see you!</h2>
+    <p>Choose an option below to get started.</p>
+
+    <div class="onboarding-option homeschool" onclick="selectUserType('homeschool')">
+      <img src="assets/homeschool.png" alt="Homeschool Family" />
+      <span>We are a homeschool family</span>
+    </div>
+
+    <div class="onboarding-option learner" onclick="alertComingSoon()">
+      <img src="assets/learner.png" alt="Independent Learner" />
+      <span>I am an independent learner</span>
+    </div>
+
+    <div class="onboarding-option edutech" onclick="alertComingSoon()">
+      <img src="assets/edutech.png" alt="Content Creator" />
+      <span>I am an educational content creator</span>
+    </div>
+  </div>
+</div>
+  
+  
 </body>
 </html>

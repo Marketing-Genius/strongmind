@@ -162,7 +162,7 @@ body {
   display: inline-block;
   position: relative;
   z-index: 2;
-  text-align: left;
+  text-align: right;
 }
 
 /* === Plan Button === */

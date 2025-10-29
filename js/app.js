@@ -24,9 +24,15 @@ function updatePlanButton() {
 }
 
 function confirmPurchase(amount, price) {
+  const confirmMsg = `Are you sure you want to purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)}?`;
+  const confirmed = window.confirm(confirmMsg);
+
+  if (!confirmed) return;
+
   const currentBalance = parseInt(localStorage.getItem("sparkBalance")) || 0;
   const newBalance = currentBalance + amount;
   localStorage.setItem("sparkBalance", newBalance);
+
   updateSparkButtonLabel();
   showSuccessAnimation(`Purchased ${amount.toLocaleString()} SparkTokens!`);
   closeSparkModal();
@@ -239,3 +245,21 @@ window.addEventListener("click", function (e) {
     closeSparkModal();
   }
 });
+
+// === Service Worker registration and update prompt ===
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js").then(reg => {
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          if (confirm("A new version is available. Refresh now?")) {
+            window.location.reload();
+          }
+        }
+      };
+    };
+  }).catch(err => {
+    console.error("Service Worker registration failed:", err);
+  });
+}

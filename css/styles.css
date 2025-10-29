@@ -75,51 +75,6 @@ body {
   min-width: 180px;
 }
 
-.onboarding-option {
-  position: relative;
-  width: 100%;
-  padding: 18px 16px 12px 16px;
-  border-radius: 999px;
-  font-weight: bold;
-  font-size: 1rem;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: all 0.2s ease;
-  margin-top: 50px;
-}
-
-.avatar-container {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
-  height: 70px;
-  z-index: 2;
-}
-
-.avatar-container img {
-  width: 100%;
-  height: auto;
-}
-
-.onboarding-logo img {
-  width: 120px;
-  margin-bottom: 12px;
-}
-
-.onboarding-option.edutect {
-  background-color: #4ea6c0;
-}
-
-.onboarding-option:hover {
-  filter: brightness(0.95);
-  cursor: pointer;
-}
-
 .hamburger-dropdown div {
   padding: 10px 16px;
   cursor: pointer;
@@ -134,6 +89,75 @@ body {
 
 .hamburger-dropdown.hidden {
   display: none;
+}
+
+/* === onboarding modal === */
+#onboardingModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+}
+
+.onboarding-box {
+  background: #fff4e9;
+  padding: 40px;
+  border-radius: 36px;
+  text-align: center;
+  width: 460px;
+  position: relative;
+}
+
+.onboard-logo {
+  max-width: 120px;
+  margin-bottom: 24px;
+}
+
+.onboarding-box h2 {
+  font-size: 20px;
+  color: #222;
+  margin: 0;
+}
+
+.onboarding-box p {
+  margin-top: 6px;
+  font-size: 15px;
+  color: #444;
+}
+
+.onboard-btn {
+  margin: 20px 0;
+  padding: 24px;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.onboard-btn img {
+  position: absolute;
+  top: -40px;
+  height: 60px;
+  width: auto;
+  pointer-events: none;
+}
+
+.onboard-btn span {
+  z-index: 2;
+  position: relative;
 }
 
 /* === Plan Button === */

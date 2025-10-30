@@ -119,8 +119,8 @@ body {
 }
 
 .onboard-btn {
-  margin: 20px 0;
-  padding: 20px 40px;
+  margin: 18px auto; /* center horizontally */
+  padding: 20px 28px 20px 40px;
   border-radius: 40px;
   cursor: pointer;
   color: white;
@@ -128,13 +128,15 @@ body {
   font-weight: bold;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 90px;
-  min-width: 480px;
+  width: 90%;
+  max-width: 440px; /* prevent overflow */
   white-space: nowrap;
   overflow: hidden;
   position: relative;
   transition: transform 0.2s ease-in-out;
+  box-sizing: border-box;
 }
 
 .onboard-btn:hover {
@@ -145,14 +147,14 @@ body {
   height: 80px;
   width: auto;
   position: absolute;
-  left: 10px;
+  left: 8px;
   bottom: -5px;
 }
 
 .onboard-btn span {
-  flex: 1;
   text-align: right;
-  padding-right: 40px;
+  flex: 1;
+  padding-right: 24px; /* less padding = less push to edge */
 }
 
 .onboard-btn.homeschool {

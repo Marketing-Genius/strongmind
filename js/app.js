@@ -198,7 +198,7 @@ function applyUserTypeBackground(type) {
     document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
   } else if (type === "edutech") {
     document.body.style.background = 'url("assets/blueprint.png") repeat';
-    document.body.style.backgroundSize = "contain";
+    document.body.style.backgroundSize = "40px 40px";
   } else {
     document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
   }

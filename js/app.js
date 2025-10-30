@@ -200,19 +200,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
-
   const storedType = localStorage.getItem("userType");
 
-  // === Show onboarding if no userType set ===
+  // === Show modal and overlay if no user type selected ===
   if (!storedType) {
     if (onboardingModal) onboardingModal.style.display = "flex";
     if (overlay) overlay.classList.remove("hidden");
   } else {
     applyUserTypeBackground(storedType);
     if (overlay) overlay.classList.add("hidden");
+    if (onboardingModal) onboardingModal.style.display = "none"; // just in case
   }
 
-  // === Onboarding button logic ===
+  // === Handle user type selection ===
   document.querySelectorAll(".onboard-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const type = btn.dataset.usertype;
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// === Background Logic Function ===
+// === Background setter function ===
 function applyUserTypeBackground(type) {
   if (type === "learner") {
     document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";

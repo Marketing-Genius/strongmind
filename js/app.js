@@ -209,11 +209,11 @@ function applyUserTypeBackground(type) {
   // Icons
   if (icon) {
     if (type === "homeschool") {
-      icon.src = "assets/homeschool.png";
+      icon.src = "assets/icon-homeschool.png";
     } else if (type === "learner") {
-      icon.src = "assets/learner.png";
+      icon.src = "assets/icon-learner.png";
     } else if (type === "edutech") {
-      icon.src = "assets/edutech.png";
+      icon.src = "assets/icon-edutech.png";
     } else {
       icon.style.display = "none";
     }

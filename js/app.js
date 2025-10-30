@@ -21,13 +21,15 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Onboarding button logic
-document.querySelectorAll(".onboarding-option").forEach(btn => {
+// Onboarding button logic (corrected selector)
+document.querySelectorAll(".onboard-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const type = btn.dataset.usertype;
+
     if (type === "homeschool") {
       localStorage.setItem("userType", type);
-      document.getElementById("onboardingModal").style.display = "none";
+      const modal = document.getElementById("onboardingModal");
+      modal.style.display = "none";
     } else {
       alert("This option is coming soon.");
     }

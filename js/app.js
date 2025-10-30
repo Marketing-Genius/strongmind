@@ -241,18 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.add("hidden");
   }
 
-  // === Fix: Ensure onboarding buttons are clickable ===
-  const buttons = document.querySelectorAll(".onboard-btn");
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const selectedType = button.dataset.usertype;
-      localStorage.setItem("userType", selectedType);
-      applyUserTypeBackground(selectedType);
-      onboardingModal.style.display = "none";
-      overlay.classList.add("hidden");
-    });
-  });
-
   // Recovery: If overlay is visible but modal is not, show modal again
   if (
     !storedType &&

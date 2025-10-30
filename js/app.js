@@ -199,9 +199,9 @@ function applyUserTypeBackground(type) {
 
   // Backgrounds
   if (type === "learner") {
-    body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-  } else if (type === "edutech") {
     body.style.background = "linear-gradient(160deg, #4ea6c0, #82d1a8)";
+  } else if (type === "edutech") {
+    body.style.background = "linear-gradient(160deg, #4ea6c0, #2e768b)";
   } else {
     body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
   }

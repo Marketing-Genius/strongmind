@@ -192,14 +192,32 @@ function openSparkModal() {
   modal.classList.remove("hidden");
 }
 
-// === Set background for each user type ===
+// === User Type Variables ===
 function applyUserTypeBackground(type) {
+  const body = document.body;
+  const icon = document.getElementById("userTypeIcon");
+
+  // Backgrounds
   if (type === "learner") {
-    document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+    body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
   } else if (type === "edutech") {
-    document.body.style.background = "linear-gradient(160deg, #4ea6c0, #82d1a8)";
+    body.style.background = "linear-gradient(160deg, #4ea6c0, #82d1a8)";
   } else {
-    document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+    body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+  }
+
+  // Icons
+  if (icon) {
+    if (type === "homeschool") {
+      icon.src = "assets/homeschool.png";
+    } else if (type === "learner") {
+      icon.src = "assets/learner.png";
+    } else if (type === "edutech") {
+      icon.src = "assets/edutech.png";
+    } else {
+      icon.style.display = "none";
+    }
+    icon.style.display = "inline-block";
   }
 }
 

@@ -210,21 +210,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Onboarding button logic
-  document.querySelectorAll(".onboard-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const type = btn.dataset.usertype;
-      localStorage.setItem("userType", type);
+// Onboarding button logic
+document.querySelectorAll(".onboard-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.usertype;
+    localStorage.setItem("userType", type);
 
-      if (type === "learner") {
-        document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-      } else {
-        document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
-      }
+    // === Update background based on user type ===
+    if (type === "learner") {
+      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+    } else if (type === "creator") {
+      document.body.style.background = 'url("assets/blueprint.png") repeat';
+    } else {
+      document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+    }
 
-      document.getElementById("onboardingModal").style.display = "none";
-    });
+    // === Hide onboarding modal and overlay ===
+    document.getElementById("onboardingModal").style.display = "none";
+    const overlay = document.getElementById("screenOverlay");
+    if (overlay) overlay.classList.add("hidden");
   });
+});
 
   // === Plan modal ===
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);

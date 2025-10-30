@@ -224,6 +224,15 @@ body {
   margin-left: 6px;
 }
 
+/* === User Type Icons === */
+.user-type-icon {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: contain;
+  margin-right: 4px;
+}
+
 /* === Modals and Content === */
 .modal {
   position: fixed;

@@ -200,19 +200,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
+
   const storedType = localStorage.getItem("userType");
 
-  // === Show modal and overlay if no user type selected ===
+  // === Show onboarding modal if no type selected ===
   if (!storedType) {
     if (onboardingModal) onboardingModal.style.display = "flex";
     if (overlay) overlay.classList.remove("hidden");
   } else {
     applyUserTypeBackground(storedType);
     if (overlay) overlay.classList.add("hidden");
-    if (onboardingModal) onboardingModal.style.display = "none"; // just in case
+    if (onboardingModal) onboardingModal.style.display = "none";
   }
 
-  // === Handle user type selection ===
+  // === Button Click Handlers for User Type Selection ===
   document.querySelectorAll(".onboard-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const type = btn.dataset.usertype;
@@ -224,14 +225,24 @@ document.addEventListener("DOMContentLoaded", () => {
       if (overlay) overlay.classList.add("hidden");
     });
   });
+
+  // Fallback: if onboarding is somehow hidden but overlay is visible, force recovery
+  if (
+    storedType === null &&
+    overlay && !overlay.classList.contains("hidden") &&
+    onboardingModal && onboardingModal.style.display === "none"
+  ) {
+    onboardingModal.style.display = "flex";
+  }
 });
 
-// === Background setter function ===
+// === Set background for each user type ===
 function applyUserTypeBackground(type) {
   if (type === "learner") {
     document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-  } else if (type === "creator") {
+  } else if (type === "edutech") {
     document.body.style.background = 'url("assets/blueprint.png") repeat';
+    document.body.style.backgroundSize = "contain";
   } else {
     document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
   }

@@ -499,6 +499,71 @@ body {
 }
 
 /* Homeschool Modals Styling */
+/* === Updated Styling for Homeschool Welcome Modal === */
+#homeschoolStep1Modal {
+  display: none;
+  position: fixed;
+  z-index: 3001;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+#homeschoolStep1Modal .modal-content {
+  background-color: #fff4e8;
+  border-radius: 32px;
+  padding: 40px;
+  width: 95%;
+  max-width: 480px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s ease-in-out;
+}
+
+#homeschoolStep1Modal img {
+  max-width: 320px;
+  height: auto;
+  margin-bottom: 24px;
+  border-radius: 16px;
+}
+
+#homeschoolStep1Modal h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #e87d66;
+  margin-bottom: 12px;
+}
+
+#homeschoolStep1Modal p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 28px;
+  line-height: 1.5;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#homeschoolStep1Modal .welcome-btn {
+  background-color: #e87d66;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 28px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#homeschoolStep1Modal .welcome-btn:hover {
+  background-color: #d96a55;
+}
+
 .modal-content.homeschool-setup,
 .modal-content.homeschool-details {
   max-width: 400px;

@@ -330,7 +330,7 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
     // === Show homeschool setup modal if applicable ===
     if (type === "homeschool") {
       document.getElementById("onboardingModal").style.display = "none";
-      document.getElementById("homeschoolSetupModal").classList.remove("hidden");
+      document.getElementById("homeschoolStep1Modal").style.display = "flex";
     } else {
       document.getElementById("onboardingModal").style.display = "none";
       document.getElementById("screenOverlay")?.classList.add("hidden");

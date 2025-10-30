@@ -329,9 +329,10 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
 
     // === Show homeschool setup modal if applicable ===
     if (type === "homeschool") {
-      document.getElementById("onboardingModal").style.display = "none";
-      document.getElementById("homeschoolSetupModal").classList.remove("hidden");
-    } else {
+  document.getElementById("onboardingModal").style.display = "none";
+  document.getElementById("screenOverlay")?.classList.remove("hidden");
+  document.getElementById("homeschoolStep1Modal").style.display = "flex";
+} else {
       document.getElementById("onboardingModal").style.display = "none";
       document.getElementById("screenOverlay")?.classList.add("hidden");
     }
@@ -339,8 +340,8 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
 });
 
 // First step: From welcome modal → open detail modal
-document.getElementById("letsGoButton")?.addEventListener("click", () => {
-  document.getElementById("homeschoolSetupModal")?.classList.add("hidden");
+document.getElementById("homeschoolWelcomeBtn")?.addEventListener("click", () => {
+  document.getElementById("homeschoolStep1Modal")?.style.display = "none";
   document.getElementById("homeschoolDetailsModal")?.classList.remove("hidden");
 });
 

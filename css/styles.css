@@ -497,3 +497,49 @@ body {
   transform: rotate(-5deg);
   z-index: 2;
 }
+
+/* Homeschool Modals Styling */
+.modal-content.homeschool-setup,
+.modal-content.homeschool-details {
+  max-width: 400px;
+  background: #fff9f3;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-content.homeschool-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.modal-content.homeschool-details label {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.modal-content.homeschool-details input,
+.modal-content.homeschool-details select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.profile-pic-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-pic-preview img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}

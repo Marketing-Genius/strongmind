@@ -120,36 +120,39 @@ body {
 
 .onboard-btn {
   margin: 20px 0;
-  padding: 20px 32px;
+  padding: 20px 40px;
   border-radius: 40px;
-  position: relative;
   cursor: pointer;
   color: white;
   font-size: 16px;
   font-weight: bold;
-  overflow: visible;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Push text right */
-  height: 80px;
-  width: 100%;
-  min-width: 420px;
-  white-space: nowrap; /* Prevent line break */
-  gap: 20px;
+  justify-content: space-between;
+  height: 90px;
+  min-width: 480px;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.onboard-btn:hover {
+  transform: scale(1.03);
 }
 
 .onboard-btn img {
-  height: 70px;
+  height: 80px;
   width: auto;
   position: absolute;
-  left: -8px;
-  bottom: 0;
-  transform: translateY(50%);
+  left: 10px;
+  bottom: -5px;
 }
 
 .onboard-btn span {
-  z-index: 2;
-  position: relative;
+  flex: 1;
+  text-align: right;
+  padding-right: 40px;
 }
 
 .onboard-btn.homeschool {

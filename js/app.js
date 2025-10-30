@@ -339,9 +339,9 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
 });
 
 // First step: From welcome modal → open detail modal
-document.getElementById("startHomeschoolSetup")?.addEventListener("click", () => {
-  document.getElementById("homeschoolSetupModal").classList.add("hidden");
-  document.getElementById("homeschoolDetailsModal").classList.remove("hidden");
+document.getElementById("letsGoButton")?.addEventListener("click", () => {
+  document.getElementById("homeschoolSetupModal")?.classList.add("hidden");
+  document.getElementById("homeschoolDetailsModal")?.classList.remove("hidden");
 });
 
 // Save homeschool user info to localStorage

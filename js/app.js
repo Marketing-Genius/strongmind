@@ -198,39 +198,44 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePlanButton();
   updatePlanCards();
 
-  // === Handle User Type and Background ===
+  const overlay = document.getElementById("screenOverlay");
+  const onboardingModal = document.getElementById("onboardingModal");
+
   const storedType = localStorage.getItem("userType");
+
+  // === Show onboarding if no userType set ===
   if (!storedType) {
-    document.getElementById("onboardingModal").style.display = "flex";
+    if (onboardingModal) onboardingModal.style.display = "flex";
+    if (overlay) overlay.classList.remove("hidden");
   } else {
-    if (storedType === "learner") {
-      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-    } else {
-      document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
-    }
+    applyUserTypeBackground(storedType);
+    if (overlay) overlay.classList.add("hidden");
   }
 
-// Onboarding button logic
-document.querySelectorAll(".onboard-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const type = btn.dataset.usertype;
-    localStorage.setItem("userType", type);
+  // === Onboarding button logic ===
+  document.querySelectorAll(".onboard-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.usertype;
+      localStorage.setItem("userType", type);
 
-    // === Update background based on user type ===
-    if (type === "learner") {
-      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-    } else if (type === "creator") {
-      document.body.style.background = 'url("assets/blueprint.png") repeat';
-    } else {
-      document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
-    }
+      applyUserTypeBackground(type);
 
-    // === Hide onboarding modal and overlay ===
-    document.getElementById("onboardingModal").style.display = "none";
-    const overlay = document.getElementById("screenOverlay");
-    if (overlay) overlay.classList.add("hidden");
+      if (onboardingModal) onboardingModal.style.display = "none";
+      if (overlay) overlay.classList.add("hidden");
+    });
   });
 });
+
+// === Background Logic Function ===
+function applyUserTypeBackground(type) {
+  if (type === "learner") {
+    document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+  } else if (type === "creator") {
+    document.body.style.background = 'url("assets/blueprint.png") repeat';
+  } else {
+    document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+  }
+}
 
   // === Plan modal ===
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);

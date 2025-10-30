@@ -192,6 +192,18 @@ function openSparkModal() {
   modal.classList.remove("hidden");
 }
 
+// === Set background for each user type ===
+function applyUserTypeBackground(type) {
+  if (type === "learner") {
+    document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+  } else if (type === "creator") {
+    document.body.style.background = 'url("assets/blueprint.png") repeat';
+    document.body.style.backgroundSize = "contain";
+  } else {
+    document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+  }
+}
+
 // === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
   updateSparkButtonLabel();
@@ -202,46 +214,78 @@ document.addEventListener("DOMContentLoaded", () => {
   const onboardingModal = document.getElementById("onboardingModal");
   const storedType = localStorage.getItem("userType");
 
-  // Show onboarding modal + overlay if no user type is stored
+  // Show modal if not set
   if (!storedType) {
-    onboardingModal?.style.display = "flex";
-    overlay?.classList.remove("hidden");
+    onboardingModal.style.display = "flex";
+    overlay.classList.remove("hidden");
   } else {
     applyUserTypeBackground(storedType);
-    onboardingModal?.style.display = "none";
-    overlay?.classList.add("hidden");
+    onboardingModal.style.display = "none";
+    overlay.classList.add("hidden");
   }
 
-  // Handle button clicks inside onboarding modal
-  document.querySelectorAll(".onboard-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const selectedType = btn.dataset.usertype;
+  // === Fix: Ensure onboarding buttons are clickable ===
+  const buttons = document.querySelectorAll(".onboard-btn");
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const selectedType = button.dataset.usertype;
       localStorage.setItem("userType", selectedType);
       applyUserTypeBackground(selectedType);
-      onboardingModal?.style.display = "none";
-      overlay?.classList.add("hidden");
+      onboardingModal.style.display = "none";
+      overlay.classList.add("hidden");
     });
   });
 
-  // Fallback: ensure modal reappears if overlay is visible but modal is hidden (e.g. via back button)
-  if (!storedType && overlay && !overlay.classList.contains("hidden") && onboardingModal?.style.display === "none") {
+  // Recovery: If overlay is visible but modal is not, show modal again
+  if (
+    !storedType &&
+    overlay && !overlay.classList.contains("hidden") &&
+    onboardingModal && onboardingModal.style.display === "none"
+  ) {
     onboardingModal.style.display = "flex";
   }
+
+  // === Plan modal ===
+  document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
+  document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);
+
+  // === SparkTokens modal ===
+  document.querySelector(".spark-button")?.addEventListener("click", openSparkModal);
+  document.querySelector("#sparkModal .close")?.addEventListener("click", closeSparkModal);
+
+  // === Hamburger menu ===
+  const hamburger = document.getElementById("hamburger");
+  const dropdown = document.getElementById("hamburgerDropdown");
+
+  hamburger?.addEventListener("click", () => {
+    dropdown.classList.toggle("hidden");
+  });
+
+  // Close hamburger if click outside
+  window.addEventListener("click", (e) => {
+    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+
+  // === Info modal ===
+  document.getElementById("infoItem")?.addEventListener("click", () => {
+    document.getElementById("infoModal").classList.remove("hidden");
+    dropdown.classList.add("hidden");
+  });
+
+  document.getElementById("closeInfoModal")?.addEventListener("click", () => {
+    document.getElementById("infoModal").classList.add("hidden");
+  });
+
+  // === Reset Demo ===
+  document.getElementById("resetItem")?.addEventListener("click", () => {
+    if (confirm("Reset all demo data?")) {
+      localStorage.clear();
+      location.reload();
+    }
+  });
 });
-
-// === Set background for each user type ===
-function applyUserTypeBackground(type) {
-  if (type === "learner") {
-    document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-  } else if (type === "edutech") {
-    document.body.style.background = 'url("assets/blueprint.png") repeat';
-    document.body.style.backgroundSize = "contain";
-  } else {
-    // Default to homeschool gradient
-    document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
-  }
-}
-
   // === Plan modal ===
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
   document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);

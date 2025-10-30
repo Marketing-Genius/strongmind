@@ -312,6 +312,70 @@ window.addEventListener("click", function (e) {
   }
 });
 
+// Trigger secondary modal for homeschool user setup
+document.querySelectorAll(".onboard-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.usertype;
+    localStorage.setItem("userType", type);
+
+    // === Backgrounds ===
+    if (type === "learner") {
+      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+    } else if (type === "edutech") {
+      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #82d1a8)";
+    } else {
+      document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+    }
+
+    // === Show homeschool setup modal if applicable ===
+    if (type === "homeschool") {
+      document.getElementById("onboardingModal").style.display = "none";
+      document.getElementById("homeschoolSetupModal").classList.remove("hidden");
+    } else {
+      document.getElementById("onboardingModal").style.display = "none";
+      document.getElementById("screenOverlay")?.classList.add("hidden");
+    }
+  });
+});
+
+// First step: From welcome modal → open detail modal
+document.getElementById("startHomeschoolSetup")?.addEventListener("click", () => {
+  document.getElementById("homeschoolSetupModal").classList.add("hidden");
+  document.getElementById("homeschoolDetailsModal").classList.remove("hidden");
+});
+
+// Save homeschool user info to localStorage
+document.getElementById("saveHomeschoolInfo")?.addEventListener("click", () => {
+  const role = document.getElementById("homeschoolRole").value;
+  const learners = parseInt(document.getElementById("homeschoolLearners").value);
+  const first = document.getElementById("homeschoolFirstName").value.trim();
+  const last = document.getElementById("homeschoolLastName").value.trim();
+  const school = document.getElementById("homeschoolName").value.trim() || "Your Homeschool";
+  const picFile = document.getElementById("uploadProfilePic").files[0];
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const profileData = {
+      role,
+      learners,
+      first,
+      last,
+      school,
+      photo: reader.result || "assets/default-profile.png"
+    };
+    localStorage.setItem("homeschoolProfile", JSON.stringify(profileData));
+    document.getElementById("homeschoolDetailsModal").classList.add("hidden");
+    document.getElementById("screenOverlay")?.classList.add("hidden");
+    location.reload(); // optional: refresh to update profile elsewhere
+  };
+
+  if (picFile) {
+    reader.readAsDataURL(picFile);
+  } else {
+    reader.onload(); // use default
+  }
+});
+
 // === Service Worker registration and update prompt ===
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js").then(reg => {

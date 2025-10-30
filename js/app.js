@@ -14,29 +14,6 @@ function updateSparkButtonLabel() {
   }
 }
 
-// Check if userType already set
-window.addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem("userType")) {
-    document.getElementById("onboardingModal").style.display = "flex";
-  }
-});
-
-// Onboarding button logic (corrected selector)
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".onboard-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const type = btn.dataset.usertype;
-
-      if (type === "homeschool") {
-        localStorage.setItem("userType", type);
-        document.getElementById("onboardingModal").style.display = "none";
-      } else {
-        window.alert("This option is coming soon.");
-      }
-    });
-  });
-});
-
 function updatePlanButton() {
   const plan = localStorage.getItem("subscriptionPlan") || "Starter";
   const button = document.getElementById("plan-button");
@@ -49,7 +26,6 @@ function updatePlanButton() {
 function confirmPurchase(amount, price) {
   const confirmMsg = `Are you sure you want to purchase ${amount.toLocaleString()} SparkTokens for $${price.toFixed(2)}?`;
   const confirmed = window.confirm(confirmMsg);
-
   if (!confirmed) return;
 
   const currentBalance = parseInt(localStorage.getItem("sparkBalance")) || 0;
@@ -84,7 +60,6 @@ function showSuccessAnimation(message) {
 }
 
 // === Modal Controls ===
-
 function closeSparkModal() {
   document.getElementById("sparkModal").classList.add("hidden");
 }
@@ -223,22 +198,43 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePlanButton();
   updatePlanCards();
 
-    // Onboarding modal check
-  const hasType = localStorage.getItem("userType");
-  if (!hasType) {
-    const modal = document.getElementById("onboardingModal");
-    if (modal) modal.style.display = "flex";
+  // === Handle User Type and Background ===
+  const storedType = localStorage.getItem("userType");
+  if (!storedType) {
+    document.getElementById("onboardingModal").style.display = "flex";
+  } else {
+    if (storedType === "learner") {
+      document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+    } else {
+      document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+    }
   }
 
-  // Plan modal
+  // Onboarding button logic
+  document.querySelectorAll(".onboard-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const type = btn.dataset.usertype;
+      localStorage.setItem("userType", type);
+
+      if (type === "learner") {
+        document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
+      } else {
+        document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
+      }
+
+      document.getElementById("onboardingModal").style.display = "none";
+    });
+  });
+
+  // === Plan modal ===
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
   document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);
 
-  // SparkTokens modal
+  // === SparkTokens modal ===
   document.querySelector(".spark-button")?.addEventListener("click", openSparkModal);
   document.querySelector("#sparkModal .close")?.addEventListener("click", closeSparkModal);
 
-  // Hamburger menu
+  // === Hamburger menu ===
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
 
@@ -253,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Info modal
+  // === Info modal ===
   document.getElementById("infoItem")?.addEventListener("click", () => {
     document.getElementById("infoModal").classList.remove("hidden");
     dropdown.classList.add("hidden");
@@ -263,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("infoModal").classList.add("hidden");
   });
 
-  // Reset Demo
+  // === Reset Demo ===
   document.getElementById("resetItem")?.addEventListener("click", () => {
     if (confirm("Reset all demo data?")) {
       localStorage.clear();

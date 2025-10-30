@@ -200,38 +200,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
-
   const storedType = localStorage.getItem("userType");
 
-  // === Show onboarding modal if no type selected ===
+  // Show onboarding modal + overlay if no user type is stored
   if (!storedType) {
-    if (onboardingModal) onboardingModal.style.display = "flex";
-    if (overlay) overlay.classList.remove("hidden");
+    onboardingModal?.style.display = "flex";
+    overlay?.classList.remove("hidden");
   } else {
     applyUserTypeBackground(storedType);
-    if (overlay) overlay.classList.add("hidden");
-    if (onboardingModal) onboardingModal.style.display = "none";
+    onboardingModal?.style.display = "none";
+    overlay?.classList.add("hidden");
   }
 
-  // === Button Click Handlers for User Type Selection ===
+  // Handle button clicks inside onboarding modal
   document.querySelectorAll(".onboard-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const type = btn.dataset.usertype;
-      localStorage.setItem("userType", type);
-
-      applyUserTypeBackground(type);
-
-      if (onboardingModal) onboardingModal.style.display = "none";
-      if (overlay) overlay.classList.add("hidden");
+      const selectedType = btn.dataset.usertype;
+      localStorage.setItem("userType", selectedType);
+      applyUserTypeBackground(selectedType);
+      onboardingModal?.style.display = "none";
+      overlay?.classList.add("hidden");
     });
   });
 
-  // Fallback: if onboarding is somehow hidden but overlay is visible, force recovery
-  if (
-    storedType === null &&
-    overlay && !overlay.classList.contains("hidden") &&
-    onboardingModal && onboardingModal.style.display === "none"
-  ) {
+  // Fallback: ensure modal reappears if overlay is visible but modal is hidden (e.g. via back button)
+  if (!storedType && overlay && !overlay.classList.contains("hidden") && onboardingModal?.style.display === "none") {
     onboardingModal.style.display = "flex";
   }
 });
@@ -244,6 +237,7 @@ function applyUserTypeBackground(type) {
     document.body.style.background = 'url("assets/blueprint.png") repeat';
     document.body.style.backgroundSize = "contain";
   } else {
+    // Default to homeschool gradient
     document.body.style.background = "linear-gradient(160deg, #e97e66, #f0b21a)";
   }
 }

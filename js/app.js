@@ -196,7 +196,7 @@ function openSparkModal() {
 function applyUserTypeBackground(type) {
   if (type === "learner") {
     document.body.style.background = "linear-gradient(160deg, #4ea6c0, #a178c9)";
-  } else if (type === "creator") {
+  } else if (type === "edutech") {
     document.body.style.background = 'url("assets/blueprint.png") repeat';
     document.body.style.backgroundSize = "contain";
   } else {

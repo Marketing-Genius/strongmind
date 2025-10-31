@@ -101,6 +101,41 @@
     </div>
   </div>
 
+  <!-- Profile Modal -->
+<div id="profileModal" class="modal hidden">
+  <div class="modal-content profile-modal-content">
+    <span class="close" id="closeProfileModal">&times;</span>
+
+    <div class="profile-photo">
+      <img id="profileImage" src="assets/default-profile.png" alt="Profile Photo" />
+      <input type="file" id="profileUpload" accept="image/*" />
+    </div>
+
+    <h2 id="profileName">Your Name</h2>
+    <form id="profileForm">
+      <label>Name</label>
+      <input type="text" id="nameInput" placeholder="First Last" />
+
+      <label>Email</label>
+      <input type="email" id="emailInput" placeholder="you@email.com" />
+
+      <label>Phone</label>
+      <input type="tel" id="phoneInput" placeholder="(123) 456-7890" />
+
+      <label>Homeschool Name</label>
+      <input type="text" id="schoolNameInput" placeholder="Your Homeschool" />
+
+      <label>Manage Family / Learners</label>
+      <div class="mock-button">Manage Family</div>
+
+      <label>Payment Info</label>
+      <div class="mock-info">SparkPlus - Active<br/>Next Payment: Nov 20</div>
+
+      <button type="submit" class="save-btn">Save Profile</button>
+    </form>
+  </div>
+</div>
+
   <!-- Info Modal -->
   <div id="infoModal" class="modal hidden">
     <div class="modal-content">

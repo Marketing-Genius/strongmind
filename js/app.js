@@ -277,6 +277,10 @@ document.addEventListener("DOMContentLoaded", () => {
   hamburger?.addEventListener("click", () => {
     dropdown.classList.toggle("hidden");
   });
+  
+  document.getElementById("profileItem")?.addEventListener("click", () => {
+  window.location.href = "profile.html";
+});
 
   // Close hamburger if click outside
   window.addEventListener("click", (e) => {

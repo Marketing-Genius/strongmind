@@ -41,6 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+  // === Click outside SparkTokens modal to close
+  const sparkModal = document.getElementById("sparkModal");
+if (sparkModal) {
+  window.addEventListener("click", (e) => {
+    if (!sparkModal.classList.contains("hidden") && e.target === sparkModal) {
+      closeSparkModal();
+    }
+  });
+}
 
   // === User Type Icon ===
   const userTypeIcon = document.getElementById('userTypeIcon');

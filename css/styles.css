@@ -657,6 +657,7 @@ body {
 }
 
 .update-photo-btn {
+  text-align: center;
   margin-top: 10px;
   background-color: #fbd561;
   border: none;
@@ -675,7 +676,7 @@ body {
 .profile-form-fields {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
 }
 
 /* Align two fields per row on wider screens */
@@ -683,12 +684,12 @@ body {
   .profile-form-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 24px;
+    column-gap: 5px;
     row-gap: 16px;
   }
 
   .full-width {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   .save-btn {

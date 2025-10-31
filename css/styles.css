@@ -226,8 +226,8 @@ body {
 
 /* === User Type Icons === */
 .user-type-icon {
-  height: 36px;
-  width: 36px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   object-fit: contain;
   margin-right: 4px;

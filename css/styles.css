@@ -613,12 +613,21 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin-bottom: 16px;
 }
 
-.profile-pic-preview {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;        /* NEW */
-  overflow: hidden;         /* NEW */
+.profile-pic-preview img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.profile-pic-preview input[type="file"] {
+  font-size: 0.9rem;
+  max-width: 100%;
+  white-space: nowrap;
 }

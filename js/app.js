@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   document.getElementById("profileItem")?.addEventListener("click", () => {
-  window.location.href = "profile.html";
+  openProfileModal();
 });
 
   // Close hamburger if click outside

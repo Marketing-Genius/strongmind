@@ -475,6 +475,10 @@ document.getElementById("closeProfileModal")?.addEventListener("click", () => {
   document.getElementById("profileModal").classList.add("hidden");
 });
 
+document.getElementById('updatePhotoBtn').addEventListener('click', () => {
+  document.getElementById('profileUpload').click();
+});
+
 function loadProfileData() {
   const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
   const fullName = `${stored.first || ""} ${stored.last || ""}`.trim();

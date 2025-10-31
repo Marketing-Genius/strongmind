@@ -1,4 +1,33 @@
+// === UI Update Functions ===
+function updatePlanButton() {
+  const plan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const button = document.getElementById("plan-button");
+  if (!button) return;
+
+  const PLAN_UI = {
+    Starter: { color: "#fbd561", text: "#000" },
+    SparkPlus: { color: "#a178c9", text: "#fff" },
+    SparkPremium: { color: "#000", text: "#fbd561" }
+  };
+
+  const { color, text } = PLAN_UI[plan];
+  button.textContent = `Plan: ${plan}`;
+  button.style.background = color;
+  button.style.color = text;
+}
+
+function updateSparkButtonLabel() {
+  const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+  const label = document.getElementById("token-label");
+  if (label) {
+    label.textContent = balance > 0 ? balance.toLocaleString() : "SparkTokens";
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  updatePlanButton();
+  updateSparkButtonLabel();
+
   // === Hamburger Menu Toggle ===
   const hamburger = document.getElementById('hamburger');
   const dropdown = document.getElementById('hamburgerDropdown');
@@ -18,11 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // === Plan Button ===
   const planBtn = document.getElementById('plan-button');
   if (planBtn) {
-    const userPlan = localStorage.getItem('selectedPlan') || 'Starter';
-    planBtn.textContent = `Plan: ${userPlan}`;
-    planBtn.classList.add(`plan-${userPlan.toLowerCase()}`);
-
-    // Optional click logic
     planBtn.addEventListener('click', () => {
       const modal = document.getElementById('subscriptionModal');
       if (modal) {
@@ -31,25 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // === SparkTokens Button (optional) ===
+  // === SparkTokens Button ===
   const sparkButton = document.querySelector('.spark-button');
   if (sparkButton) {
     sparkButton.addEventListener('click', () => {
-      const tokenModal = document.getElementById('tokenModal');
-      if (tokenModal) {
-        tokenModal.classList.remove('hidden');
+      const modal = document.getElementById('sparkModal');
+      if (modal) {
+        modal.classList.remove('hidden');
       }
     });
   }
+
   // === Click outside SparkTokens modal to close
   const sparkModal = document.getElementById("sparkModal");
-if (sparkModal) {
-  window.addEventListener("click", (e) => {
-    if (!sparkModal.classList.contains("hidden") && e.target === sparkModal) {
-      closeSparkModal();
-    }
-  });
-}
+  if (sparkModal) {
+    window.addEventListener("click", (e) => {
+      if (!sparkModal.classList.contains("hidden") && e.target === sparkModal) {
+        if (typeof closeSparkModal === "function") closeSparkModal();
+        else sparkModal.classList.add("hidden"); // fallback
+      }
+    });
+  }
 
   // === User Type Icon ===
   const userTypeIcon = document.getElementById('userTypeIcon');
@@ -81,5 +107,5 @@ if (sparkModal) {
     });
   }
 
-  // === Add more navigation handlers here (e.g., Settings, Wallet, etc.) ===
+  // === Add more navigation handlers here (Settings, Wallet, etc.) ===
 });

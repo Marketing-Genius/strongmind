@@ -679,24 +679,6 @@ body {
   gap: 12px;
 }
 
-/* Align two fields per row on wider screens */
-@media (min-width: 640px) {
-  .profile-form-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5px;
-    row-gap: 16px;
-  }
-
-  .full-width {
-    grid-column: span 2;
-  }
-
-  .save-btn {
-    grid-column: span 2;
-  }
-}
-
 /* Inputs and textarea */
 .profile-form-fields input,
 .profile-form-fields textarea {

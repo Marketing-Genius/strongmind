@@ -420,6 +420,19 @@ function loadProfileData() {
   document.getElementById("profileImage").src = stored.photo || "assets/default-profile.png";
 }
 
+function renderDashboardHeader() {
+  const profileData = JSON.parse(localStorage.getItem('profile')) || {};
+  const firstName = profileData.name ? profileData.name.split(' ')[0] : 'Friend';
+  const homeschool = profileData.schoolName || 'Your Homeschool';
+
+  const headerHTML = `
+    <h1>Welcome back, ${firstName}!</h1>
+    <h3>Your Homeschool: ${homeschool}</h3>
+  `;
+
+  document.getElementById('dashboardHeader').innerHTML = headerHTML;
+}
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", () => {
   const profileBtn = document.getElementById("profileItem");

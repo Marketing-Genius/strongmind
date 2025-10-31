@@ -595,16 +595,30 @@ body {
   font-size: 1rem;
 }
 
+/* Style fix for file input to prevent overflow */
+.modal-content.homeschool-details input[type="file"] {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
 .profile-pic-preview {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.profile-pic-preview img {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #ccc;
+.profile-pic-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;        /* NEW */
+  overflow: hidden;         /* NEW */
 }

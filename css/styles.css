@@ -632,166 +632,92 @@ body {
   white-space: nowrap;
 }
 
-/* === Polished Profile Modal Styling === */
-.modal.profile-modal-content {
-  max-width: 560px;
-  width: 90%;
-  padding: 30px;
-  background: #fff6ea;
+/* Profile Modal Container */
+.profile-modal-content {
+  max-width: 700px; /* was likely 900+ before */
+  padding: 40px;
+  background: #fff;
   border-radius: 16px;
-  margin: auto;
-  font-family: 'Helvetica Neue', sans-serif;
-  color: #333;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin: 40px auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  position: relative;
 }
 
-.profile-modal-content h2 {
-  margin: 10px 0;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.4rem;
-}
-
+/* Centered photo and button */
 .profile-photo {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .profile-photo img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #ccc;
+  object-fit: cover;
 }
 
 .update-photo-btn {
   margin-top: 10px;
-  background: #fbd561;
-  color: #000;
+  background-color: #fbd561;
   border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 6px 16px;
   font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-#profileUpload {
-  display: none;
-}
-
+/* Form Layout */
 .profile-form-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.profile-form-fields label {
-  font-size: 0.85rem;
-  margin-bottom: 4px;
-  display: block;
-  font-weight: 600;
+/* Align two fields per row on wider screens */
+@media (min-width: 640px) {
+  .profile-form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 16px;
+  }
+
+  .full-width {
+    grid-column: span 2;
+  }
+
+  .save-btn {
+    grid-column: span 2;
+  }
 }
 
-.profile-form-fields input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.9rem;
-}
-
-.profile-form-fields .full-width {
-  grid-column: 1 / -1;
-}
-
-.mock-button {
-  display: inline-block;
-  padding: 10px;
-  background: #ccc;
-  border-radius: 6px;
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 6px;
-}
-
-textarea#bioInput {
+/* Inputs and textarea */
+.profile-form-fields input,
+.profile-form-fields textarea {
   width: 100%;
   padding: 10px;
-  border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 0.9rem;
-  min-height: 100px;
-  resize: vertical;
-  grid-column: 1 / -1;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
+/* Toggle section styling */
 .toggle-label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  grid-column: 1 / -1;
-  font-size: 0.9rem;
-  margin-top: 12px;
+  grid-column: span 2;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 26px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px; width: 20px;
-  left: 3px; bottom: 3px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #4caf50;
-}
-
-input:checked + .slider:before {
-  transform: translateX(24px);
-}
-
-/* Big Save Profile Button */
-#profileForm .save-btn {
-  grid-column: 1 / -1;
-  margin-top: 20px;
-  background: #e87d66;
-  color: white;
-  border: none;
+/* Save Button */
+.save-btn {
+  background-color: #e2654a;
+  color: #fff;
   padding: 14px;
-  border-radius: 999px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: bold;
+  border: none;
+  border-radius: 24px;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#profileForm .save-btn:hover {
-  background: #cf6d58;
+  margin-top: 20px;
 }

@@ -634,7 +634,7 @@ body {
 
 /* Profile Modal Container */
 .profile-modal-content {
-  max-width: 700px; /* was likely 900+ before */
+  max-width: 480px; /* was likely 900+ before */
   padding: 40px;
   background: #fff;
   border-radius: 16px;
@@ -664,6 +664,11 @@ body {
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
+}
+
+/* Hide Default Photopicker */
+#profileUpload {
+  display: none;
 }
 
 /* Form Layout */

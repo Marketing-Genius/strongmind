@@ -259,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     onboardingModal.style.display = "flex";
   }
-  });
 });
 
 // Optional: click outside SparkTokens modal to close

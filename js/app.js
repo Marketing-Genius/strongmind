@@ -223,6 +223,7 @@ function applyUserTypeBackground(type) {
 
 // === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
+  renderDashboardHeader();
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();
@@ -421,7 +422,7 @@ function loadProfileData() {
 }
 
 function renderDashboardHeader() {
-  const profileData = JSON.parse(localStorage.getItem('profile')) || {};
+  const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
   const firstName = profileData.name ? profileData.name.split(' ')[0] : 'Friend';
   const homeschool = profileData.schoolName || 'Your Homeschool';
 

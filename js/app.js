@@ -464,3 +464,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// === Profile Modal Logic ===
+document.getElementById("profileItem")?.addEventListener("click", () => {
+  document.getElementById("profileModal").classList.remove("hidden");
+  loadProfileData();
+});
+
+document.getElementById("closeProfileModal")?.addEventListener("click", () => {
+  document.getElementById("profileModal").classList.add("hidden");
+});
+
+function loadProfileData() {
+  const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
+  const fullName = `${stored.first || ""} ${stored.last || ""}`.trim();
+
+  document.getElementById("profileImage").src = stored.photo || "assets/default-profile.png";
+  document.getElementById("profileName").textContent = fullName || "Your Name";
+  document.getElementById("nameInput").value = fullName;
+  document.getElementById("emailInput").value = stored.email || "";
+  document.getElementById("phoneInput").value = stored.phone || "";
+  document.getElementById("schoolNameInput").value = stored.school || "Your Homeschool";
+  document.getElementById("bioInput").value = stored.bio || "";
+  document.getElementById("publicProfileToggle").checked = stored.public || false;
+  document.getElementById("profileVisibilityLabel").textContent = stored.public ? "Public Profile" : "Private Profile";
+
+  const currentPlan = localStorage.getItem("subscriptionPlan") || "Starter";
+  document.getElementById("paymentInfo").innerHTML = `${currentPlan} - Active<br>Next Payment: Nov 20`;
+}
+
+document.getElementById("publicProfileToggle")?.addEventListener("change", (e) => {
+  const label = document.getElementById("profileVisibilityLabel");
+  label.textContent = e.target.checked ? "Public Profile" : "Private Profile";
+});
+
+document.getElementById("profileUpload")?.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("profileImage").src = reader.result;
+  };
+  if (file) reader.readAsDataURL(file);
+});
+
+document.getElementById("profileForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const [first, ...lastParts] = document.getElementById("nameInput").value.trim().split(" ");
+  const last = lastParts.join(" ");
+  const email = document.getElementById("emailInput").value.trim();
+  const phone = document.getElementById("phoneInput").value.trim();
+  const school = document.getElementById("schoolNameInput").value.trim() || "Your Homeschool";
+  const bio = document.getElementById("bioInput").value.trim();
+  const publicProfile = document.getElementById("publicProfileToggle").checked;
+  const photo = document.getElementById("profileImage").src;
+
+  const stored = {
+    first, last, email, phone, school, bio, public: publicProfile, photo
+  };
+
+  localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
+  document.getElementById("profileName").textContent = `${first} ${last}`;
+  alert("Profile saved!");
+});

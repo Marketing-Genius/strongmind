@@ -398,60 +398,69 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-// === Profile Page Logic ===
-document.addEventListener("DOMContentLoaded", () => {
-  const nameInput = document.getElementById("nameInput");
-  const emailInput = document.getElementById("emailInput");
-  const phoneInput = document.getElementById("phoneInput");
-  const schoolNameInput = document.getElementById("schoolNameInput");
-  const profileImage = document.getElementById("profileImage");
-  const profileName = document.getElementById("profileName");
-  const profileUpload = document.getElementById("profileUpload");
-  const form = document.getElementById("profileForm");
+function openProfileModal() {
+  document.getElementById("profileModal").classList.remove("hidden");
+  loadProfileData(); // populate fields
+}
 
-  // === Only run if on profile.html ===
-  if (!form) return;
+function closeProfileModal() {
+  document.getElementById("profileModal").classList.add("hidden");
+}
 
-  // Load profile data from localStorage
+// Load and sync data from localStorage
+function loadProfileData() {
   const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
   const fullName = `${stored.first || ""} ${stored.last || ""}`.trim();
 
-  // Prefill fields
-  nameInput.value = fullName;
-  emailInput.value = stored.email || "";
-  phoneInput.value = stored.phone || "";
-  schoolNameInput.value = stored.school || "Your Homeschool";
-  profileName.textContent = fullName || "Your Name";
-  profileImage.src = stored.photo || "assets/default-profile.png";
+  document.getElementById("nameInput").value = fullName;
+  document.getElementById("emailInput").value = stored.email || "";
+  document.getElementById("phoneInput").value = stored.phone || "";
+  document.getElementById("schoolNameInput").value = stored.school || "Your Homeschool";
+  document.getElementById("profileName").textContent = fullName || "Your Name";
+  document.getElementById("profileImage").src = stored.photo || "assets/default-profile.png";
+}
 
-  // Handle image upload
-  profileUpload.addEventListener("change", () => {
-    const file = profileUpload.files[0];
-    if (!file) return;
+// Event listeners
+document.addEventListener("DOMContentLoaded", () => {
+  const profileBtn = document.getElementById("profileItem");
+  if (profileBtn) {
+    profileBtn.addEventListener("click", openProfileModal);
+  }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      profileImage.src = reader.result;
-      stored.photo = reader.result;
+  document.getElementById("closeProfileModal")?.addEventListener("click", closeProfileModal);
+
+  const profileUpload = document.getElementById("profileUpload");
+  if (profileUpload) {
+    profileUpload.addEventListener("change", () => {
+      const file = profileUpload.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById("profileImage").src = reader.result;
+        const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
+        stored.photo = reader.result;
+        localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const form = document.getElementById("profileForm");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const [first, ...lastParts] = document.getElementById("nameInput").value.trim().split(" ");
+      const last = lastParts.join(" ");
+
+      const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
+      stored.first = first;
+      stored.last = last;
+      stored.email = document.getElementById("emailInput").value.trim();
+      stored.phone = document.getElementById("phoneInput").value.trim();
+      stored.school = document.getElementById("schoolNameInput").value.trim() || "Your Homeschool";
+
       localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
-    };
-    reader.readAsDataURL(file);
-  });
-
-  // Save form data
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const [first, ...lastParts] = nameInput.value.trim().split(" ");
-    const last = lastParts.join(" ");
-
-    stored.first = first || "";
-    stored.last = last || "";
-    stored.email = emailInput.value.trim();
-    stored.phone = phoneInput.value.trim();
-    stored.school = schoolNameInput.value.trim() || "Your Homeschool";
-
-    localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
-    profileName.textContent = `${stored.first} ${stored.last}`;
-    alert("Profile saved!");
-  });
+      document.getElementById("profileName").textContent = `${first} ${last}`;
+      closeProfileModal();
+    });
+  }
 });

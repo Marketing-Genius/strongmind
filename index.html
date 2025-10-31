@@ -101,35 +101,61 @@
     </div>
   </div>
 
-  <!-- Profile Modal -->
+<!-- Profile Modal -->
 <div id="profileModal" class="modal hidden">
   <div class="modal-content profile-modal-content">
     <span class="close" id="closeProfileModal">&times;</span>
 
+    <!-- Profile Image Upload -->
     <div class="profile-photo">
       <img id="profileImage" src="assets/default-profile.png" alt="Profile Photo" />
+      <label for="profileUpload" class="update-photo-btn">Update Photo</label>
       <input type="file" id="profileUpload" accept="image/*" />
     </div>
 
+    <!-- Profile Name -->
     <h2 id="profileName">Your Name</h2>
+
+    <!-- Profile Form -->
     <form id="profileForm">
-      <label>Name</label>
-      <input type="text" id="nameInput" placeholder="First Last" />
+      <div class="two-column">
+        <div>
+          <label>Name</label>
+          <input type="text" id="nameInput" placeholder="First Last" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" id="emailInput" placeholder="you@email.com" />
+        </div>
+      </div>
 
-      <label>Email</label>
-      <input type="email" id="emailInput" placeholder="you@email.com" />
-
-      <label>Phone</label>
-      <input type="tel" id="phoneInput" placeholder="(123) 456-7890" />
-
-      <label>Homeschool Name</label>
-      <input type="text" id="schoolNameInput" placeholder="Your Homeschool" />
+      <div class="two-column">
+        <div>
+          <label>Phone</label>
+          <input type="tel" id="phoneInput" placeholder="(123) 456-7890" />
+        </div>
+        <div>
+          <label>Homeschool Name</label>
+          <input type="text" id="schoolNameInput" placeholder="Your Homeschool" />
+        </div>
+      </div>
 
       <label>Manage Family / Learners</label>
       <div class="mock-button">Manage Family</div>
 
       <label>Payment Info</label>
-      <div class="mock-info">SparkPlus - Active<br/>Next Payment: Nov 20</div>
+      <div class="mock-info" id="paymentInfo">Loading plan info...</div>
+
+      <label>Bio</label>
+      <textarea id="bioInput" placeholder="Tell us a bit about yourself..." rows="3"></textarea>
+
+      <label class="toggle-label">
+        <span id="profileVisibilityLabel">Private Profile</span>
+        <label class="switch">
+          <input type="checkbox" id="publicProfileToggle" />
+          <span class="slider round"></span>
+        </label>
+      </label>
 
       <button type="submit" class="save-btn">Save Profile</button>
     </form>

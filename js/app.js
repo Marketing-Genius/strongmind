@@ -229,37 +229,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const onboardingModal = document.getElementById("onboardingModal");
   const storedType = localStorage.getItem("userType");
 
-  // Show modal if not set
-  if (!storedType) {
-    onboardingModal.style.display = "flex";
-    overlay.classList.remove("hidden");
-  } else {
-    applyUserTypeBackground(storedType);
+// Show modal if not set
+if (!storedType) {
+  onboardingModal.style.display = "flex";
+  overlay.classList.remove("hidden");
+} else {
+  applyUserTypeBackground(storedType);
+  onboardingModal.style.display = "none";
+  overlay.classList.add("hidden");
+}
+
+// === Fix: Ensure onboarding buttons are clickable ===
+const buttons = document.querySelectorAll(".onboard-btn");
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedType = button.dataset.usertype;
+    localStorage.setItem("userType", selectedType);
+    applyUserTypeBackground(selectedType);
     onboardingModal.style.display = "none";
     overlay.classList.add("hidden");
-  }
-
-  // === Fix: Ensure onboarding buttons are clickable ===
-  const buttons = document.querySelectorAll(".onboard-btn");
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const selectedType = button.dataset.usertype;
-      localStorage.setItem("userType", selectedType);
-      applyUserTypeBackground(selectedType);
-      onboardingModal.style.display = "none";
-      overlay.classList.add("hidden");
-    });
   });
-
-  // Recovery: If overlay is visible but modal is not, show modal again
-  if (
-    !storedType &&
-    overlay && !overlay.classList.contains("hidden") &&
-    onboardingModal && onboardingModal.style.display === "none"
-  ) {
-    onboardingModal.style.display = "flex";
-  }
 });
+
+// Recovery: If overlay is visible but modal is not, show modal again
+if (
+  !storedType &&
+  overlay && !overlay.classList.contains("hidden") &&
+  onboardingModal && onboardingModal.style.display === "none"
+) {
+  onboardingModal.style.display = "flex";
+}
+}); // ✅ this ends the document.addEventListener block properly
 
 // Optional: click outside SparkTokens modal to close
 window.addEventListener("click", function (e) {

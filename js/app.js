@@ -129,8 +129,6 @@ function selectPlan(plan) {
     balance += PLAN_TIERS[plan].tokens;
     localStorage.setItem("sparkBalance", balance);
 
-    updatePlanButton();
-    updateSparkButtonLabel();
     showSuccessAnimation(`Switched to ${plan} + Tokens added!`);
     closeSubscriptionModal();
     updatePlanCards();

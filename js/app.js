@@ -393,3 +393,61 @@ if ("serviceWorker" in navigator) {
     console.error("Service Worker registration failed:", err);
   });
 }
+
+// === Profile Page Logic ===
+document.addEventListener("DOMContentLoaded", () => {
+  const nameInput = document.getElementById("nameInput");
+  const emailInput = document.getElementById("emailInput");
+  const phoneInput = document.getElementById("phoneInput");
+  const schoolNameInput = document.getElementById("schoolNameInput");
+  const profileImage = document.getElementById("profileImage");
+  const profileName = document.getElementById("profileName");
+  const profileUpload = document.getElementById("profileUpload");
+  const form = document.getElementById("profileForm");
+
+  // === Only run if on profile.html ===
+  if (!form) return;
+
+  // Load profile data from localStorage
+  const stored = JSON.parse(localStorage.getItem("homeschoolProfile")) || {};
+  const fullName = `${stored.first || ""} ${stored.last || ""}`.trim();
+
+  // Prefill fields
+  nameInput.value = fullName;
+  emailInput.value = stored.email || "";
+  phoneInput.value = stored.phone || "";
+  schoolNameInput.value = stored.school || "Your Homeschool";
+  profileName.textContent = fullName || "Your Name";
+  profileImage.src = stored.photo || "assets/default-profile.png";
+
+  // Handle image upload
+  profileUpload.addEventListener("change", () => {
+    const file = profileUpload.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      profileImage.src = reader.result;
+      stored.photo = reader.result;
+      localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Save form data
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const [first, ...lastParts] = nameInput.value.trim().split(" ");
+    const last = lastParts.join(" ");
+
+    stored.first = first || "";
+    stored.last = last || "";
+    stored.email = emailInput.value.trim();
+    stored.phone = phoneInput.value.trim();
+    stored.school = schoolNameInput.value.trim() || "Your Homeschool";
+
+    localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
+    profileName.textContent = `${stored.first} ${stored.last}`;
+    alert("Profile saved!");
+  });
+});

@@ -310,7 +310,6 @@ function renderDashboardHeader() {
       location.reload();
     }
   });
-});
 
 // Optional: click outside SparkTokens modal to close
 window.addEventListener("click", function (e) {

@@ -1016,3 +1016,27 @@ input:checked + .slider:before {
   color: #666;
   margin-bottom: 8px;
 }
+
+/* subtitle inside cards */
+.card-sub { margin-top: 6px; color: #555; }
+
+/* live feed scroll area */
+.live-feed.scrollable {
+  margin-top: 12px;
+  max-height: 140px;       /* fits nicely in your card */
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.feed-item { 
+  padding: 6px 0; 
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.feed-item:last-child { border-bottom: none; }
+
+/* section divider + marketplace (you can keep the ones you added) */
+.section-divider { grid-column: 1 / -1; display:flex; align-items:center; color:#fff4da; margin: 28px 0 12px; }
+.section-divider::before { content:""; flex:1; height:2px; background:rgba(255,255,255,.5); margin-right:12px; }
+.section-divider span { text-transform:uppercase; font-size:.9rem; letter-spacing:.06em; }
+
+.marketplace-section { grid-column: 1 / -1; display:flex; flex-direction:column; gap:24px; }

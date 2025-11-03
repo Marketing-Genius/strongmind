@@ -782,7 +782,7 @@ input:checked + .slider:before {
   width: 100%;
   max-width: 1400px; /* keeps cards from stretching too wide */
   margin: 0 auto;
-  padding-top: 80px; /* adds spacing below the fixed top nav */
+  padding-top: 40px; /* adds spacing below the fixed top nav */
 }
 
 /* === Dashboard Header === */
@@ -792,7 +792,7 @@ input:checked + .slider:before {
   text-align: left;
   color: #fff;
   padding: 0 24px;
-  margin: 80px auto 32px auto;
+  margin: 30px auto 32px auto;
 
   align-self: flex-start; /* 👈 KEY: this overrides wrapper centering */
 }
@@ -806,17 +806,6 @@ input:checked + .slider:before {
 .dashboard-header h3 {
   font-size: 1.1rem;
   color: #fef1d4;
-}
-
-/* === Dashboard Grid === */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 24px 60px;
-  box-sizing: border-box;
 }
 
 /* === Dashboard Grid === */

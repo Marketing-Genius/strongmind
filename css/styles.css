@@ -774,24 +774,25 @@ input:checked + .slider:before {
   margin-top: 20px;
 }
 
-
 /* === Dashboard Wrapper (Centers Header + Grid as a Unit) === */
 .dashboard-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /* keeps whole section centered as a unit */
+  align-items: center; /* centers the entire dashboard as a unit */
   width: 100%;
-  max-width: 1400px; /* optional: prevents stretching on wide monitors */
+  max-width: 1400px; /* keeps cards from stretching too wide */
   margin: 0 auto;
+  padding-top: 80px; /* adds spacing below the fixed top nav */
 }
 
-/* Header sits at the left edge of the grid */
-.dashboard-wrapper > .dashboard-header {
-  align-self: stretch;            /* make header full width of grid */
-  text-align: left;               /* ensure text stays left aligned */
-  margin: 80px auto 24px auto;    /* top spacing below nav, centers block itself */
-  padding: 0 24px;                /* consistent side padding with grid */
-  max-width: 1200px;              /* match grid width */
+/* === Dashboard Header === */
+.dashboard-header {
+  align-self: stretch;        /* match grid width */
+  text-align: left;           /* header text left-aligned */
+  max-width: 1200px;          /* same width as grid */
+  width: 100%;
+  padding: 0 24px;
+  margin-bottom: 32px;
   color: #fff;
 }
 
@@ -806,36 +807,15 @@ input:checked + .slider:before {
   color: #fef1d4;
 }
 
-.dashboard-wrapper {
-  max-width: 1400px; /* prevents cards from stretching too far apart */
-  margin: 0 auto;
-}
-
-/* Restrict the content width for a consistent centered block */
-.dashboard-header,
+/* === Dashboard Grid === */
 .dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
-  max-width: 1200px;         /* keeps the unit cohesive */
-}
-
-/* Keep header text left-aligned within the centered block */
-.dashboard-header {
-  text-align: left;
-  padding: 0 24px;
-  margin-bottom: 24px;
-  align-self: flex-start;    /* ensures header hugs left edge of card grid */
-}
-
-/* Adjust grid spacing to maintain consistency */
-.dashboard-grid {
+  max-width: 1200px;
   padding: 0 24px 60px;
-}
-
-.dashboard-header {
-  align-self: stretch;      /* makes it take full grid width */
-  text-align: left;         /* ensure text aligns left */
-  margin-left: 0;           /* prevents centering offset */
-  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 /* === Dashboard Grid === */

@@ -783,7 +783,6 @@ input:checked + .slider:before {
 
   width: 100%;
   max-width: 1200px;
-  align-self: flex-start;
   padding: 0 24px;
 
   text-align: left;
@@ -799,6 +798,34 @@ input:checked + .slider:before {
 .dashboard-header h3 {
   font-size: 1.1rem;
   color: #fef1d4;
+}
+
+/* === Dashboard Wrapper (Centers Header + Grid as a Unit) === */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centers everything horizontally */
+  width: 100%;
+}
+
+/* Restrict the content width for a consistent centered block */
+.dashboard-header,
+.dashboard-grid {
+  width: 100%;
+  max-width: 1200px;         /* keeps the unit cohesive */
+}
+
+/* Keep header text left-aligned within the centered block */
+.dashboard-header {
+  text-align: left;
+  padding: 0 24px;
+  margin-bottom: 24px;
+  align-self: flex-start;    /* ensures header hugs left edge of card grid */
+}
+
+/* Adjust grid spacing to maintain consistency */
+.dashboard-grid {
+  padding: 0 24px 60px;
 }
 
 /* === Dashboard Grid === */

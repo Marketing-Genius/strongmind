@@ -443,7 +443,11 @@ function renderDashboardCards() {
   const cards = [
     { title: "What’s New", content: "Announcements, events, and top lessons." },
     { title: "Learners", content: "Track progress for each learner." },
-    { title: "Groups", content: "Join and manage homeschool groups." },
+    { 
+      title: "Groups", 
+      content: "Join and manage homeschool groups.", 
+      image: "assets/card-pics/groups-card.png"
+    },
     { title: "Family Management", content: "Add or manage family members." },
     { title: "Lesson Library", content: "Explore lessons and Spark content." },
     { title: "Upcoming Events", content: "Field trips, meetups, and more." }
@@ -452,10 +456,18 @@ function renderDashboardCards() {
   cards.forEach(card => {
     const div = document.createElement("div");
     div.classList.add("dashboard-card");
+
+    // If card has an image, include it
     div.innerHTML = `
       <h2>${card.title}</h2>
       <p>${card.content}</p>
+      ${card.image ? `
+        <div class="card-image-container">
+          <img src="${card.image}" alt="${card.title} Image" class="card-image" />
+        </div>
+      ` : ""}
     `;
+
     grid.appendChild(div);
   });
 }

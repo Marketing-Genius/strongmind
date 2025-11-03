@@ -842,7 +842,7 @@ input:checked + .slider:before {
 
 /* === Dashboard Card Images === */
 .card-image-container {
-  margin-top: 12px;
+  margin-top: 16px;
   overflow: hidden;
   border-radius: 12px;
 }

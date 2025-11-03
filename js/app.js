@@ -439,7 +439,21 @@ function renderDashboardCards() {
   grid.innerHTML = "";
 
   const cards = [
-    { title: "What’s New", content: "Announcements, events, and top lessons." },
+    {
+  title: "What’s New",
+  content: `
+    <div class="live-feed">
+      <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>
+      <div class="feed-item">📅 New field trip announced: <strong>Desert Botanical Garden – Nov 14</strong>.</div>
+      <div class="feed-item">🎉 <strong>Liam</strong> joined the “STEM Learners” group.</div>
+      <div class="feed-item">⭐ <strong>Your post</strong> received 12 new likes!</div>
+      <div class="feed-item">🧠 New lesson added: <strong>Exploring the Solar System</strong>.</div>
+      <div class="feed-item">💬 <strong>Olivia</strong> replied: “We loved that field trip last year!”</div>
+      <div class="feed-item">📚 Featured post: “5 Ways to Keep Learning Fun at Home.”</div>
+      <div class="feed-item">🎈 <strong>Community Meetup</strong> this Saturday at City Park!</div>
+    </div>
+  `
+},
     { title: "Learners", content: "Track progress for each learner." },
     { 
       title: "Groups", 

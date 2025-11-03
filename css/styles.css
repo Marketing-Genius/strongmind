@@ -787,13 +787,14 @@ input:checked + .slider:before {
 
 /* === Dashboard Header === */
 .dashboard-header {
-  align-self: stretch;        /* match grid width */
-  text-align: left;           /* header text left-aligned */
-  max-width: 1200px;          /* same width as grid */
   width: 100%;
-  padding: 0 24px;
-  margin-bottom: 32px;
+  max-width: 1200px;
+  text-align: left;
   color: #fff;
+  padding: 0 24px;
+  margin: 80px auto 32px auto;
+
+  align-self: flex-start; /* 👈 KEY: this overrides wrapper centering */
 }
 
 .dashboard-header h1 {

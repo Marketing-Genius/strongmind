@@ -12,7 +12,7 @@ body {
   background: linear-gradient(160deg, #e97e66, #f0b21a);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding: 20px;
   color: #333;
 }
@@ -799,4 +799,43 @@ input:checked + .slider:before {
 .dashboard-header h3 {
   font-size: 1.1rem;
   color: #fef1d4;
+}
+
+/* === Dashboard Grid === */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px 60px;
+  box-sizing: border-box;
+}
+
+/* === Dashboard Card Placeholder === */
+.dashboard-card {
+  background-color: rgba(255,255,255,0.95);
+  border: 2px dashed rgba(255,255,255,0.5);
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 220px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 1000px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
 }

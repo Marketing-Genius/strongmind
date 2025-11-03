@@ -438,17 +438,16 @@ function renderDashboardCards() {
   const grid = document.getElementById("dashboardGrid");
   grid.innerHTML = "";
 
-  // === YOUR HUB SECTION ===
-  const hubHeader = `
-    <div class="section-divider">
-      <span>Your Hub</span>
-    </div>
-  `;
+  // ---- SECTION: YOUR HUB ----
+  grid.insertAdjacentHTML("beforeend",
+    `<div class="section-divider"><span>Your Hub</span></div>`
+  );
 
   const hubCards = [
     {
       title: "What’s New",
-      content: `
+      subtitle: "Announcements, events, and top lessons.",
+      bodyHTML: `
         <div class="live-feed scrollable">
           <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>
           <div class="feed-item">📅 New field trip announced: <strong>Desert Botanical Garden – Nov 14</strong>.</div>
@@ -461,62 +460,69 @@ function renderDashboardCards() {
         </div>
       `
     },
-    { title: "Learners", content: "Track progress for each learner." },
+    { title: "Learners", subtitle: "Track progress for each learner." },
     {
       title: "Groups",
-      content: "Join and manage homeschool groups.",
+      subtitle: "Join and manage homeschool groups.",
       image: "assets/card-pics/groups-card.png"
     },
     {
       title: "Explore Marketplace",
-      content: "Discover endless educational content",
+      subtitle: "Discover endless educational content",
       image: "assets/card-pics/marketplace-card.png"
     },
-    { title: "Lesson Library", content: "Explore lessons and Spark content." },
-    { title: "Upcoming Events", content: "Field trips, meetups, and more." }
+    { title: "Lesson Library", subtitle: "Explore lessons and Spark content." },
+    { title: "Upcoming Events", subtitle: "Field trips, meetups, and more." }
   ];
 
-  // === MARKETPLACE SECTION ===
-  const marketplaceHeader = `
-    <div class="section-divider">
-      <span>Marketplace</span>
-    </div>
-  `;
+  hubCards.forEach(card => {
+    const div = document.createElement("div");
+    div.className = "dashboard-card";
 
-  const marketplaceContent = `
+    const subtitleHTML = card.subtitle
+      ? `<p class="card-sub">${card.subtitle}</p>`
+      : "";
+
+    const imageHTML = card.image
+      ? `<div class="card-image-container"><img src="${card.image}" class="card-image" alt=""></div>`
+      : "";
+
+    const bodyHTML = card.bodyHTML || "";
+
+    div.innerHTML = `
+      <h2>${card.title}</h2>
+      ${subtitleHTML}
+      ${imageHTML}
+      ${bodyHTML}
+    `;
+    grid.appendChild(div);
+  });
+
+  // ---- SECTION: MARKETPLACE ----
+  grid.insertAdjacentHTML("beforeend",
+    `<div class="section-divider"><span>Marketplace</span></div>`
+  );
+
+  const marketplaceWrapper = document.createElement("div");
+  marketplaceWrapper.className = "marketplace-section";
+  marketplaceWrapper.innerHTML = `
     <div class="featured-card">
       <div class="featured-label">Featured Course</div>
-      <img src="assets/featured-writing-banner.png" alt="Featured Course" class="featured-banner" />
+      <!-- Use any banner you have; these are placeholders -->
+      <img src="assets/featured-writing-banner.png" class="featured-banner" alt="Featured Course">
       <div class="featured-info">
         <h3>Creative Writing 101</h3>
         <p>by Edutect: Mrs. Smithers</p>
         <div class="rating">⭐ 4.5 <small>(1,328 reviews)</small></div>
       </div>
     </div>
+
     <div class="recommended-card">
       <div class="recommended-label">Recommended for You</div>
-      <img src="assets/intro-science-book.png" alt="Intro Science" class="recommended-img" />
+      <img src="assets/intro-science-book.png" class="recommended-img" alt="Introductory Science">
       <p>Introductory Science</p>
     </div>
   `;
-
-  // === APPEND ALL ===
-  grid.insertAdjacentHTML("beforeend", hubHeader);
-  hubCards.forEach(card => {
-    const div = document.createElement("div");
-    div.classList.add("dashboard-card");
-    div.innerHTML = `
-      <h2>${card.title}</h2>
-      <p>${card.content}</p>
-      ${card.image ? `<div class="card-image-container"><img src="${card.image}" class="card-image" /></div>` : ""}
-    `;
-    grid.appendChild(div);
-  });
-
-  grid.insertAdjacentHTML("beforeend", marketplaceHeader);
-  const marketplaceWrapper = document.createElement("div");
-  marketplaceWrapper.classList.add("marketplace-section");
-  marketplaceWrapper.innerHTML = marketplaceContent;
   grid.appendChild(marketplaceWrapper);
 }
 

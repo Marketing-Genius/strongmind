@@ -777,20 +777,26 @@ input:checked + .slider:before {
 
 /* Main Dashboard Header */
 .dashboard-header {
-  text-align: Left;
-  margin-top: 280px;
-  margin-left: 50px;
-  margin-bottom: 40px;
+  margin-top: 80px; 
+  margin-bottom: 24px;
+
+
+  width: 100%;
+  max-width: 1200px;
+  align-self: flex-start;
+  padding: 0 24px;
+
+  text-align: left;
   color: #fff;
 }
 
 .dashboard-header h1 {
   font-size: 2.2rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .dashboard-header h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #fef1d4;
 }

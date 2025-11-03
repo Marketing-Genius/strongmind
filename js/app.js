@@ -427,10 +427,8 @@ function renderDashboardHeader() {
   const homeschool = profileData.school || 'Your Homeschool';
 
   const headerHTML = `
-    <div class="dashboard-header">
-      <h1>Welcome, ${firstName}!</h1>
-      <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
-    </div>
+    <h1>Welcome, ${firstName}!</h1>
+    <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
   `;
 
   document.getElementById('dashboardHeader').innerHTML = headerHTML;

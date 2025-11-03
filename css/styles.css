@@ -911,3 +911,108 @@ input:checked + .slider:before {
     transform: translateY(0);
   }
 }
+
+/* === Section Divider === */
+.section-divider {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+  color: #fff4da;
+  margin: 40px 0 20px;
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.5);
+  margin-right: 12px;
+}
+
+.section-divider span {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* === Marketplace Section === */
+.marketplace-section {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Featured Course Banner */
+.featured-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.featured-label {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.featured-banner {
+  width: 100%;
+  display: block;
+}
+
+.featured-info {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.featured-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.featured-info p {
+  margin-bottom: 6px;
+}
+
+.featured-info .rating {
+  font-weight: bold;
+  color: #ffe97b;
+}
+
+/* Recommended Card */
+.recommended-card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.recommended-card img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.recommended-label {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+}

@@ -777,8 +777,9 @@ input:checked + .slider:before {
 
 /* Main Dashboard Header */
 .dashboard-header {
-  text-align: center;
-  margin-top: 80px;
+  text-align: Left;
+  margin-top: 280px;
+  margin-left: 50px;
   margin-bottom: 40px;
   color: #fff;
 }

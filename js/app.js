@@ -438,59 +438,87 @@ function renderDashboardCards() {
   const grid = document.getElementById("dashboardGrid");
   grid.innerHTML = "";
 
-  const cards = [
-    {
-  title: "What’s New",
-  content: `
-    <div class="live-feed scrollable">
-      <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>
-      <div class="feed-item">📅 New field trip announced: <strong>Desert Botanical Garden – Nov 14</strong>.</div>
-      <div class="feed-item">🎉 <strong>Liam</strong> joined the “STEM Learners” group.</div>
-      <div class="feed-item">⭐ <strong>Your post</strong> received 12 new likes!</div>
-      <div class="feed-item">🧠 New lesson added: <strong>Exploring the Solar System</strong>.</div>
-      <div class="feed-item">💬 <strong>Olivia</strong> replied: “We loved that field trip last year!”</div>
-      <div class="feed-item">📚 Featured post: “5 Ways to Keep Learning Fun at Home.”</div>
-      <div class="feed-item">🎈 <strong>Community Meetup</strong> this Saturday at City Park!</div>
+  // === YOUR HUB SECTION ===
+  const hubHeader = `
+    <div class="section-divider">
+      <span>Your Hub</span>
     </div>
-  `
-},
+  `;
+
+  const hubCards = [
+    {
+      title: "What’s New",
+      content: `
+        <div class="live-feed scrollable">
+          <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>
+          <div class="feed-item">📅 New field trip announced: <strong>Desert Botanical Garden – Nov 14</strong>.</div>
+          <div class="feed-item">🎉 <strong>Liam</strong> joined the “STEM Learners” group.</div>
+          <div class="feed-item">⭐ <strong>Your post</strong> received 12 new likes!</div>
+          <div class="feed-item">🧠 New lesson added: <strong>Exploring the Solar System</strong>.</div>
+          <div class="feed-item">💬 <strong>Olivia</strong> replied: “We loved that field trip last year!”</div>
+          <div class="feed-item">📚 Featured post: “5 Ways to Keep Learning Fun at Home.”</div>
+          <div class="feed-item">🎈 <strong>Community Meetup</strong> this Saturday at City Park!</div>
+        </div>
+      `
+    },
     { title: "Learners", content: "Track progress for each learner." },
-    { 
-      title: "Groups", 
-      content: "Join and manage homeschool groups.", 
+    {
+      title: "Groups",
+      content: "Join and manage homeschool groups.",
       image: "assets/card-pics/groups-card.png"
     },
-    { 
-      title: "Explore Marketplace", 
-      content: "Discover endless educational content", 
+    {
+      title: "Explore Marketplace",
+      content: "Discover endless educational content",
       image: "assets/card-pics/marketplace-card.png"
     },
     { title: "Lesson Library", content: "Explore lessons and Spark content." },
     { title: "Upcoming Events", content: "Field trips, meetups, and more." }
   ];
 
-  cards.forEach(card => {
+  // === MARKETPLACE SECTION ===
+  const marketplaceHeader = `
+    <div class="section-divider">
+      <span>Marketplace</span>
+    </div>
+  `;
+
+  const marketplaceContent = `
+    <div class="featured-card">
+      <div class="featured-label">Featured Course</div>
+      <img src="assets/featured-writing-banner.png" alt="Featured Course" class="featured-banner" />
+      <div class="featured-info">
+        <h3>Creative Writing 101</h3>
+        <p>by Edutect: Mrs. Smithers</p>
+        <div class="rating">⭐ 4.5 <small>(1,328 reviews)</small></div>
+      </div>
+    </div>
+    <div class="recommended-card">
+      <div class="recommended-label">Recommended for You</div>
+      <img src="assets/intro-science-book.png" alt="Intro Science" class="recommended-img" />
+      <p>Introductory Science</p>
+    </div>
+  `;
+
+  // === APPEND ALL ===
+  grid.insertAdjacentHTML("beforeend", hubHeader);
+  hubCards.forEach(card => {
     const div = document.createElement("div");
     div.classList.add("dashboard-card");
-
     div.innerHTML = `
       <h2>${card.title}</h2>
       <p>${card.content}</p>
-      ${card.image ? `
-        <div class="card-image-container">
-          <img src="${card.image}" alt="${card.title} Image" class="card-image" />
-        </div>
-      ` : ""}
+      ${card.image ? `<div class="card-image-container"><img src="${card.image}" class="card-image" /></div>` : ""}
     `;
-
     grid.appendChild(div);
   });
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderDashboardHeader();
-  renderDashboardCards();
-});
+  grid.insertAdjacentHTML("beforeend", marketplaceHeader);
+  const marketplaceWrapper = document.createElement("div");
+  marketplaceWrapper.classList.add("marketplace-section");
+  marketplaceWrapper.innerHTML = marketplaceContent;
+  grid.appendChild(marketplaceWrapper);
+}
 
 // Event listeners
 document.addEventListener("DOMContentLoaded", () => {

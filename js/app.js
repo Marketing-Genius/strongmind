@@ -222,15 +222,18 @@ function applyUserTypeBackground(type) {
 }
 
 // === DOM Ready Setup ===
-document.addEventListener("DOMContentLoaded", () => {
-  renderDashboardHeader();
-  updateSparkButtonLabel();
-  updatePlanButton();
-  updatePlanCards();
+function renderDashboardHeader() {
+  const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
+  const firstName = profileData.first || 'Friend';
+  const homeschool = profileData.school || 'Your Homeschool';
 
-  const overlay = document.getElementById("screenOverlay");
-  const onboardingModal = document.getElementById("onboardingModal");
-  const storedType = localStorage.getItem("userType");
+  const headerHTML = `
+    <h1>Welcome back, ${firstName}!</h1>
+    <h3>Your Homeschool: ${homeschool}</h3>
+  `;
+
+  document.getElementById('dashboardHeader').innerHTML = headerHTML;
+}
 
   // Show modal if not set
   if (!storedType) {

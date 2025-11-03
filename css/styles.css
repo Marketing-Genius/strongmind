@@ -775,17 +775,23 @@ input:checked + .slider:before {
 }
 
 
-/* Main Dashboard Header */
-.dashboard-header {
-  margin-top: 80px; 
-  margin-bottom: 24px;
-
-
+/* === Dashboard Wrapper (Centers Header + Grid as a Unit) === */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* keeps whole section centered as a unit */
   width: 100%;
-  max-width: 1200px;
-  padding: 0 24px;
+  max-width: 1400px; /* optional: prevents stretching on wide monitors */
+  margin: 0 auto;
+}
 
-  text-align: left;
+/* Header sits at the left edge of the grid */
+.dashboard-wrapper > .dashboard-header {
+  align-self: stretch;            /* make header full width of grid */
+  text-align: left;               /* ensure text stays left aligned */
+  margin: 80px auto 24px auto;    /* top spacing below nav, centers block itself */
+  padding: 0 24px;                /* consistent side padding with grid */
+  max-width: 1200px;              /* match grid width */
   color: #fff;
 }
 
@@ -800,12 +806,9 @@ input:checked + .slider:before {
   color: #fef1d4;
 }
 
-/* === Dashboard Wrapper (Centers Header + Grid as a Unit) === */
 .dashboard-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;       /* centers everything horizontally */
-  width: 100%;
+  max-width: 1400px; /* prevents cards from stretching too far apart */
+  margin: 0 auto;
 }
 
 /* Restrict the content width for a consistent centered block */

@@ -423,12 +423,14 @@ function loadProfileData() {
 
 function renderDashboardHeader() {
   const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
-  const firstName = profileData.name ? profileData.name.split(' ')[0] : 'Friend';
-  const homeschool = profileData.schoolName || 'Your Homeschool';
+  const firstName = profileData.first || 'Friend';
+  const homeschool = profileData.school || 'Your Homeschool';
 
   const headerHTML = `
-    <h1>Welcome back, ${firstName}!</h1>
-    <h3>Your Homeschool: ${homeschool}</h3>
+    <div class="dashboard-header">
+      <h1>Welcome back, ${firstName}!</h1>
+      <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
+    </div>
   `;
 
   document.getElementById('dashboardHeader').innerHTML = headerHTML;

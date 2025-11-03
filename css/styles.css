@@ -828,6 +828,13 @@ input:checked + .slider:before {
   padding: 0 24px 60px;
 }
 
+.dashboard-header {
+  align-self: stretch;      /* makes it take full grid width */
+  text-align: left;         /* ensure text aligns left */
+  margin-left: 0;           /* prevents centering offset */
+  padding: 0 24px;
+}
+
 /* === Dashboard Grid === */
 .dashboard-grid {
   display: grid;

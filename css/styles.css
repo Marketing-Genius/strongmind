@@ -782,7 +782,7 @@ input:checked + .slider:before {
   width: 100%;
   max-width: 1400px; /* keeps cards from stretching too wide */
   margin: 0 auto;
-  padding-top: 40px; /* adds spacing below the fixed top nav */
+  padding-top: 10px; /* adds spacing below the fixed top nav */
 }
 
 /* === Dashboard Header === */

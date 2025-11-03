@@ -436,6 +436,35 @@ function renderDashboardHeader() {
   document.getElementById('dashboardHeader').innerHTML = headerHTML;
 }
 
+function renderDashboardCards() {
+  const grid = document.getElementById("dashboardGrid");
+  grid.innerHTML = "";
+
+  const cards = [
+    { title: "What’s New", content: "Announcements, events, and top lessons." },
+    { title: "Learners", content: "Track progress for each learner." },
+    { title: "Groups", content: "Join and manage homeschool groups." },
+    { title: "Family Management", content: "Add or manage family members." },
+    { title: "Lesson Library", content: "Explore lessons and Spark content." },
+    { title: "Upcoming Events", content: "Field trips, meetups, and more." }
+  ];
+
+  cards.forEach(card => {
+    const div = document.createElement("div");
+    div.classList.add("dashboard-card");
+    div.innerHTML = `
+      <h2>${card.title}</h2>
+      <p>${card.content}</p>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderDashboardHeader();
+  renderDashboardCards();
+});
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", () => {
   const profileBtn = document.getElementById("profileItem");

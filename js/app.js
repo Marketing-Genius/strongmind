@@ -428,7 +428,7 @@ function renderDashboardHeader() {
 
   const headerHTML = `
     <div class="dashboard-header">
-      <h1>Welcome back, ${firstName}!</h1>
+      <h1>Welcome, ${firstName}!</h1>
       <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
     </div>
   `;

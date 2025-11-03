@@ -222,18 +222,15 @@ function applyUserTypeBackground(type) {
 }
 
 // === DOM Ready Setup ===
-function renderDashboardHeader() {
-  const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
-  const firstName = profileData.first || 'Friend';
-  const homeschool = profileData.school || 'Your Homeschool';
+document.addEventListener("DOMContentLoaded", () => {
+  renderDashboardHeader();
+  updateSparkButtonLabel();
+  updatePlanButton();
+  updatePlanCards();
 
-  const headerHTML = `
-    <h1>Welcome back, ${firstName}!</h1>
-    <h3>Your Homeschool: ${homeschool}</h3>
-  `;
-
-  document.getElementById('dashboardHeader').innerHTML = headerHTML;
-}
+  const overlay = document.getElementById("screenOverlay");
+  const onboardingModal = document.getElementById("onboardingModal");
+  const storedType = localStorage.getItem("userType");
 
   // Show modal if not set
   if (!storedType) {
@@ -310,6 +307,7 @@ function renderDashboardHeader() {
       location.reload();
     }
   });
+});
 
 // Optional: click outside SparkTokens modal to close
 window.addEventListener("click", function (e) {

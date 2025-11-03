@@ -442,7 +442,7 @@ function renderDashboardCards() {
     {
   title: "What’s New",
   content: `
-    <div class="live-feed">
+    <div class="live-feed scrollable">
       <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>
       <div class="feed-item">📅 New field trip announced: <strong>Desert Botanical Garden – Nov 14</strong>.</div>
       <div class="feed-item">🎉 <strong>Liam</strong> joined the “STEM Learners” group.</div>

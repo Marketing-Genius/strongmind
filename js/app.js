@@ -631,6 +631,59 @@ function renderDashboardCards() {
   grid.appendChild(marketplaceWrapper);
 }
 
+<!-- === Trending Edutects + Course Spotlight Section === -->
+<div class="marketplace-row">
+  
+  <!-- Trending Edutects -->
+  <div class="trending-edutects">
+    <h3>Trending Edutects</h3>
+    <div class="edutect-scroll">
+      <div class="edutect-card">
+        <img src="assets/edutect-1.jpeg" alt="Dr. Samuel Russ">
+        <h4>Dr. Samuel Russ</h4>
+        <p>Teaching for 30+ years<br>80+ published courses<br>270K Followers<br>⭐ 4.9 Avg. Rating</p>
+        <button class="follow-btn">Follow</button>
+      </div>
+      <div class="edutect-card">
+        <img src="assets/edutect-2.jpeg" alt="Justine Morris">
+        <h4>Justine Morris</h4>
+        <p>Homeschool Advocate<br>15+ published courses<br>90K Followers<br>⭐ 4.6 Avg. Rating</p>
+        <button class="follow-btn">Follow</button>
+      </div>
+      <div class="edutect-card">
+        <img src="assets/edutect-3.jpeg" alt="Sarah Jones">
+        <h4>Sarah Jones</h4>
+        <p>Faith-Based Teacher<br>40+ published courses<br>28K Followers<br>⭐ 4.1 Avg. Rating</p>
+        <button class="follow-btn">Follow</button>
+      </div>
+      <div class="edutect-card">
+        <img src="assets/edutect-4.jpeg" alt="Elena Rivera">
+        <h4>Elena Rivera</h4>
+        <p>STEM Specialist<br>60+ published courses<br>110K Followers<br>⭐ 4.8 Avg. Rating</p>
+        <button class="follow-btn">Follow</button>
+      </div>
+      <div class="edutect-card">
+        <img src="assets/edutect-5.jpeg" alt="Jason Lang">
+        <h4>Jason Lang</h4>
+        <p>Creative Writer<br>20+ published courses<br>35K Followers<br>⭐ 4.7 Avg. Rating</p>
+        <button class="follow-btn">Follow</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course Spotlight -->
+  <div class="course-spotlight">
+    <h3>Course Spotlight</h3>
+    <div class="video-wrapper">
+      <iframe src="https://player.vimeo.com/video/280382232" 
+              frameborder="0" 
+              allow="autoplay; fullscreen" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", () => {
   const profileBtn = document.getElementById("profileItem");
@@ -673,6 +726,16 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("profileName").textContent = `${first} ${last}`;
       closeProfileModal();
     });
+  }
+});
+
+// === Edutect Follow Button Toggle ===
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("follow-btn")) {
+    e.target.classList.toggle("following");
+    e.target.textContent = e.target.classList.contains("following")
+      ? "Following"
+      : "Follow";
   }
 });
 

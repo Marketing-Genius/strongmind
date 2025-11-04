@@ -1048,28 +1048,71 @@ input:checked + .slider:before {
   color: #ffe97b;
 }
 
-/* Recommended Card */
-.recommended-card {
+/* === Recommended Courses Section === */
+.recommended-section {
   background: rgba(255,255,255,0.95);
   border-radius: 20px;
-  padding: 16px;
-  text-align: center;
+  padding: 20px 24px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-}
-
-.recommended-card img {
-  width: 120px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  overflow: hidden;
 }
 
 .recommended-label {
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.recommended-scroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+
+.recommended-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.recommended-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+.recommended-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+.rec-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  flex: 0 0 160px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.rec-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.rec-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
   margin-bottom: 8px;
+  display: block;
+}
+
+.rec-card p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
 }
 
 /* subtitle inside cards */

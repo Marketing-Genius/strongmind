@@ -838,7 +838,10 @@ input:checked + .slider:before {
   max-width: 1400px; /* keeps cards from stretching too wide */
   margin: 0 auto;
   padding-top: 40px; /* adds spacing below the fixed top nav */
+  padding-bottom: 20px;
 }
+
+
 
 /* === Dashboard Header === */
 .dashboard-header {
@@ -1234,6 +1237,10 @@ input:checked + .slider:before {
   margin: 0 auto;      /* ✅ centers within page */
   padding: 0 24px;     /* ✅ aligns with the white box padding above */
   box-sizing: border-box;
+}
+
+.recommended-section {
+  margin-bottom: 24px; /* tighter spacing below Recommended */
 }
 
 /* Trending Edutects */

@@ -1172,14 +1172,17 @@ input:checked + .slider:before {
 /* Token icon styling */
 .token-icon {
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: 12px;            /* slightly smaller and consistent */
+  height: 12px;
+  min-width: 12px;        /* prevent flex stretch */
+  min-height: 12px;
   object-fit: contain;
-  aspect-ratio: 1 / 1; /* locks proportions */
+  aspect-ratio: 1 / 1;    /* maintains perfect proportions */
   margin-left: 4px;
-  margin-bottom: 2px;
-  transform: translateY(2px); /* fine-tune vertical alignment */
-  filter: brightness(0) invert(1); /* white version for dark overlay */
+  vertical-align: middle;
+  transform: translateY(1px);
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;         /* prevents squishing in flex contexts */
 }
 
 /* Optional: rating line with star */

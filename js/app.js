@@ -555,35 +555,78 @@ function renderDashboardCards() {
       </div>
     </div>
 
-      <div class="recommended-section">
-    <div class="recommended-label">Recommended for You</div>
-    <div class="recommended-scroll">
-      <div class="rec-card">
-        <img src="assets/rec-algebra.png" alt="Algebra 1">
-        <p>Algebra 1</p>
+<div class="recommended-section">
+  <div class="recommended-label">Recommended for You</div>
+  <div class="recommended-scroll">
+
+    <div class="rec-card">
+      <img src="assets/rec-algebra.png" alt="Algebra 1">
+      <div class="overlay">
+        <p><strong>By:</strong> Jason Lang</p>
+        <p><strong>Year:</strong> 2025</p>
+        <p><strong>Cost:</strong> 250 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.6 - 318 reviews</p>
       </div>
-      <div class="rec-card">
-        <img src="assets/rec-history.png" alt="World History">
-        <p>World History</p>
-      </div>
-      <div class="rec-card">
-        <img src="assets/rec-science.png" alt="Science 101">
-        <p>Science 101</p>
-      </div>
-      <div class="rec-card">
-        <img src="assets/rec-art.png" alt="Art History 2">
-        <p>Art History 2</p>
-      </div>
-      <div class="rec-card">
-        <img src="assets/rec-photography.png" alt="Photography 101">
-        <p>Photography 101</p>
-      </div>
-      <div class="rec-card">
-        <img src="assets/rec-biology.png" alt="Biology 2">
-        <p>Biology 2</p>
-      </div>
+      <p>Algebra 1</p>
     </div>
+
+    <div class="rec-card">
+      <img src="assets/rec-history.png" alt="World History">
+      <div class="overlay">
+        <p><strong>By:</strong> Dr. Amelia Cruz</p>
+        <p><strong>Year:</strong> 2024</p>
+        <p><strong>Cost:</strong> 300 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.8 - 512 reviews</p>
+      </div>
+      <p>World History</p>
+    </div>
+
+    <div class="rec-card">
+      <img src="assets/rec-science.png" alt="Science 101">
+      <div class="overlay">
+        <p><strong>By:</strong> Aaron Patel</p>
+        <p><strong>Year:</strong> 2025</p>
+        <p><strong>Cost:</strong> 200 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.3 - 241 reviews</p>
+      </div>
+      <p>Science 101</p>
+    </div>
+
+    <div class="rec-card">
+      <img src="assets/rec-art.png" alt="Art History 2">
+      <div class="overlay">
+        <p><strong>By:</strong> Sofia Moretti</p>
+        <p><strong>Year:</strong> 2023</p>
+        <p><strong>Cost:</strong> 275 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.9 - 678 reviews</p>
+      </div>
+      <p>Art History 2</p>
+    </div>
+
+    <div class="rec-card">
+      <img src="assets/rec-photography.png" alt="Photography 101">
+      <div class="overlay">
+        <p><strong>By:</strong> Laura Chen</p>
+        <p><strong>Year:</strong> 2025</p>
+        <p><strong>Cost:</strong> 180 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.5 - 392 reviews</p>
+      </div>
+      <p>Photography 101</p>
+    </div>
+
+    <div class="rec-card">
+      <img src="assets/rec-biology.png" alt="Biology 2">
+      <div class="overlay">
+        <p><strong>By:</strong> Dr. Miles Everett</p>
+        <p><strong>Year:</strong> 2024</p>
+        <p><strong>Cost:</strong> 320 <img src="assets/spark-tokens-white.png" class="token-icon" /></p>
+        <p>⭐ 4.7 - 467 reviews</p>
+      </div>
+      <p>Biology 2</p>
+    </div>
+
   </div>
+</div>
   `;
   grid.appendChild(marketplaceWrapper);
 }

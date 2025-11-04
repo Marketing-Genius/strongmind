@@ -1255,8 +1255,7 @@ input:checked + .slider:before {
 .edutect-scroll {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: hidden;     /* prevent vertical scroll cut-off */
   scroll-behavior: smooth;
   padding-bottom: 8px;

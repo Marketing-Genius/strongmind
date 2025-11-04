@@ -1229,6 +1229,11 @@ input:checked + .slider:before {
   gap: 24px;
   justify-content: space-between;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;   /* ✅ match Marketplace section width */
+  margin: 0 auto;      /* ✅ centers within page */
+  padding: 0 24px;     /* ✅ aligns with the white box padding above */
+  box-sizing: border-box;
 }
 
 /* Trending Edutects */
@@ -1250,19 +1255,35 @@ input:checked + .slider:before {
 .edutect-scroll {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  overflow-y: hidden;     /* prevent vertical scroll cut-off */
   scroll-behavior: smooth;
-  animation: scrollEdutects 40s linear infinite;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.edutect-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.edutect-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 .trending-edutects:hover .edutect-scroll {
-  animation-play-state: paused;
+  animation: none; /* disable auto scroll */
 }
 
-@keyframes scrollEdutects {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.trending-edutects,
+.course-spotlight {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
+
+/* Remove the keyframes if you like — not needed anymore */
 
 .edutect-card {
   flex: 0 0 220px;

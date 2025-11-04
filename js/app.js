@@ -564,7 +564,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Jason Lang</p>
         <p><strong>Year:</strong> 2025</p>
-        <p><strong>Cost:</strong> 250 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 250 ⚡ </p>
         <p>⭐ 4.6 - 318 reviews</p>
       </div>
       <p>Algebra 1</p>
@@ -575,7 +575,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Dr. Amelia Cruz</p>
         <p><strong>Year:</strong> 2024</p>
-        <p><strong>Cost:</strong> 300 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 300 ⚡ </p>
         <p>⭐ 4.8 - 512 reviews</p>
       </div>
       <p>World History</p>
@@ -586,7 +586,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Aaron Patel</p>
         <p><strong>Year:</strong> 2025</p>
-        <p><strong>Cost:</strong> 200 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 200 ⚡ </p>
         <p>⭐ 4.3 - 241 reviews</p>
       </div>
       <p>Science 101</p>
@@ -597,7 +597,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Sofia Moretti</p>
         <p><strong>Year:</strong> 2023</p>
-        <p><strong>Cost:</strong> 275 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 275 ⚡ </p>
         <p>⭐ 4.9 - 678 reviews</p>
       </div>
       <p>Art History 2</p>
@@ -608,7 +608,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Laura Chen</p>
         <p><strong>Year:</strong> 2025</p>
-        <p><strong>Cost:</strong> 180 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 180 ⚡ </p>
         <p>⭐ 4.5 - 392 reviews</p>
       </div>
       <p>Photography 101</p>
@@ -619,7 +619,7 @@ function renderDashboardCards() {
       <div class="overlay">
         <p><strong>By:</strong> Dr. Miles Everett</p>
         <p><strong>Year:</strong> 2024</p>
-        <p><strong>Cost:</strong> 320 <img src="assets/spark-tokens-small.png" class="token-icon" /></p>
+        <p><strong>Cost:</strong> 320 ⚡ </p>
         <p>⭐ 4.7 - 467 reviews</p>
       </div>
       <p>Biology 2</p>

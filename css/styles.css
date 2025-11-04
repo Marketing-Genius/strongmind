@@ -595,6 +595,61 @@ body {
   font-size: 1rem;
 }
 
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 16px 0;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0 14px;
+}
+
+.checkbox-group label {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+.subtext {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.small-note {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.skip-btn {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 6px;
+  align-self: center;
+  transition: background 0.3s;
+}
+
+.skip-btn:hover {
+  background-color: #b5b5b5;
+}
+
 /* Style fix for file input to prevent overflow */
 .modal-content.homeschool-details input[type="file"] {
   max-width: 100%;

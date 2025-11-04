@@ -377,25 +377,46 @@ document.getElementById("saveHomeschoolInfo")?.addEventListener("click", () => {
 
   const reader = new FileReader();
   reader.onload = () => {
-    const profileData = {
-      role,
-      learners,
-      first,
-      last,
-      school,
-      photo: reader.result || "assets/default-profile.png"
-    };
-    localStorage.setItem("homeschoolProfile", JSON.stringify(profileData));
-    document.getElementById("homeschoolDetailsModal").classList.add("hidden");
-    document.getElementById("screenOverlay")?.classList.add("hidden");
-    location.reload(); // optional: refresh to update profile elsewhere
+  const profileData = {
+    role,
+    learners,
+    first,
+    last,
+    school,
+    photo: reader.result || "assets/default-profile.png"
   };
+  localStorage.setItem("homeschoolProfile", JSON.stringify(profileData));
+
+  // ✨ Success animation on Save button
+  const saveBtn = document.getElementById("saveHomeschoolInfo");
+  saveBtn.textContent = "✓ Saved!";
+  saveBtn.style.background = "#4CAF50";
+  saveBtn.style.color = "white";
+  saveBtn.style.transition = "all 0.3s ease";
+
+  // Fade out modal smoothly before hiding overlay and refreshing
+  const modal = document.getElementById("homeschoolDetailsModal");
+  modal.style.transition = "opacity 0.4s ease";
+  modal.style.opacity = "0";
+
+  setTimeout(() => {
+    modal.classList.add("hidden");
+    document.getElementById("screenOverlay")?.classList.add("hidden");
+    location.reload(); // optional refresh
+  }, 800);
+};
 
   if (picFile) {
     reader.readAsDataURL(picFile);
   } else {
     reader.onload(); // use default
   }
+});
+
+// Skip this step button
+document.getElementById("skipOnboardingStep")?.addEventListener("click", () => {
+  document.getElementById("homeschoolDetailsModal").classList.add("hidden");
+  document.getElementById("screenOverlay")?.classList.add("hidden");
 });
 
 // === Service Worker registration and update prompt ===

@@ -224,6 +224,7 @@ function applyUserTypeBackground(type) {
 // === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
   renderDashboardHeader();
+    renderDashboardCards();
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();

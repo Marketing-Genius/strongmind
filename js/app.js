@@ -354,8 +354,16 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
 
 // First step: From welcome modal → open detail modal
 document.getElementById("homeschoolWelcomeBtn")?.addEventListener("click", () => {
-  document.getElementById("homeschoolStep1Modal").style.display = "none";
-  document.getElementById("homeschoolDetailsModal").classList.remove("hidden");
+  const step1 = document.getElementById("homeschoolStep1Modal");
+  const step2 = document.getElementById("homeschoolDetailsModal");
+  const overlay = document.getElementById("screenOverlay");
+
+  // Hide welcome, show setup form
+  step1.style.display = "none";
+  step2.classList.remove("hidden");
+
+  // Hide overlay now that setup form is visible
+  overlay.classList.add("hidden");
 });
 
 // Save homeschool user info to localStorage

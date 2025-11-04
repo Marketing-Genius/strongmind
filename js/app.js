@@ -555,11 +555,35 @@ function renderDashboardCards() {
       </div>
     </div>
 
-    <div class="recommended-card">
-      <div class="recommended-label">Recommended for You</div>
-      <img src="assets/intro-science-book.png" class="recommended-img" alt="Introductory Science">
-      <p>Introductory Science</p>
+      <div class="recommended-section">
+    <div class="recommended-label">Recommended for You</div>
+    <div class="recommended-scroll">
+      <div class="rec-card">
+        <img src="assets/rec-algebra.png" alt="Algebra 1">
+        <p>Algebra 1</p>
+      </div>
+      <div class="rec-card">
+        <img src="assets/rec-history.png" alt="World History">
+        <p>World History</p>
+      </div>
+      <div class="rec-card">
+        <img src="assets/rec-science.png" alt="Science 101">
+        <p>Science 101</p>
+      </div>
+      <div class="rec-card">
+        <img src="assets/rec-art.png" alt="Art History 2">
+        <p>Art History 2</p>
+      </div>
+      <div class="rec-card">
+        <img src="assets/rec-photography.png" alt="Photography 101">
+        <p>Photography 101</p>
+      </div>
+      <div class="rec-card">
+        <img src="assets/rec-biology.png" alt="Biology 2">
+        <p>Biology 2</p>
+      </div>
     </div>
+  </div>
   `;
   grid.appendChild(marketplaceWrapper);
 }

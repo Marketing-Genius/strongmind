@@ -1115,10 +1115,20 @@ input:checked + .slider:before {
   color: #333;
 }
 
-/* === Course Hover Overlay === */
+/* === Course Hover Overlay (Refined) === */
 .rec-card {
   position: relative;
   overflow: hidden;
+}
+
+.rec-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
 }
 
 .rec-card:hover img {
@@ -1131,7 +1141,7 @@ input:checked + .slider:before {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 36px); /* leaves space for title */
+  height: calc(100% - 38px); /* leave space for title text */
   background: rgba(0, 0, 0, 0.8);
   color: white;
   opacity: 0;
@@ -1141,28 +1151,46 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 12px;
+  padding: 8px 12px;
   font-size: 0.8rem;
+  line-height: 1.2;
   transition: opacity 0.3s ease;
+  z-index: 2; /* ensure it sits over the image but under card shadow */
 }
 
 .rec-card:hover .overlay {
   opacity: 1;
 }
 
-/* Token icon inside overlay */
+/* Overlay text styles */
+.rec-card .overlay p {
+  margin: 3px 0;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+/* Token icon styling */
 .token-icon {
   height: 14px;
-  width: auto;
-  max-height: 14px;
+  width: 14px;
   vertical-align: middle;
   margin-left: 4px;
   margin-bottom: 2px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* keeps white logo visible */
 }
 
-.rec-card .overlay p {
-  margin: 4px 0;
-  line-height: 1.3;
+/* Optional: rating line with star */
+.rec-card .overlay p:last-child {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #ffdf6e; /* gold star tone */
+}
+
+/* Lift hover effect */
+.rec-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
 /* subtitle inside cards */

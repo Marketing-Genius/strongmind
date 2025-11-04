@@ -247,13 +247,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".onboard-btn");
   buttons.forEach(button => {
     button.addEventListener("click", () => {
-      const selectedType = button.dataset.usertype;
-      localStorage.setItem("userType", selectedType);
-      applyUserTypeBackground(selectedType);
-      onboardingModal.style.display = "none";
-      overlay.classList.add("hidden");
-    });
+    const selectedType = button.dataset.usertype;
+    localStorage.setItem("userType", selectedType);
+    applyUserTypeBackground(selectedType);
+
+    // Hide the onboarding modal, but keep overlay visible for setup flow
+    onboardingModal.style.display = "none";
+
+    // If homeschool, continue to setup; otherwise remove overlay right away
+    if (selectedType === "homeschool") {
+    document.getElementById("homeschoolStep1Modal").style.display = "flex";
+    } else {
+    overlay.classList.add("hidden"); // only hide for non-homeschool types
+    }
   });
+});
 
   // Recovery: If overlay is visible but modal is not, show modal again
   if (

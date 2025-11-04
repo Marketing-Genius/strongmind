@@ -1223,6 +1223,135 @@ input:checked + .slider:before {
 }
 .feed-item:last-child { border-bottom: none; }
 
+/* === Marketplace Row (Edutects + Spotlight) === */
+.marketplace-row {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Trending Edutects */
+.trending-edutects {
+  flex: 2;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.trending-edutects h3 {
+  margin-bottom: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.edutect-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  animation: scrollEdutects 40s linear infinite;
+}
+
+.trending-edutects:hover .edutect-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes scrollEdutects {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.edutect-card {
+  flex: 0 0 220px;
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.edutect-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.edutect-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.edutect-card h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.edutect-card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.follow-btn {
+  background-color: #4ea6c0;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.follow-btn:hover {
+  background-color: #3b8ca7;
+}
+
+.follow-btn.following {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Course Spotlight */
+.course-spotlight {
+  flex: 1;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.course-spotlight h3 {
+  margin-bottom: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
 /* section divider + marketplace (you can keep the ones you added) */
 .section-divider { grid-column: 1 / -1; display:flex; align-items:center; color:#fff4da; margin: 28px 0 12px; }
 .section-divider::before { content:""; flex:1; height:2px; background:rgba(255,255,255,.5); margin-right:12px; }

@@ -1154,21 +1154,10 @@ input:checked + .slider:before {
 .token-icon {
   height: 14px;
   width: auto;
+  max-height: 14px;
   vertical-align: middle;
   margin-left: 4px;
-}
-
-.rec-card .overlay p {
-  margin: 4px 0;
-  line-height: 1.3;
-}
-
-/* Token icon inside overlay */
-.token-icon {
-  height: 14px;
-  width: auto;
-  vertical-align: middle;
-  margin-left: 4px;
+  margin-bottom: 2px;
 }
 
 .rec-card .overlay p {

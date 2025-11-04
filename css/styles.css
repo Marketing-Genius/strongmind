@@ -1058,6 +1058,7 @@ input:checked + .slider:before {
   padding: 20px 24px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   overflow: hidden;
+  margin-bottom: 24px;
 }
 
 .recommended-label {
@@ -1237,10 +1238,6 @@ input:checked + .slider:before {
   margin: 0 auto;      /* ✅ centers within page */
   padding: 0 24px;     /* ✅ aligns with the white box padding above */
   box-sizing: border-box;
-}
-
-.recommended-section {
-  margin-bottom: 24px; /* tighter spacing below Recommended */
 }
 
 /* Trending Edutects */

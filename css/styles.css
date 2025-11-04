@@ -1171,13 +1171,15 @@ input:checked + .slider:before {
 
 /* Token icon styling */
 .token-icon {
-  height: 14px;
+  display: inline-block;
   width: 14px;
-  vertical-align: middle;
+  height: 14px;
+  object-fit: contain;
+  aspect-ratio: 1 / 1; /* locks proportions */
   margin-left: 4px;
   margin-bottom: 2px;
-  object-fit: contain;
-  filter: brightness(0) invert(1); /* keeps white logo visible */
+  transform: translateY(2px); /* fine-tune vertical alignment */
+  filter: brightness(0) invert(1); /* white version for dark overlay */
 }
 
 /* Optional: rating line with star */

@@ -1382,3 +1382,20 @@ input:checked + .slider:before {
 .section-divider span { text-transform:uppercase; font-size:.9rem; letter-spacing:.06em; }
 
 .marketplace-section { grid-column: 1 / -1; display:flex; flex-direction:column; gap:24px; }
+
+/* === Marketplace Layout Spacing Fixes === */
+
+/* Keep even rhythm between Featured, Recommended, and Trending */
+.recommended-section {
+  margin-bottom: 20px; /* slightly tighter to match Featured spacing */
+}
+
+/* Prevent margin stacking above Trending Edutects */
+.marketplace-row {
+  margin-top: 0; /* removes extra gap */
+}
+
+/* Add consistent breathing room at the bottom of the homepage */
+.dashboard-wrapper {
+  padding-bottom: 40px; /* was 20px, now ensures content never touches bottom */
+}

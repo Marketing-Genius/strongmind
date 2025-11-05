@@ -1253,6 +1253,17 @@ input:checked + .slider:before {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.feed-item a {
+  color: #e97e66;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.feed-item a:hover {
+  text-decoration: underline;
+  color: #a178c9;
+}
+
 /* === Section Divider === */
 .section-divider {
   grid-column: 1 / -1;

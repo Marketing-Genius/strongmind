@@ -1114,6 +1114,7 @@ input:checked + .slider:before {
 /* === Live Feed (What's New Card) === */
 .live-feed.scrollable {
   margin-top: 12px;
+  margin-bottom: 4px;
   max-height: 120px;
   overflow-y: auto;
   padding-right: 4px;
@@ -1299,6 +1300,7 @@ input:checked + .slider:before {
   max-height: 160px;
   overflow-y: auto;
   margin-top: 40px; /* leave room for the button */
+  margin-top: 24px;
   padding-right: 4px;
   scrollbar-width: thin;
 }

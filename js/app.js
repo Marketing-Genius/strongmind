@@ -192,6 +192,18 @@ function openSparkModal() {
   modal.classList.remove("hidden");
 }
 
+document.addEventListener("click", (e) => {
+  if (e.target.id === "claimWelcomeBonus") {
+    const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
+    localStorage.setItem("sparkBalance", balance + 500);
+    updateSparkButtonLabel();
+    showSuccessAnimation("🎉 500 SparkTokens added to your wallet!");
+    e.target.textContent = "Claimed!";
+    e.target.disabled = true;
+    e.target.style.background = "#ccc";
+  }
+});
+
 // === User Type Variables ===
 function applyUserTypeBackground(type) {
   const body = document.body;

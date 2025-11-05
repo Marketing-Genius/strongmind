@@ -548,7 +548,7 @@ function renderDashboardCards() {
     },
     {
   title: "📊 Learner Dashboard",
-  subtitle: "",
+  subtitle: "‎ ‎ ‎ ‎ ‎ ‎ ",
   bodyHTML: `
     <div class="learner-dashboard-card">
       <div class="learner-header">

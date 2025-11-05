@@ -1823,3 +1823,18 @@ input:checked + .slider:before {
 .dashboard-wrapper {
   padding-bottom: 40px; /* was 20px, now ensures content never touches bottom */
 }
+
+/* === Final Marketplace Spacing Correction === */
+.marketplace-section {
+  gap: 0; /* removes excessive vertical gap between subsections */
+}
+
+.recommended-section {
+  margin-bottom: 16px; /* even spacing below recommended */
+  padding-bottom: 20px; /* keeps nice interior breathing room */
+}
+
+.marketplace-row {
+  margin-top: 0 !important; /* absolutely no extra top margin */
+  padding-top: 0 !important;
+}

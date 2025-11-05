@@ -190,14 +190,34 @@ function openSparkModal() {
   });
 
   modal.classList.remove("hidden");
+
+  // ✅ Disable "Claim Now" if already claimed
+const claimed = localStorage.getItem("welcomeBonusClaimed");
+if (claimed === "true") {
+  const claimBtn = document.getElementById("claimWelcomeBonus");
+  if (claimBtn) {
+    claimBtn.textContent = "Claimed!";
+    claimBtn.disabled = true;
+    claimBtn.style.background = "#ccc";
+  }
+ }
 }
 
 document.addEventListener("click", (e) => {
   if (e.target.id === "claimWelcomeBonus") {
+    // Check if already claimed
+    const claimed = localStorage.getItem("welcomeBonusClaimed");
+    if (claimed === "true") return;
+
+    // Add 500 tokens
     const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
     localStorage.setItem("sparkBalance", balance + 500);
+    localStorage.setItem("welcomeBonusClaimed", "true"); // ✅ remember they claimed
+
     updateSparkButtonLabel();
     showSuccessAnimation("🎉 500 SparkTokens added to your wallet!");
+
+    // Update button
     e.target.textContent = "Claimed!";
     e.target.disabled = true;
     e.target.style.background = "#ccc";

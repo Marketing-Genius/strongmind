@@ -1824,17 +1824,19 @@ input:checked + .slider:before {
   padding-bottom: 40px; /* was 20px, now ensures content never touches bottom */
 }
 
-/* === Final Marketplace Spacing Correction === */
+/* === Marketplace Section Balanced Spacing === */
 .marketplace-section {
-  gap: 0; /* removes excessive vertical gap between subsections */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* moderate vertical rhythm between each block */
 }
 
 .recommended-section {
-  margin-bottom: 16px; /* even spacing below recommended */
-  padding-bottom: 20px; /* keeps nice interior breathing room */
+  margin-bottom: 0; /* remove double stacking */
+  padding-bottom: 16px; /* enough to separate inner cards */
 }
 
 .marketplace-row {
-  margin-top: 0 !important; /* absolutely no extra top margin */
-  padding-top: 0 !important;
+  margin-top: 0;
+  padding-top: 0;
 }

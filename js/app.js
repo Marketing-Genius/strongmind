@@ -577,10 +577,19 @@ function renderDashboardCards() {
   `
 },
     {
-      title: "🧑‍🧑‍🧒‍🧒 Groups",
-      subtitle: "Join and manage homeschool groups.",
-      image: "assets/card-pics/groups-card.png"
-    },
+  title: "🧑‍🧑‍🧒‍🧒 Groups",
+  subtitle: "Join and manage homeschool groups.",
+  bodyHTML: `
+    <button class="create-group-btn">+ Create a Group</button>
+    <div class="groups-carousel scrollable-vertical">
+      <div class="group-item"><img src="assets/card-pics/grp-1.png" alt="Arizona Homeschool Families"></div>
+      <div class="group-item"><img src="assets/card-pics/grp-2.png" alt="Christian Homeschooling"></div>
+      <div class="group-item"><img src="assets/card-pics/grp-3.png" alt="Group Field Trippers"></div>
+      <div class="group-item"><img src="assets/card-pics/grp-4.png" alt="AZ Family Enrichment"></div>
+      <div class="group-item"><img src="assets/card-pics/grp-5.png" alt="Parent Tutoring"></div>
+    </div>
+  `
+}
     {
       title: "✅ Following",
       subtitle: "View fresh Edutect content",

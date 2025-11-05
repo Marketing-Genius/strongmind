@@ -528,11 +528,11 @@ body {
 
 /* === Spark Bonus Row Tweaks === */
 .welcome-bonus p {
-  margin-top: 20px;   /* adjust this number until it feels right */
+  margin-top: 50px;   /* adjust this number until it feels right */
 }
 
 .welcome-bonus button {
-  margin-top: 12px;
+  margin-top: 24px;
 }
 
 .referral-card {

@@ -526,6 +526,15 @@ body {
   background: #fff3e6;
 }
 
+/* === Spark Bonus Row Tweaks === */
+.welcome-bonus p {
+  margin-top: 20px;   /* adjust this number until it feels right */
+}
+
+.welcome-bonus button {
+  margin-top: 12px;
+}
+
 .referral-card {
   background: #ffe8df;
 }

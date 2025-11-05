@@ -590,12 +590,6 @@ function renderDashboardCards() {
     </div>
   `
 }
-
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("create-group-btn")) {
-    showSuccessAnimation("✨ Group creation coming soon!");
-  }
-}); 
     
     {
       title: "✅ Following",
@@ -863,3 +857,9 @@ document.getElementById("profileForm")?.addEventListener("submit", (e) => {
   document.getElementById("profileName").textContent = `${first} ${last}`;
   alert("Profile saved!");
 });
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("create-group-btn")) {
+    showSuccessAnimation("✨ Group creation coming soon!");
+  }
+}); 

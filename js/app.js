@@ -590,6 +590,13 @@ function renderDashboardCards() {
     </div>
   `
 }
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("create-group-btn")) {
+    showSuccessAnimation("✨ Group creation coming soon!");
+  }
+}); 
+    
     {
       title: "✅ Following",
       subtitle: "View fresh Edutect content",

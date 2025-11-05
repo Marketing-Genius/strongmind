@@ -596,7 +596,58 @@ function renderDashboardCards() {
       subtitle: "View fresh Edutect content",
       image: "assets/card-pics/marketplace-card.png"
     },
-    { title: "📚 Lesson Library", subtitle: "View your courses, content and experiences." },
+    {
+  title: "📚 Lesson Library",
+  subtitle: "View your courses, content and experiences.",
+  bodyHTML: `
+    <div class="lesson-list scrollable">
+      <div class="lesson-item">
+        <img src="assets/rec-algebra.png" alt="Algebra 1" class="lesson-thumb">
+        <div class="lesson-info">
+          <h4>Algebra 1</h4>
+          <p>Progress: 34%</p>
+        </div>
+        <button class="launch-btn">Launch Course</button>
+      </div>
+
+      <div class="lesson-item">
+        <img src="assets/rec-art.png" alt="Art History" class="lesson-thumb">
+        <div class="lesson-info">
+          <h4>Art History</h4>
+          <p>Progress: 87%</p>
+        </div>
+        <button class="launch-btn">Launch Course</button>
+      </div>
+
+      <div class="lesson-item">
+        <img src="assets/rec-history.png" alt="World History" class="lesson-thumb">
+        <div class="lesson-info">
+          <h4>World History</h4>
+          <p>Progress: 55%</p>
+        </div>
+        <button class="launch-btn">Launch Course</button>
+      </div>
+
+      <div class="lesson-item">
+        <img src="assets/rec-science.png" alt="Science 101" class="lesson-thumb">
+        <div class="lesson-info">
+          <h4>Science 101</h4>
+          <p>Progress: 72%</p>
+        </div>
+        <button class="launch-btn">Launch Course</button>
+      </div>
+
+      <div class="lesson-item">
+        <img src="assets/rec-photography.png" alt="Photography 101" class="lesson-thumb">
+        <div class="lesson-info">
+          <h4>Photography 101</h4>
+          <p>Progress: 46%</p>
+        </div>
+        <button class="launch-btn">Launch Course</button>
+      </div>
+    </div>
+  `
+},
     {
   title: "🚌 Events",
   subtitle: "‎Field trips, meetups, and more.",

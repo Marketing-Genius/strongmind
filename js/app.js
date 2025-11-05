@@ -589,7 +589,7 @@ function renderDashboardCards() {
       <div class="group-item"><img src="assets/card-pics/grp-5.png" alt="Parent Tutoring"></div>
     </div>
   `
-}
+},
     
     {
       title: "✅ Following",

@@ -499,8 +499,8 @@ function renderDashboardCards() {
 
   const hubCards = [
     {
-      title: "What’s New",
-      subtitle: "Announcements, events, and top lessons.",
+      title: "🔔 Notifications",
+      subtitle: "You have 8 updates to review",
       bodyHTML: `
         <div class="live-feed scrollable">
           <div class="feed-item">💬 <strong>Emily</strong> commented on your post in “Homeschool Science Projects.”</div>

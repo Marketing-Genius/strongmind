@@ -546,19 +546,19 @@ function renderDashboardCards() {
         </div>
       `
     },
-    { title: "Learners", subtitle: "Track progress for each learner." },
+    { title: "📊 Learners Dashboards", subtitle: "Track progress for your learners." },
     {
-      title: "Groups",
+      title: "🧑‍🧑‍🧒‍🧒 Groups",
       subtitle: "Join and manage homeschool groups.",
       image: "assets/card-pics/groups-card.png"
     },
     {
-      title: "Explore Marketplace",
-      subtitle: "Discover endless educational content",
+      title: "✅ Following",
+      subtitle: "View fresh Edutect content",
       image: "assets/card-pics/marketplace-card.png"
     },
-    { title: "Lesson Library", subtitle: "Explore lessons and Spark content." },
-    { title: "Upcoming Events", subtitle: "Field trips, meetups, and more." }
+    { title: "📚 Lesson Library", subtitle: "View your courses, content and experiences." },
+    { title: "🚌 Events", subtitle: "Field trips, meetups, and more." }
   ];
 
   hubCards.forEach(card => {

@@ -546,7 +546,36 @@ function renderDashboardCards() {
         </div>
       `
     },
-    { title: "📊 Learners Dashboards", subtitle: "Track progress for your learners." },
+    {
+  title: "📊 Learners Dashboard",
+  subtitle: "Track progress for your learners.",
+  bodyHTML: `
+    <div class="learner-dashboard-card">
+      <div class="learner-header">
+        <img src="assets/learner-avatar.png" alt="Learner Avatar" class="learner-avatar">
+        <div class="learner-progress">
+          <h4>Ava’s Progress</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 72%;"></div>
+          </div>
+          <small>18 of 25 lessons complete</small>
+        </div>
+      </div>
+
+      <div class="learner-stats">
+        <span>📚 4 Courses</span>
+        <span>⭐ 92%</span>
+        <span>🔥 5-Day Streak</span>
+      </div>
+
+      <div class="subject-breakdown">
+        <p>🧮 Math <span class="bar"><span style="width:80%"></span></span></p>
+        <p>📖 Language Arts <span class="bar"><span style="width:60%"></span></span></p>
+        <p>🔬 Science <span class="bar"><span style="width:100%"></span></span></p>
+      </div>
+    </div>
+  `
+},
     {
       title: "🧑‍🧑‍🧒‍🧒 Groups",
       subtitle: "Join and manage homeschool groups.",

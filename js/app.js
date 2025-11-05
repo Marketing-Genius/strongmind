@@ -688,6 +688,9 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
       document.getElementById("profileName").textContent = `${first} ${last}`;
       closeProfileModal();
+      setTimeout(() => {
+      location.reload();
+    }, 400);
     });
   }
 });

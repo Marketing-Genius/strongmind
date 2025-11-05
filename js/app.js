@@ -15,12 +15,19 @@ function updateSparkButtonLabel() {
 }
 
 function updatePlanButton() {
-  const plan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const plan = localStorage.getItem("subscriptionPlan") || "none";
   const button = document.getElementById("plan-button");
-  const { color, text } = PLAN_TIERS[plan];
-  button.textContent = `Plan: ${plan}`;
-  button.style.background = color;
-  button.style.color = text;
+
+  if (plan === "none") {
+    button.textContent = "Plan: None";
+    button.style.background = "#ccc";
+    button.style.color = "#333";
+  } else {
+    const { color, text } = PLAN_TIERS[plan];
+    button.textContent = `Plan: ${plan}`;
+    button.style.background = color;
+    button.style.color = text;
+  }
 }
 
 function confirmPurchase(amount, price) {
@@ -74,8 +81,20 @@ function closeSubscriptionModal() {
 }
 
 function updatePlanCards() {
-  const currentPlan = localStorage.getItem("subscriptionPlan") || "Starter";
+  const currentPlan = localStorage.getItem("subscriptionPlan") || "none";
   const cards = document.querySelectorAll(".plan-card");
+
+      if (currentPlan === "none") {
+  // All cards should just say Subscribe
+  cards.forEach(card => {
+    const button = card.querySelector("button");
+    button.textContent = "Subscribe";
+    button.disabled = false;
+    button.style.background = "#fbd561";
+    button.style.color = "#000";
+  });
+  return; // stop here
+}
 
   cards.forEach(card => {
     const title = card.querySelector("h3").textContent.trim().replace(/\s+/g, "");

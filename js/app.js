@@ -121,10 +121,14 @@ function updatePlanCards() {
 }
 
 function selectPlan(plan) {
-  const current = localStorage.getItem("subscriptionPlan") || "Starter";
+  const current = localStorage.getItem("subscriptionPlan") || "none";
+
+  // Treat "none" as a special case (fresh signup)
+  const isNewSubscription = current === "none";
   const isDowngrade =
-    (current === "SparkPremium" && plan !== "SparkPremium") ||
-    (current === "SparkPlus" && plan === "Starter");
+    !isNewSubscription &&
+    ((current === "SparkPremium" && plan !== "SparkPremium") ||
+     (current === "SparkPlus" && plan === "Starter"));
 
   if (plan === current) return;
 
@@ -132,8 +136,8 @@ function selectPlan(plan) {
   modal.className = "modal";
   modal.innerHTML = `
     <div class="modal-content">
-      <h2>${isDowngrade ? "Downgrade" : "Upgrade"} Plan</h2>
-      <p>Are you sure you want to ${isDowngrade ? "downgrade to" : "upgrade to"} <strong>${plan}</strong>?</p>
+      <h2>${isDowngrade ? "Downgrade" : isNewSubscription ? "Subscribe" : "Upgrade"} Plan</h2>
+      <p>Are you sure you want to ${isNewSubscription ? "subscribe to" : isDowngrade ? "downgrade to" : "upgrade to"} <strong>${plan}</strong>?</p>
       <div style="margin-top: 20px; display: flex; justify-content: center; gap: 16px;">
         <button id="confirmUpgrade" style="padding: 10px 18px; font-weight: bold;">Yes</button>
         <button id="cancelUpgrade" style="padding: 10px 18px;">Cancel</button>
@@ -145,12 +149,12 @@ function selectPlan(plan) {
   document.getElementById("confirmUpgrade").onclick = () => {
     localStorage.setItem("subscriptionPlan", plan);
     let balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-    balance += PLAN_TIERS[plan].tokens;
+    balance += PLAN_TIERS[plan].tokens; // add the plan’s token bonus if any
     localStorage.setItem("sparkBalance", balance);
 
     updatePlanButton();
     updateSparkButtonLabel();
-    showSuccessAnimation(`Switched to ${plan} + Tokens added!`);
+    showSuccessAnimation(`${isNewSubscription ? "Subscribed to" : "Switched to"} ${plan} + Tokens added!`);
     closeSubscriptionModal();
     updatePlanCards();
     modal.remove();

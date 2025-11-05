@@ -463,13 +463,29 @@ function renderDashboardHeader() {
   const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
   const firstName = profileData.first || 'Friend';
   const homeschool = profileData.school || 'Your Homeschool';
+  const photo = profileData.photo || 'assets/default-profile.png';
 
   const headerHTML = `
-    <h1>Welcome, ${firstName}!</h1>
-    <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
+    <div class="dashboard-welcome">
+      <div class="profile-thumb" id="profileThumb">
+        <img id="dashboardProfilePic" src="${photo}" alt="Profile Photo" />
+        <div class="edit-overlay">EDIT</div>
+      </div>
+      <div class="welcome-text">
+        <h1>Welcome, ${firstName}!</h1>
+        <h3>${homeschool.includes('Homeschool') ? homeschool : `${homeschool} Homeschool`}</h3>
+      </div>
+    </div>
   `;
 
   document.getElementById('dashboardHeader').innerHTML = headerHTML;
+
+  // Enable click to open profile modal
+  const thumb = document.getElementById("profileThumb");
+  thumb?.addEventListener("click", () => {
+    document.getElementById("profileModal").classList.remove("hidden");
+    loadProfileData();
+  });
 }
 
 function renderDashboardCards() {

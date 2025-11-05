@@ -1424,6 +1424,10 @@ input:checked + .slider:before {
   width: 100%;
 }
 
+.marketplace-row {
+  margin-top: 16px;
+}
+
 /* Featured Course Banner */
 .featured-card {
   background: rgba(255,255,255,0.95);
@@ -1469,14 +1473,16 @@ input:checked + .slider:before {
   color: #ffe97b;
 }
 
+
 /* === Recommended Courses Section === */
 .recommended-section {
   background: rgba(255,255,255,0.95);
   border-radius: 20px;
   padding: 20px 24px;
+  padding-bottom: 24px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 0px;
 }
 
 .recommended-label {

@@ -587,7 +587,22 @@ function renderDashboardCards() {
       image: "assets/card-pics/marketplace-card.png"
     },
     { title: "📚 Lesson Library", subtitle: "View your courses, content and experiences." },
-    { title: "🚌 Events", subtitle: "Field trips, meetups, and more." }
+    {
+  title: "🚌 Events",
+  subtitle: "‎ ‎ ‎ ‎ ‎ ‎ ",
+  bodyHTML: `
+    <div class="live-feed scrollable">
+      <div class="feed-item">✅ <strong>Attended:</strong> Phoenix Zoo Trip — <em>Oct 15</em> | <a href="#">Review this experience</a></div>
+      <div class="feed-item">📅 <strong>Upcoming:</strong> Desert Botanical Garden — <em>Nov 14</em> | <a href="#">RSVP Now</a></div>
+      <div class="feed-item">✨ <strong>Suggested:</strong> Family Astronomy Night — <em>Nov 20</em> | <a href="#">Learn More</a></div>
+      <div class="feed-item">📅 <strong>Upcoming:</strong> Science Center Workshop — <em>Dec 2</em> | <a href="#">RSVP Now</a></div>
+      <div class="feed-item">🎨 <strong>Suggested:</strong> Art & Creativity Meetup — <em>Dec 10</em> | <a href="#">Learn More</a></div>
+      <div class="feed-item">✅ <strong>Attended:</strong> Local History Museum — <em>Sept 30</em> | <a href="#">Review this experience</a></div>
+      <div class="feed-item">📅 <strong>Upcoming:</strong> Homeschool Holiday Party — <em>Dec 18</em> | <a href="#">RSVP Now</a></div>
+      <div class="feed-item">✨ <strong>Suggested:</strong> Nature Hike & Picnic — <em>Jan 7</em> | <a href="#">Learn More</a></div>
+    </div>
+  `
+}
   ];
 
   hubCards.forEach(card => {

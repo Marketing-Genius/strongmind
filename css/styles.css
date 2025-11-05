@@ -564,6 +564,25 @@ body {
   background-color: #d96a55;
 }
 
+/* General styling for all Homeschool modal action buttons */
+.welcome-btn {
+  background-color: #e87d66;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 28px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-btn:hover {
+  background-color: #d96a55;
+}
+
 .modal-content.homeschool-setup,
 .modal-content.homeschool-details {
   max-width: 400px;

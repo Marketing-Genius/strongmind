@@ -589,7 +589,7 @@ function renderDashboardCards() {
     { title: "📚 Lesson Library", subtitle: "View your courses, content and experiences." },
     {
   title: "🚌 Events",
-  subtitle: "‎ ‎ ‎ ‎ ‎ ‎ ",
+  subtitle: "‎Field trips, meetups, and more.",
   bodyHTML: `
     <div class="live-feed scrollable">
       <div class="feed-item">✅ <strong>Attended:</strong> Phoenix Zoo Trip — <em>Oct 15</em> | <a href="#">Review this experience</a></div>

@@ -1158,6 +1158,101 @@ input:checked + .slider:before {
   }
 }
 
+/* === Learner Dashboard Card === */
+.learner-dashboard-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #333;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Header with avatar and progress */
+.learner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.learner-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fbd561;
+}
+
+.learner-progress h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #e97e66;
+}
+
+/* Progress bar */
+.progress-bar {
+  background-color: #f0e0d8;
+  border-radius: 10px;
+  height: 10px;
+  width: 160px;
+  overflow: hidden;
+  margin-bottom: 2px;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #4ea6c0, #a178c9);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.6s ease-in-out;
+}
+
+.learner-progress small {
+  font-size: 0.75rem;
+  color: #777;
+}
+
+/* Quick stats row */
+.learner-stats {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* Subject breakdown */
+.subject-breakdown p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subject-breakdown .bar {
+  background: #f0f0f0;
+  border-radius: 6px;
+  width: 60%;
+  height: 6px;
+  overflow: hidden;
+  margin-left: 8px;
+}
+
+.subject-breakdown .bar span {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #fbd561, #e97e66);
+  transition: width 0.6s ease-in-out;
+}
+
+/* Subtle animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* === Section Divider === */
 .section-divider {
   grid-column: 1 / -1;

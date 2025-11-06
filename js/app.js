@@ -615,10 +615,70 @@ function renderDashboardCards() {
 },
     
     {
-      title: "✉️ Messages",
-      subtitle: "You have 7 new messages",
-      image: "assets/card-pics/marketplace-card.png"
-    },
+  title: "✉️ Messages",
+  subtitle: "You have 7 new messages",
+  bodyHTML: `
+    <button class="open-inbox-btn">Open Inbox</button>
+    <div class="message-list scrollable">
+      <div class="message-item unread">
+        <strong>Emily</strong>: Excited for tomorrow’s field trip!
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item unread">
+        <strong>Mrs. Smithers</strong>: Great work on your last assignment.
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item">
+        <strong>Admin</strong>: New update to SparkTokens is live!
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item">
+        <strong>Olivia</strong>: Can you send the lesson file?
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item">
+        <strong>Group: STEM Learners</strong>: Meeting changed to Friday.
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item unread">
+        <strong>Charlotte</strong>: Loved your homeschool post!
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+      <div class="message-item">
+        <strong>Support</strong>: Your subscription renews next week.
+        <div class="message-actions">
+          <span class="mark-read">✓</span>
+          <span class="delete">🗑️</span>
+          <span class="reply">↩️</span>
+        </div>
+      </div>
+    </div>
+  `
+},
     {
   title: "📚 Lesson Library",
   subtitle: "View your courses, content and experiences.",
@@ -937,3 +997,21 @@ document.addEventListener("click", (e) => {
     showSuccessAnimation("✨ Group creation coming soon!");
   }
 }); 
+
+document.addEventListener("click", (e) => {
+  // Mark message as read
+  if (e.target.classList.contains("mark-read")) {
+    const item = e.target.closest(".message-item");
+    item.classList.remove("unread");
+  }
+
+  // Delete message
+  if (e.target.classList.contains("delete")) {
+    e.target.closest(".message-item").remove();
+  }
+
+  // Reply (mock)
+  if (e.target.classList.contains("reply")) {
+    alert("Reply feature coming soon!");
+  }
+});

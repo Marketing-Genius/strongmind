@@ -172,6 +172,52 @@ body.creator-body {
 .creator-card:nth-child(4) { border-top: 4px solid #e97e66; }
 
 /* === Modals === */
+.creator-modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.creator-modal-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.creator-modal-content h2 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.creator-modal-content p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.creator-modal .close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.creator-modal .close:hover {
+  color: #000;
+}
+
 /* === CREATOR PROFILE MODAL === */
 .profile-modal {
   max-width: 480px;

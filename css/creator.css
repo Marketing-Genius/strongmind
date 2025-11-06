@@ -183,6 +183,11 @@ body.creator-body {
   backdrop-filter: blur(4px);
 }
 
+/* Hidden state */
+.hidden {
+  display: none !important;
+}
+
 .creator-modal-content {
   background: #fff;
   padding: 30px 40px;

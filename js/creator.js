@@ -82,10 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstVisit = !localStorage.getItem("creatorProfileSet");
   console.log("First Visit?", firstVisit);
   if (firstVisit) {
-    setTimeout(() => profileModal.classList.remove("hidden"), 400);
-  } else {
-    loadCreatorProfile();
-  }
+  console.log("🟢 First visit detected — showing creator profile modal...");
+  setTimeout(() => {
+    profileModal.classList.remove("hidden");
+    profileModal.classList.add("show"); // 👈 this makes it visible now
+    profileModal.style.zIndex = "99999";
+  }, 800);
+} else {
+  console.log("Returning user — loading stored creator profile");
+  loadCreatorProfile();
+}
 
   // === Close modal ===
   closeBtn.addEventListener("click", () => {

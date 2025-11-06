@@ -1,119 +1,83 @@
-/* === Global Creator Layout === */
-.creator-body {
-  background: linear-gradient(160deg, #4ea6c0, #a178c9);
-  font-family: "Segoe UI", sans-serif;
-  color: #333;
-  min-height: 100vh;
-  padding-top: 70px;
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(160deg, #4ea6c0, #2e768b);
+  color: #222;
 }
 
-/* Top Nav reuse, lightly tweaked */
-.top-nav {
-  background-color: #fdf6ec;
-  height: 50px;
-  width: 100%;
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+  padding: 12px 24px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Switch account button */
-.switch-btn {
-  background: #fbd561;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 12px;
+.nav-logo {
+  height: 40px;
+}
+
+.hamburger-menu {
+  position: relative;
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: none;
+}
+
+.hamburger-dropdown div {
+  padding: 10px 16px;
   cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.switch-btn:hover {
-  transform: scale(1.05);
 }
 
-/* === Dashboard Core === */
-.creator-dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 24px;
+.hamburger-dropdown div:hover {
+  background: #f3f3f3;
+}
+
+/* Centered hero section */
+.hero {
   text-align: center;
+  margin-top: 80px;
 }
 
-.creator-header {
-  color: #fff;
-  margin-bottom: 40px;
-}
-
-.creator-header h1 {
+.hero h1 {
   font-size: 2rem;
   margin-bottom: 8px;
 }
 
-/* === Grid of Cards === */
-.creator-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+.hero p {
+  font-size: 1rem;
+  color: #333;
 }
 
-.creator-card {
-  background: #fff;
+/* Action buttons */
+.action-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.action-card {
+  background: white;
   border-radius: 16px;
-  padding: 24px;
-  font-weight: bold;
+  padding: 24px 32px;
   font-size: 1.1rem;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
-.creator-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-/* === Modals === */
-.creator-modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.creator-modal.hidden {
-  display: none;
-}
-
-.creator-modal-content {
-  background: #fff;
-  border-radius: 16px;
-  padding: 40px;
-  max-width: 500px;
-  width: 90%;
-  text-align: left;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-.creator-modal-content h2 {
-  margin-bottom: 12px;
-}
-
-.close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 1.5rem;
-  cursor: pointer;
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }

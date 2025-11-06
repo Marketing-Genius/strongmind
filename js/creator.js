@@ -1,12 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🎨 StrongMind Creator Dashboard loaded");
 
-  document.addEventListener("DOMContentLoaded", () => {
-  console.log("🎨 StrongMind Creator Dashboard loaded");
-
-  const modalTest = document.getElementById("creatorProfileModal");
-  console.log("Modal element found?", modalTest);
-
   /* === Hamburger Menu === */
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
@@ -161,5 +155,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // === Learn more hover ===
   learnMoreHover.addEventListener("mouseenter", () => learnMorePopup.classList.remove("hidden"));
   learnMoreHover.addEventListener("mouseleave", () => learnMorePopup.classList.add("hidden"));
- });
 });

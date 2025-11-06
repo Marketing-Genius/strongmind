@@ -109,6 +109,18 @@ body.creator-body {
   background: #f7f7f7;
 }
 
+.hamburger-dropdown {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: top right;
+}
+
+.hamburger-dropdown.hidden {
+  display: block; /* keep layout space */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
 /* === Header Section === */
 .creator-header {
   text-align: center;

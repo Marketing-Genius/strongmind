@@ -1859,6 +1859,51 @@ input:checked + .slider:before {
   color: white;
 }
 
+/* === Creator Role Pills === */
+.role-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 4px 0 8px;
+  text-transform: capitalize;
+}
+
+/* Role Color Variants */
+.role-pill.professor {
+  background-color: #a178c9; /* purple */
+}
+
+.role-pill.teacher {
+  background-color: #fbd561; /* bright gold */
+  color: #000;
+}
+
+.role-pill.certified {
+  background-color: #f9c74f; /* deeper gold tone */
+  color: #000;
+}
+
+.role-pill.instructor {
+  background-color: #4ea6c0; /* teal */
+}
+
+.role-pill.tutor {
+  background-color: #7fd8b2; /* mint green */
+  color: #000;
+}
+
+.role-pill.coach {
+  background-color: #e97e66; /* coral */
+}
+
+.role-pill.creator {
+  background-color: #999; /* neutral gray fallback */
+  color: #fff;
+}
+
 /* Course Spotlight */
 .course-spotlight {
   flex: 1;

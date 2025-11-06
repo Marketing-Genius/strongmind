@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🎨 StrongMind Creator Dashboard loaded");
 
-  // === Hamburger Menu Logic ===
+  /* === Hamburger Menu === */
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
 
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Dropdown Item Click Handling ===
   dropdown.querySelectorAll("div").forEach(item => {
     item.addEventListener("click", () => {
       const text = item.textContent.trim();
@@ -25,18 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (text === "Creator Profile") {
         document.getElementById("creatorProfileModal")?.classList.remove("hidden");
       }
-
-      if (text === "Settings") {
-        alert("⚙️ Settings coming soon!");
-      }
-
-      if (text === "My Courses") {
-        alert("📚 Course management tools coming soon!");
-      }
-
-      if (text === "Earnings Dashboard") {
-        alert("💰 Earnings dashboard coming soon!");
-      }
+      if (text === "Settings") alert("⚙️ Settings coming soon!");
+      if (text === "My Courses") alert("📚 Course management tools coming soon!");
+      if (text === "Earnings Dashboard") alert("💰 Earnings dashboard coming soon!");
 
       if (text === "Reset Demo") {
         if (confirm("Reset all Creator data and return to onboarding?")) {
@@ -44,12 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.href = "index.html";
         }
       }
-
       dropdown.classList.add("hidden");
     });
   });
 
-  // === Modal Logic ===
+  /* === Switch Account === */
+  const switchBtn = document.getElementById("switchAccountBtn");
+  switchBtn?.addEventListener("click", () => {
+    if (confirm("Switch back to your homeschool or learner account?")) {
+      localStorage.removeItem("userType");
+      window.location.href = "index.html";
+    }
+  });
+
+  /* === Dashboard Card Modals === */
   const modals = document.querySelectorAll(".creator-modal");
   const cards = document.querySelectorAll(".creator-card");
 
@@ -61,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close modals on X click or background click
   modals.forEach(modal => {
     const close = modal.querySelector(".close");
     close?.addEventListener("click", () => modal.classList.add("hidden"));
@@ -70,18 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Switch Account Button ===
-  const switchBtn = document.getElementById("switchAccountBtn");
-  switchBtn?.addEventListener("click", () => {
-    if (confirm("Switch back to your homeschool or learner account?")) {
-      localStorage.removeItem("userType");
-      window.location.href = "index.html";
-    }
-  });
-});
-
-// === CREATOR PROFILE MODAL LOGIC ===
-document.addEventListener("DOMContentLoaded", () => {
+  /* === Creator Profile Modal === */
   const profileModal = document.getElementById("creatorProfileModal");
   const closeBtn = profileModal.querySelector(".close");
   const saveBtn = document.getElementById("saveCreatorProfile");
@@ -94,18 +80,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Show modal automatically on first visit ===
   const firstVisit = !localStorage.getItem("creatorProfileSet");
+  console.log("First Visit?", firstVisit);
   if (firstVisit) {
     setTimeout(() => profileModal.classList.remove("hidden"), 400);
   } else {
     loadCreatorProfile();
   }
 
-  // === Close button ===
+  // === Close modal ===
   closeBtn.addEventListener("click", () => {
     profileModal.classList.add("hidden");
   });
 
-  // === Save button ===
+  // === Save profile ===
   saveBtn.addEventListener("click", () => {
     const data = {
       first: document.getElementById("creatorFirstName").value.trim(),
@@ -117,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bio: document.getElementById("creatorBio").value.trim(),
       photo: document.getElementById("creatorProfileImage").src
     };
+
     localStorage.setItem("creatorProfile", JSON.stringify(data));
     localStorage.setItem("creatorProfileSet", "true");
 
@@ -126,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => profileModal.classList.add("hidden"), 800);
   });
 
-  // === Load profile data if exists ===
   function loadCreatorProfile() {
     const stored = JSON.parse(localStorage.getItem("creatorProfile")) || {};
     if (!stored) return;
@@ -154,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Enable upload credentials if type is Certified Teacher or Professor ===
+  // === Enable upload credentials ===
   typeSelect.addEventListener("change", () => {
     if (["Certified Teacher", "Professor"].includes(typeSelect.value)) {
       uploadCredentials.disabled = false;
@@ -165,11 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Learn more hover popup ===
-  learnMoreHover.addEventListener("mouseenter", () => {
-    learnMorePopup.classList.remove("hidden");
-  });
-  learnMoreHover.addEventListener("mouseleave", () => {
-    learnMorePopup.classList.add("hidden");
-  });
+  // === Learn more hover ===
+  learnMoreHover.addEventListener("mouseenter", () => learnMorePopup.classList.remove("hidden"));
+  learnMoreHover.addEventListener("mouseleave", () => learnMorePopup.classList.add("hidden"));
 });

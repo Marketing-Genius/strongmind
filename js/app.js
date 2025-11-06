@@ -615,8 +615,8 @@ function renderDashboardCards() {
 },
     
     {
-      title: "✅ Following",
-      subtitle: "View fresh Edutect content",
+      title: "✉️ Messages",
+      subtitle: "You have 7 new messages",
       image: "assets/card-pics/marketplace-card.png"
     },
     {

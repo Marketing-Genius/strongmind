@@ -37,11 +37,16 @@
   </nav>
 
   <!-- Dashboard Layout -->
-  <div class="creator-dashboard">
-    <header class="creator-header">
-      <h1>Welcome, Creator!</h1>
+  <header class="creator-header">
+  <div class="creator-header-content">
+    <img id="creatorHeaderPhoto" src="assets/default-profile.png" alt="Creator Photo" class="creator-header-photo" />
+    <div class="creator-header-text">
+      <h1 id="creatorWelcome">Welcome, Creator!</h1>
       <p>Manage your courses, connect with learners, and track your performance.</p>
-    </header>
+      <button id="editCreatorProfile" class="edit-profile-btn">Edit Profile</button>
+    </div>
+  </div>
+</header>
 
     <section class="creator-grid">
       <div class="creator-card" data-modal="coursesModal">

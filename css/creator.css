@@ -77,22 +77,30 @@ body.creator-body {
 .hamburger-dropdown {
   position: absolute;
   right: 0;
-  top: 36px;
+  top: 38px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  animation: fadeIn 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.hamburger-dropdown.hidden {
   display: none;
 }
 
 .hamburger-dropdown div {
   padding: 10px 16px;
-  cursor: pointer;
   font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .hamburger-dropdown div:hover {
-  background: #f5f5f5;
+  background: #f7f7f7;
 }
 
 /* === Header Section === */

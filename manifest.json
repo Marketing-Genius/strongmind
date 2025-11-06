@@ -1,15 +1,33 @@
 {
   "name": "StrongMind",
   "short_name": "StrongMind",
-  "start_url": "./index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#e97e66",
+  "description": "StrongMind Homeschool Hub — learn, connect, and grow together.",
   "icons": [
     {
-      "src": "/assets/icon-192.png",
-      "sizes": "192x192",
+      "src": "assets/icons/favicon-16.png",
+      "sizes": "16x16",
       "type": "image/png"
+    },
+    {
+      "src": "assets/icons/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

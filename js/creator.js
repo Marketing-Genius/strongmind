@@ -161,4 +161,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // === Learn more hover ===
   learnMoreHover.addEventListener("mouseenter", () => learnMorePopup.classList.remove("hidden"));
   learnMoreHover.addEventListener("mouseleave", () => learnMorePopup.classList.add("hidden"));
+ });
 });

@@ -1,0 +1,119 @@
+/* === Global Creator Layout === */
+.creator-body {
+  background: linear-gradient(160deg, #4ea6c0, #a178c9);
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+/* Top Nav reuse, lightly tweaked */
+.top-nav {
+  background-color: #fdf6ec;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Switch account button */
+.switch-btn {
+  background: #fbd561;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.switch-btn:hover {
+  transform: scale(1.05);
+}
+
+/* === Dashboard Core === */
+.creator-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.creator-header {
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.creator-header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+/* === Grid of Cards === */
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.creator-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.creator-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* === Modals === */
+.creator-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.creator-modal.hidden {
+  display: none;
+}
+
+.creator-modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.creator-modal-content h2 {
+  margin-bottom: 12px;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

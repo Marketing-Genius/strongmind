@@ -400,7 +400,13 @@ document.querySelectorAll(".onboard-btn").forEach(btn => {
     if (type === "homeschool") {
       document.getElementById("onboardingModal").style.display = "none";
       document.getElementById("homeschoolStep1Modal").style.display = "flex";
-    } else {
+    } 
+    else if (type === "edutech") {
+      // ✅ NEW — Redirect to the Creator Dashboard page
+      document.getElementById("onboardingModal").style.display = "none";
+      window.location.href = "creator.html";
+    } 
+    else {
       document.getElementById("onboardingModal").style.display = "none";
       document.getElementById("screenOverlay")?.classList.add("hidden");
     }

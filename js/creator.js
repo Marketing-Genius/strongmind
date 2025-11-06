@@ -1,25 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Creator Dashboard loaded ✅");
+  console.log("🎨 StrongMind Creator Dashboard loaded");
 
-  // Handle menu toggle
+  // === Hamburger Menu Logic ===
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
 
-  hamburger?.addEventListener("click", () => {
+  hamburger?.addEventListener("click", (e) => {
+    e.stopPropagation();
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+    if (!dropdown.contains(e.target) && e.target !== hamburger) {
       dropdown.style.display = "none";
     }
   });
 
-  // Optional: mock interactivity
-  document.querySelectorAll(".action-card").forEach(card => {
+  // === Modal Logic ===
+  const modals = document.querySelectorAll(".creator-modal");
+  const cards = document.querySelectorAll(".creator-card");
+
+  cards.forEach(card => {
     card.addEventListener("click", () => {
-      alert(`"${card.textContent.trim()}" feature coming soon!`);
+      const modalId = card.getAttribute("data-modal");
+      const modal = document.getElementById(modalId);
+      if (modal) modal.style.display = "flex";
     });
+  });
+
+  // Close modals on X click or background click
+  modals.forEach(modal => {
+    const close = modal.querySelector(".close");
+    close?.addEventListener("click", () => (modal.style.display = "none"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    });
+  });
+
+  // === Switch Account Button ===
+  const switchBtn = document.getElementById("switchAccountBtn");
+  switchBtn?.addEventListener("click", () => {
+    if (confirm("Switch back to your homeschool or learner account?")) {
+      localStorage.removeItem("userType");
+      window.location.href = "index.html";
+    }
   });
 });

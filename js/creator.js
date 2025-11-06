@@ -1,34 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Creator Dashboard loaded ✅");
+
+  // Handle menu toggle
   const hamburger = document.getElementById("hamburger");
   const dropdown = document.getElementById("hamburgerDropdown");
 
-  // Toggle hamburger menu
-  hamburger.addEventListener("click", () => {
-    dropdown.classList.toggle("hidden");
+  hamburger?.addEventListener("click", () => {
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   });
 
-  // Modal handling
-  const cards = document.querySelectorAll(".creator-card");
-  const modals = document.querySelectorAll(".creator-modal");
-  const closes = document.querySelectorAll(".close");
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
 
-  cards.forEach(card => {
+  // Optional: mock interactivity
+  document.querySelectorAll(".action-card").forEach(card => {
     card.addEventListener("click", () => {
-      const modalId = card.dataset.modal;
-      document.getElementById(modalId).classList.remove("hidden");
-    });
-  });
-
-  closes.forEach(close => {
-    close.addEventListener("click", () => {
-      close.closest(".creator-modal").classList.add("hidden");
-    });
-  });
-
-  // Close modal when clicking outside
-  modals.forEach(modal => {
-    modal.addEventListener("click", e => {
-      if (e.target === modal) modal.classList.add("hidden");
+      alert(`"${card.textContent.trim()}" feature coming soon!`);
     });
   });
 });

@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StrongMind Creator</title>
 
+  <!-- Creator-specific CSS -->
+  <link rel="stylesheet" href="css/creator.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+</head>
+
+<body class="creator-body">
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="assets/sm-icon.png" alt="StrongMind" class="nav-logo">
+      </a>
+    </div>
+    <div class="nav-right">
+      <button id="switchAccountBtn" class="switch-btn">Switch Account</button>
+      <div class="hamburger-menu">
+        <div id="hamburger" class="hamburger-icon">☰</div>
+        <div id="hamburgerDropdown" class="hamburger-dropdown hidden">
+          <div>Profile</div>
+          <div>My Courses</div>
+          <div>Analytics</div>
+          <div>Settings</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Layout -->
+  <div class="creator-dashboard">
+    <header class="creator-header">
+      <h1>Welcome, Creator!</h1>
+      <p>Manage your courses, connect with learners, and track your performance.</p>
+    </header>
+
+    <section class="creator-grid">
+      <div class="creator-card" data-modal="coursesModal">
+        📚 My Courses
+      </div>
+      <div class="creator-card" data-modal="messagesModal">
+        💬 Messages
+      </div>
+      <div class="creator-card" data-modal="analyticsModal">
+        📈 Analytics
+      </div>
+      <div class="creator-card" data-modal="newCourseModal">
+        🎨 Create New Course
+      </div>
+    </section>
+  </div>
+
+  <!-- Simple Placeholder Modals -->
+  <div id="coursesModal" class="creator-modal hidden">
+    <div class="creator-modal-content">
+      <span class="close">&times;</span>
+      <h2>My Courses</h2>
+      <p>Here you can manage and edit your existing courses.</p>
+    </div>
+  </div>
+
+  <div id="messagesModal" class="creator-modal hidden">
+    <div class="creator-modal-content">
+      <span class="close">&times;</span>
+      <h2>Messages</h2>
+      <p>Your inbox and student communications will appear here.</p>
+    </div>
+  </div>
+
+  <div id="analyticsModal" class="creator-modal hidden">
+    <div class="creator-modal-content">
+      <span class="close">&times;</span>
+      <h2>Analytics</h2>
+      <p>Track engagement, views, and revenue performance.</p>
+    </div>
+  </div>
+
+  <div id="newCourseModal" class="creator-modal hidden">
+    <div class="creator-modal-content">
+      <span class="close">&times;</span>
+      <h2>Create New Course</h2>
+      <p>Start building your next educational experience!</p>
+    </div>
+  </div>
+
+  <!-- Creator JS -->
+  <script src="js/creator.js"></script>
+</body>
+</html>

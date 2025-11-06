@@ -92,11 +92,66 @@
     </div>
   </div>
 
-  <div id="creatorProfileModal" class="creator-modal hidden">
-  <div class="creator-modal-content">
+  <!-- === CREATOR PROFILE MODAL === -->
+<div id="creatorProfileModal" class="creator-modal hidden">
+  <div class="creator-modal-content profile-modal">
     <span class="close">&times;</span>
     <h2>Creator Profile</h2>
-    <p>Profile editing and verification options will appear here.</p>
+
+    <div class="profile-photo-section">
+      <img id="creatorProfileImage" src="assets/default-profile.png" alt="Profile Photo" />
+      <button id="uploadCreatorPhoto">Upload Photo</button>
+      <input type="file" id="creatorPhotoInput" accept="image/*" hidden>
+    </div>
+
+    <div class="profile-fields">
+      <label>First Name</label>
+      <input id="creatorFirstName" type="text" placeholder="First name" />
+
+      <label>Last Name</label>
+      <input id="creatorLastName" type="text" placeholder="Last name" />
+
+      <label>@Username</label>
+      <input id="creatorUsername" type="text" placeholder="@username" />
+
+      <label>Email</label>
+      <input id="creatorEmail" type="email" placeholder="you@example.com" />
+
+      <label>Phone</label>
+      <input id="creatorPhone" type="tel" placeholder="(555) 123-4567" />
+
+      <label>Creator Type</label>
+      <select id="creatorType">
+        <option value="">Select one</option>
+        <option>Instructor</option>
+        <option>Teacher</option>
+        <option>Certified Teacher</option>
+        <option>Professor</option>
+        <option>Tutor</option>
+        <option>Coach</option>
+      </select>
+
+      <p class="learn-more">
+        Not sure what creator type to choose?
+        <span id="learnMoreHover">Learn More</span>
+      </p>
+
+      <div id="learnMorePopup" class="hidden learn-more-popup">
+        <p><strong>Instructor:</strong> General educators with self-made content.</p>
+        <p><strong>Teacher:</strong> K–12 or homeschool educators.</p>
+        <p><strong>Certified Teacher:</strong> State-verified teachers (upload credentials required).</p>
+        <p><strong>Professor:</strong> University or higher-ed instructors.</p>
+        <p><strong>Tutor:</strong> Private session-based educators.</p>
+        <p><strong>Coach:</strong> Sports or personal development mentors.</p>
+      </div>
+
+      <button id="uploadCredentials" class="disabled" disabled>Upload Credentials</button>
+
+      <label>Bio</label>
+      <textarea id="creatorBio" rows="3" placeholder="Tell learners about yourself..."></textarea>
+
+      <button id="saveCreatorProfile" class="save-btn">Save Creator Profile</button>
+    </div>
   </div>
 </div>
 

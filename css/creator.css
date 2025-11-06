@@ -7,6 +7,10 @@ body.creator-body {
   min-height: 100vh;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* === Navigation === */
 .top-nav {
   display: flex;
@@ -86,6 +90,8 @@ body.creator-body {
   display: flex;
   flex-direction: column;
   min-width: 180px;
+  z-index: 9999;
+  opacity: 1;
 }
 
 .hamburger-dropdown.hidden {

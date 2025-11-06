@@ -172,50 +172,109 @@ body.creator-body {
 .creator-card:nth-child(4) { border-top: 4px solid #e97e66; }
 
 /* === Modals === */
-.creator-modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  justify-content: center;
+/* === CREATOR PROFILE MODAL === */
+.profile-modal {
+  max-width: 480px;
+  padding: 24px 30px;
+  text-align: left;
+}
+
+.profile-photo-section {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(4px);
+  margin-bottom: 16px;
 }
 
-.creator-modal-content {
-  background: #fff;
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 420px;
-  width: 90%;
-  position: relative;
-  animation: fadeIn 0.3s ease;
-}
-
-.creator-modal-content h2 {
-  color: #333;
+.profile-photo-section img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4ea6c0;
   margin-bottom: 8px;
 }
 
-.creator-modal-content p {
-  font-size: 1rem;
-  color: #555;
-}
-
-.creator-modal .close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 1.3rem;
+.profile-photo-section button {
+  background: #4ea6c0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
   cursor: pointer;
-  color: #666;
 }
 
-.creator-modal .close:hover {
-  color: #000;
+.profile-fields label {
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.profile-fields input,
+.profile-fields select,
+.profile-fields textarea {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: none;
+}
+
+.learn-more {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 6px;
+}
+
+.learn-more span {
+  color: #4ea6c0;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.learn-more-popup {
+  position: absolute;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #333;
+  max-width: 260px;
+  right: 30px;
+  top: 60%;
+  z-index: 2000;
+}
+
+.disabled {
+  background: #ccc !important;
+  cursor: not-allowed !important;
+  color: #666 !important;
+}
+
+.save-btn {
+  margin-top: 16px;
+  width: 100%;
+  background: #4ea6c0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: #3c8ca3;
 }
 
 /* === Animations === */

@@ -79,3 +79,97 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// === CREATOR PROFILE MODAL LOGIC ===
+document.addEventListener("DOMContentLoaded", () => {
+  const profileModal = document.getElementById("creatorProfileModal");
+  const closeBtn = profileModal.querySelector(".close");
+  const saveBtn = document.getElementById("saveCreatorProfile");
+  const uploadBtn = document.getElementById("uploadCreatorPhoto");
+  const photoInput = document.getElementById("creatorPhotoInput");
+  const learnMoreHover = document.getElementById("learnMoreHover");
+  const learnMorePopup = document.getElementById("learnMorePopup");
+  const uploadCredentials = document.getElementById("uploadCredentials");
+  const typeSelect = document.getElementById("creatorType");
+
+  // === Show modal automatically on first visit ===
+  const firstVisit = !localStorage.getItem("creatorProfileSet");
+  if (firstVisit) {
+    setTimeout(() => profileModal.classList.remove("hidden"), 400);
+  } else {
+    loadCreatorProfile();
+  }
+
+  // === Close button ===
+  closeBtn.addEventListener("click", () => {
+    profileModal.classList.add("hidden");
+  });
+
+  // === Save button ===
+  saveBtn.addEventListener("click", () => {
+    const data = {
+      first: document.getElementById("creatorFirstName").value.trim(),
+      last: document.getElementById("creatorLastName").value.trim(),
+      username: document.getElementById("creatorUsername").value.trim(),
+      email: document.getElementById("creatorEmail").value.trim(),
+      phone: document.getElementById("creatorPhone").value.trim(),
+      type: document.getElementById("creatorType").value,
+      bio: document.getElementById("creatorBio").value.trim(),
+      photo: document.getElementById("creatorProfileImage").src
+    };
+    localStorage.setItem("creatorProfile", JSON.stringify(data));
+    localStorage.setItem("creatorProfileSet", "true");
+
+    saveBtn.textContent = "✓ Saved!";
+    saveBtn.style.background = "#4caf50";
+    saveBtn.style.color = "white";
+    setTimeout(() => profileModal.classList.add("hidden"), 800);
+  });
+
+  // === Load profile data if exists ===
+  function loadCreatorProfile() {
+    const stored = JSON.parse(localStorage.getItem("creatorProfile")) || {};
+    if (!stored) return;
+
+    document.getElementById("creatorFirstName").value = stored.first || "";
+    document.getElementById("creatorLastName").value = stored.last || "";
+    document.getElementById("creatorUsername").value = stored.username || "";
+    document.getElementById("creatorEmail").value = stored.email || "";
+    document.getElementById("creatorPhone").value = stored.phone || "";
+    document.getElementById("creatorType").value = stored.type || "";
+    document.getElementById("creatorBio").value = stored.bio || "";
+    document.getElementById("creatorProfileImage").src = stored.photo || "assets/default-profile.png";
+  }
+
+  // === Upload photo ===
+  uploadBtn.addEventListener("click", () => photoInput.click());
+  photoInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById("creatorProfileImage").src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // === Enable upload credentials if type is Certified Teacher or Professor ===
+  typeSelect.addEventListener("change", () => {
+    if (["Certified Teacher", "Professor"].includes(typeSelect.value)) {
+      uploadCredentials.disabled = false;
+      uploadCredentials.classList.remove("disabled");
+    } else {
+      uploadCredentials.disabled = true;
+      uploadCredentials.classList.add("disabled");
+    }
+  });
+
+  // === Learn more hover popup ===
+  learnMoreHover.addEventListener("mouseenter", () => {
+    learnMorePopup.classList.remove("hidden");
+  });
+  learnMoreHover.addEventListener("mouseleave", () => {
+    learnMorePopup.classList.add("hidden");
+  });
+});

@@ -1,83 +1,199 @@
-body {
+/* === Global Styles === */
+body.creator-body {
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background: linear-gradient(160deg, #4ea6c0, #2e768b);
   color: #222;
+  min-height: 100vh;
 }
 
-nav {
+/* === Navigation === */
+.top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 10px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .nav-logo {
-  height: 40px;
+  height: 32px;
+  transition: transform 0.2s ease;
 }
 
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Switch account button */
+.switch-btn {
+  background: #4ea6c0;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.switch-btn:hover {
+  background: #3c8ca3;
+}
+
+/* Hamburger menu */
 .hamburger-menu {
   position: relative;
+}
+
+.hamburger-icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.hamburger-icon:hover {
+  background: #f5f5f5;
 }
 
 .hamburger-dropdown {
   position: absolute;
   right: 0;
-  top: 100%;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  top: 36px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   display: none;
 }
 
 .hamburger-dropdown div {
   padding: 10px 16px;
   cursor: pointer;
+  font-size: 0.95rem;
 }
 
 .hamburger-dropdown div:hover {
-  background: #f3f3f3;
+  background: #f5f5f5;
 }
 
-/* Centered hero section */
-.hero {
+/* === Header Section === */
+.creator-header {
   text-align: center;
-  margin-top: 80px;
+  color: #fff;
+  padding: 60px 20px 40px;
 }
 
-.hero h1 {
-  font-size: 2rem;
+.creator-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
-.hero p {
-  font-size: 1rem;
-  color: #333;
-}
-
-/* Action buttons */
-.action-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.action-card {
-  background: white;
-  border-radius: 16px;
-  padding: 24px 32px;
+.creator-header p {
   font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* === Dashboard Grid === */
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.creator-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  font-size: 1.2rem;
   font-weight: 600;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
-.action-card:hover {
+.creator-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.creator-card:nth-child(1) { border-top: 4px solid #a178c9; }
+.creator-card:nth-child(2) { border-top: 4px solid #f0b21a; }
+.creator-card:nth-child(3) { border-top: 4px solid #4ea6c0; }
+.creator-card:nth-child(4) { border-top: 4px solid #e97e66; }
+
+/* === Modals === */
+.creator-modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+.creator-modal-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.creator-modal-content h2 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.creator-modal-content p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.creator-modal .close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.creator-modal .close:hover {
+  color: #000;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -7,13 +7,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   hamburger?.addEventListener("click", (e) => {
     e.stopPropagation();
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    dropdown.classList.toggle("hidden");
   });
 
+  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    if (!dropdown.contains(e.target) && e.target !== hamburger) {
-      dropdown.style.display = "none";
+    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.add("hidden");
     }
+  });
+
+  // === Dropdown Item Click Handling ===
+  dropdown.querySelectorAll("div").forEach(item => {
+    item.addEventListener("click", () => {
+      const text = item.textContent.trim();
+
+      if (text === "Creator Profile") {
+        document.getElementById("creatorProfileModal")?.classList.remove("hidden");
+      }
+
+      if (text === "Settings") {
+        alert("⚙️ Settings coming soon!");
+      }
+
+      if (text === "My Courses") {
+        alert("📚 Course management tools coming soon!");
+      }
+
+      if (text === "Earnings Dashboard") {
+        alert("💰 Earnings dashboard coming soon!");
+      }
+
+      if (text === "Reset Demo") {
+        if (confirm("Reset all Creator data and return to onboarding?")) {
+          localStorage.clear();
+          window.location.href = "index.html";
+        }
+      }
+
+      dropdown.classList.add("hidden");
+    });
   });
 
   // === Modal Logic ===
@@ -24,16 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("click", () => {
       const modalId = card.getAttribute("data-modal");
       const modal = document.getElementById(modalId);
-      if (modal) modal.style.display = "flex";
+      if (modal) modal.classList.remove("hidden");
     });
   });
 
   // Close modals on X click or background click
   modals.forEach(modal => {
     const close = modal.querySelector(".close");
-    close?.addEventListener("click", () => (modal.style.display = "none"));
+    close?.addEventListener("click", () => modal.classList.add("hidden"));
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.style.display = "none";
+      if (e.target === modal) modal.classList.add("hidden");
     });
   });
 

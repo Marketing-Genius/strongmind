@@ -114,6 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("creatorProfile", JSON.stringify(data));
     localStorage.setItem("creatorProfileSet", "true");
 
+    updateCreatorHeader();
+
     saveBtn.textContent = "✓ Saved!";
     saveBtn.style.background = "#4caf50";
     saveBtn.style.color = "white";
@@ -161,4 +163,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // === Learn more hover ===
   learnMoreHover.addEventListener("mouseenter", () => learnMorePopup.classList.remove("hidden"));
   learnMoreHover.addEventListener("mouseleave", () => learnMorePopup.classList.add("hidden"));
+
+  // === Creator Header Stuff ===
+  function updateCreatorHeader() {
+    const stored = JSON.parse(localStorage.getItem("creatorProfile")) || {};
+    const first = stored.first || "Creator";
+    const last = stored.last ? ` ${stored.last}` : "";
+    const fullName = `${first}${last}`;
+    const photo = stored.photo || "assets/default-profile.png";
+
+    const welcomeEl = document.getElementById("creatorWelcome");
+    const photoEl = document.getElementById("creatorHeaderPhoto");
+
+    if (welcomeEl) welcomeEl.textContent = `Welcome, ${fullName}!`;
+    if (photoEl) photoEl.src = photo;
+  }
+
+  // Update dashboard header dynamically on page load
+  updateCreatorHeader();
+
+  // Clicking edit profile in header reopens modal
+  document.getElementById("editCreatorProfile")?.addEventListener("click", () => {
+    const modal = document.getElementById("creatorProfileModal");
+    modal.classList.add("show");
+    modal.classList.remove("hidden");
+  });
 });

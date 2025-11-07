@@ -281,6 +281,10 @@ html body .hidden {
   color: #000;
 }
 
+.creator-modal.show {
+  display: flex !important;
+}
+
 /* === CREATOR PROFILE MODAL === */
 .profile-modal {
   max-width: 480px;

@@ -160,9 +160,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Learn more hover ===
-  learnMoreHover.addEventListener("mouseenter", () => learnMorePopup.classList.remove("hidden"));
-  learnMoreHover.addEventListener("mouseleave", () => learnMorePopup.classList.add("hidden"));
+// === Learn more click toggle (touch-friendly) ===
+learnMoreHover.addEventListener("click", (e) => {
+  e.stopPropagation();
+  learnMorePopup.classList.toggle("hidden");
+});
+
+// Close popup if clicking anywhere else
+document.addEventListener("click", (e) => {
+  if (!learnMorePopup.contains(e.target) && e.target !== learnMoreHover) {
+    learnMorePopup.classList.add("hidden");
+  }
+});
 
   // === Creator Header Stuff ===
   function updateCreatorHeader() {

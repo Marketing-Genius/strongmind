@@ -314,8 +314,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("homeschoolStep1Modal").style.display = "flex";
     } else {
     overlay.classList.add("hidden"); // only hide for non-homeschool types
-    }
-  });
+    // Trigger learner modal immediately after selecting that type
+    if (selectedType === "learner") {
+    setTimeout(() => {
+    const learnerModal = document.getElementById("learnerStep1Modal");
+    if (learnerModal) {
+    learnerModal.classList.remove("hidden");
+    overlay.classList.add("hidden"); // ensure the gradient overlay disappears cleanly
+    requestAnimationFrame(() => learnerModal.classList.add("show"));
+    document.body.style.overflow = "hidden"; // lock scroll behind modal
+   }
+    }, 400);
+  }
+}
+});
 });
 
 // === Independent Learner Modal ===
@@ -345,7 +357,8 @@ learnerGetStartedBtn?.addEventListener("click", () => {
     const profileModal = document.getElementById("profileModal");
     profileModal?.classList.remove("hidden");
     requestAnimationFrame(() => profileModal?.classList.add("show"));
-  }, 300);
+  }, 400);
+  document.body.style.overflow = "auto"; // unlock scroll when modal closes
 });
 
   // Recovery: If overlay is visible but modal is not, show modal again

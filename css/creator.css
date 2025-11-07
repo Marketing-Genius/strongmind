@@ -490,3 +490,53 @@ html body .hidden {
     margin-bottom: 40px;
   }
 }
+
+/* === Responsive Modal Adjustments === */
+@media (max-width: 768px) {
+  .creator-modal-content.profile-modal {
+    width: 92%;
+    max-width: 360px;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .profile-photo-section img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-photo-section button {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+
+  .profile-fields label {
+    font-size: 0.85rem;
+    margin-top: 8px;
+  }
+
+  .profile-fields input,
+  .profile-fields select,
+  .profile-fields textarea {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+
+  .save-btn {
+    padding: 8px 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* === For short screens (landscape tablets, etc.) === */
+@media (max-height: 700px) {
+  .creator-modal {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .creator-modal-content.profile-modal {
+    transform: scale(0.9);
+    margin-bottom: 40px;
+  }
+}

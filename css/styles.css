@@ -260,7 +260,8 @@ body {
   width: 95%;
   max-width: 1200px;
   margin: 0 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
   position: relative;
   overflow: visible;
 }
@@ -807,7 +808,8 @@ body {
   background: #fff;
   border-radius: 16px;
   margin: 40px auto;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
   position: relative;
 }
 

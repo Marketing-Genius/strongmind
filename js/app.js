@@ -318,6 +318,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// === Independent Learner Modal ===
+const learnerStep1Modal = document.getElementById("learnerStep1Modal");
+const learnerGetStartedBtn = document.getElementById("learnerGetStartedBtn");
+
+// Show automatically if userType is "learner" and no profile set yet
+if (localStorage.getItem("userType") === "learner" && !localStorage.getItem("creatorProfileSet")) {
+  setTimeout(() => {
+    learnerStep1Modal.classList.remove("hidden");
+    learnerStep1Modal.classList.add("show");
+  }, 600);
+}
+
+// Close button (X)
+learnerStep1Modal.querySelector(".close")?.addEventListener("click", () => {
+  learnerStep1Modal.classList.add("hidden");
+});
+
+// “Get Started” → close this modal & open the profile modal
+learnerGetStartedBtn?.addEventListener("click", () => {
+  learnerStep1Modal.classList.add("hidden");
+  // for now, reuse homeschool-style profile modal
+  setTimeout(() => {
+    document.getElementById("creatorProfileModal")?.classList.remove("hidden");
+    document.getElementById("creatorProfileModal")?.classList.add("show");
+  }, 400);
+});
+
   // Recovery: If overlay is visible but modal is not, show modal again
   if (
     !storedType &&

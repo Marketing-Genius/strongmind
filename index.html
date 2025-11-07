@@ -348,25 +348,39 @@
 </div>
 
 <!-- === INDEPENDENT LEARNER STEP 1 MODAL === -->
-<div class="learner-step-modal">
-  <span class="close">&times;</span>
-  <h2>Welcome, Learner!</h2>
-  <p>I am looking for...</p>
+<div id="learnerStep1Modal" class="hidden">
+  <div class="creator-modal-content learner-step-modal">
+    <span class="close">&times;</span>
 
-  <div class="learner-options">
-    <div class="learner-option">
-      <p>Earning my accredited high school diploma.<br><small>in partnership with</small></p>
-      <img src="assets/AVA_logo.webp" alt="American Virtual Academy">
-      <button onclick="window.open('https://americanvirtualacademy.com','_blank')">Learn More</button>
-    </div>
+    <h2>Welcome, Learner!</h2>
+    <p>I am looking for...</p>
 
-    <div class="learner-option">
-      <p>Purchasing courses & more on StrongMind.</p>
-      <img src="assets/sm-logo-1.png" alt="StrongMind">
-      <button id="learnerGetStartedBtn" class="get-started">Get Started</button>
+    <div class="learner-options">
+      <!-- Left side -->
+      <div class="learner-option">
+        <p class="option-text">
+          Earning my accredited high school diploma.<br>
+          <small>in partnership with</small>
+        </p>
+        <img src="assets/AVA_logo.webp" alt="American Virtual Academy" class="partner-logo">
+        <button class="learner-btn learn-more-btn"
+          onclick="window.open('https://americanvirtualacademy.com','_blank')">
+          Learn More
+        </button>
+      </div>
+
+      <!-- Right side -->
+      <div class="learner-option">
+        <p class="option-text">
+          Purchasing courses & more on StrongMind.
+        </p>
+        <img src="assets/sm-logo-1.png" alt="StrongMind" class="partner-logo">
+        <button class="learner-btn get-started-btn" id="learnerGetStartedBtn">
+          Get Started
+        </button>
+      </div>
     </div>
   </div>
-</div>
 </div>
   
 <script src="js/app.js"></script>

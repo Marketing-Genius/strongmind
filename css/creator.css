@@ -253,6 +253,7 @@ html body .hidden {
   .creator-modal-content.profile-modal {
     transform: scale(0.9);
     padding: 20px;
+  }
 }
 
 .creator-modal-content h2 {
@@ -276,10 +277,6 @@ html body .hidden {
 
 .creator-modal .close:hover {
   color: #000;
-}
-
-.creator-modal.show {
-  display: flex !important;
 }
 
 /* === CREATOR PROFILE MODAL === */

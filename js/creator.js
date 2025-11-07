@@ -188,4 +188,21 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("show");
     modal.classList.remove("hidden");
   });
+  
+  function toggleBodyScroll(disable) {
+  document.body.style.overflow = disable ? "hidden" : "auto";
+}
+
+// When showing any modal:
+profileModal.addEventListener("transitionstart", () => toggleBodyScroll(true));
+profileModal.addEventListener("transitionend", () => {
+  if (profileModal.classList.contains("hidden")) toggleBodyScroll(false);
+});
+
+// Also handle direct open/close cases
+const observer = new MutationObserver(() => {
+  if (!profileModal.classList.contains("hidden")) toggleBodyScroll(true);
+  else toggleBodyScroll(false);
+});
+observer.observe(profileModal, { attributes: true, attributeFilter: ["class"] });
 });

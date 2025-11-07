@@ -348,6 +348,40 @@ learnerGetStartedBtn?.addEventListener("click", () => {
   }, 300);
 });
 
+// Lock/unlock body scroll when modal is shown
+const toggleScrollLock = (lock) => {
+  if (lock) document.body.classList.add("modal-open");
+  else document.body.classList.remove("modal-open");
+};
+
+// Modify your modal open/close code:
+if (localStorage.getItem("userType") === "learner" && !localStorage.getItem("learnerProfile")) {
+  setTimeout(() => {
+    learnerStep1Modal?.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      learnerStep1Modal?.classList.add("show");
+      toggleScrollLock(true); // ✅ lock scroll
+    });
+  }, 600);
+}
+
+learnerStep1Modal?.querySelector(".close")?.addEventListener("click", () => {
+  learnerStep1Modal.classList.remove("show");
+  toggleScrollLock(false); // ✅ unlock scroll
+  setTimeout(() => learnerStep1Modal.classList.add("hidden"), 300);
+});
+
+learnerGetStartedBtn?.addEventListener("click", () => {
+  learnerStep1Modal.classList.remove("show");
+  toggleScrollLock(false);
+  setTimeout(() => {
+    learnerStep1Modal.classList.add("hidden");
+    const profileModal = document.getElementById("profileModal");
+    profileModal?.classList.remove("hidden");
+    requestAnimationFrame(() => profileModal?.classList.add("show"));
+  }, 300);
+});
+  
   // Recovery: If overlay is visible but modal is not, show modal again
   if (
     !storedType &&

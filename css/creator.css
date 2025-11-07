@@ -217,6 +217,10 @@ body.creator-body {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(5px);
+  overflow-y: auto;           /* ✅ allows modal scrolling */
+  -webkit-overflow-scrolling: touch;
+  padding: 40px 0;
+}
 
   /* 🔥 force this on top of everything */
   z-index: 99999 !important;
@@ -245,6 +249,13 @@ html body .hidden {
   width: 90%;
   position: relative;
   animation: fadeIn 0.3s ease;
+}
+
+/* ✅ Responsive resizing */
+@media (max-height: 800px) {
+  .creator-modal-content.profile-modal {
+    transform: scale(0.9);
+    padding: 20px;
 }
 
 .creator-modal-content h2 {

@@ -2068,6 +2068,22 @@ input:checked + .slider:before {
   background: #d86c56;
 }
 
+/* === Independent Learner Modal Animation === */
+#learnerStep1Modal {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+#learnerStep1Modal.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#learnerStep1Modal.hidden {
+  display: none !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .learner-options {

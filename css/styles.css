@@ -2094,3 +2094,48 @@ input:checked + .slider:before {
     flex: 1 1 100%;
   }
 }
+
+/* === Independent Learner Fullscreen Modal Wrapper === */
+#learnerStep1Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5); /* dark blur backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3001;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* === Visible state === */
+#learnerStep1Modal.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* === Hidden state === */
+#learnerStep1Modal.hidden {
+  display: none !important;
+}
+
+/* Inner modal box (reuse your existing .learner-step-modal styles) */
+#learnerStep1Modal .learner-step-modal {
+  background: #fffaf3;
+  border-radius: 20px;
+  max-width: 720px;
+  width: 90%;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* Optional subtle entrance animation */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

@@ -322,27 +322,30 @@ document.addEventListener("DOMContentLoaded", () => {
 const learnerStep1Modal = document.getElementById("learnerStep1Modal");
 const learnerGetStartedBtn = document.getElementById("learnerGetStartedBtn");
 
-// Show automatically if userType is "learner" and no profile set yet
-if (localStorage.getItem("userType") === "learner" && !localStorage.getItem("creatorProfileSet")) {
+// === Independent Learner Modal Fix ===
+if (localStorage.getItem("userType") === "learner" && !localStorage.getItem("learnerProfile")) {
   setTimeout(() => {
-    learnerStep1Modal.classList.remove("hidden");
-    learnerStep1Modal.classList.add("show");
+    learnerStep1Modal?.classList.remove("hidden");
+    requestAnimationFrame(() => learnerStep1Modal?.classList.add("show"));
   }, 600);
 }
 
 // Close button (X)
-learnerStep1Modal.querySelector(".close")?.addEventListener("click", () => {
-  learnerStep1Modal.classList.add("hidden");
+learnerStep1Modal?.querySelector(".close")?.addEventListener("click", () => {
+  learnerStep1Modal.classList.remove("show");
+  setTimeout(() => learnerStep1Modal.classList.add("hidden"), 300);
 });
 
 // “Get Started” → close this modal & open the profile modal
 learnerGetStartedBtn?.addEventListener("click", () => {
-  learnerStep1Modal.classList.add("hidden");
-  // for now, reuse homeschool-style profile modal
+  learnerStep1Modal.classList.remove("show");
   setTimeout(() => {
-    document.getElementById("creatorProfileModal")?.classList.remove("hidden");
-    document.getElementById("creatorProfileModal")?.classList.add("show");
-  }, 400);
+    learnerStep1Modal.classList.add("hidden");
+    // reuse homeschool-style profile modal
+    const profileModal = document.getElementById("profileModal");
+    profileModal?.classList.remove("hidden");
+    requestAnimationFrame(() => profileModal?.classList.add("show"));
+  }, 300);
 });
 
   // Recovery: If overlay is visible but modal is not, show modal again
@@ -1021,6 +1024,10 @@ document.getElementById("profileForm")?.addEventListener("submit", (e) => {
   };
 
   localStorage.setItem("homeschoolProfile", JSON.stringify(stored));
+  // Mark learner setup complete (so the welcome modal doesn't reappear)
+if (localStorage.getItem("userType") === "learner") {
+  localStorage.setItem("learnerProfile", "true");
+}
   document.getElementById("profileName").textContent = `${first} ${last}`;
   alert("Profile saved!");
 });

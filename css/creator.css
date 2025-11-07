@@ -217,13 +217,10 @@ body.creator-body {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(5px);
-  overflow-y: auto;           /* ✅ allows modal scrolling */
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 40px 0;
-}
-
-  /* 🔥 force this on top of everything */
-  z-index: 99999 !important;
+  z-index: 99999 !important; /* ✅ this should be inside the selector */
 }
 
 .creator-modal.show {

@@ -336,13 +336,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const lexiRestore = document.getElementById("lexiRestore");
 
   // Hide Lexi by default until onboarding is done
-  if (!localStorage.getItem("userType")) {
-    lexiContainer?.classList.add("hidden");
-    lexiRestore?.classList.add("hidden");
-  } else {
-    // Show Lexi if onboarding already completed
-    lexiContainer?.classList.remove("hidden");
-  }
+if (!localStorage.getItem("userType")) {
+  lexiContainer?.classList.add("hidden");
+  lexiRestore?.classList.add("hidden");
+} else if (localStorage.getItem("lexiHidden") !== "true") {
+  lexiContainer?.classList.remove("hidden");
+}
 
   // When user completes onboarding (any userType is chosen)
   const onboardButtons = document.querySelectorAll(".onboard-btn");

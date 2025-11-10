@@ -330,6 +330,58 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 });
 
+// === Lexi AI Companion Visibility Logic ===
+document.addEventListener("DOMContentLoaded", () => {
+  const lexiContainer = document.getElementById("lexiContainer");
+  const lexiRestore = document.getElementById("lexiRestore");
+
+  // Hide Lexi by default until onboarding is done
+  if (!localStorage.getItem("userType")) {
+    lexiContainer?.classList.add("hidden");
+    lexiRestore?.classList.add("hidden");
+  } else {
+    // Show Lexi if onboarding already completed
+    lexiContainer?.classList.remove("hidden");
+  }
+
+  // When user completes onboarding (any userType is chosen)
+  const onboardButtons = document.querySelectorAll(".onboard-btn");
+  onboardButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const selectedType = button.dataset.usertype;
+      if (selectedType) {
+        // Delay just enough for onboarding flow animations
+        setTimeout(() => {
+          localStorage.setItem("lexiVisible", "true");
+          lexiContainer?.classList.remove("hidden");
+        }, 1000);
+      }
+    });
+  });
+
+  // Respect user hiding Lexi
+  const lexiClose = document.getElementById("lexiClose");
+  lexiClose?.addEventListener("click", () => {
+    localStorage.setItem("lexiHidden", "true");
+    lexiContainer?.classList.add("hidden");
+    lexiRestore?.classList.remove("hidden");
+  });
+
+  // Restore Lexi
+  const lexiRestoreBtn = document.getElementById("lexiRestore");
+  lexiRestoreBtn?.addEventListener("click", () => {
+    localStorage.removeItem("lexiHidden");
+    lexiContainer?.classList.remove("hidden");
+    lexiRestore?.classList.add("hidden");
+  });
+
+  // On reload: respect previous hide/show preference
+  if (localStorage.getItem("lexiHidden") === "true") {
+    lexiContainer?.classList.add("hidden");
+    lexiRestore?.classList.remove("hidden");
+  }
+});
+
 // === Independent Learner Modal ===
 const learnerStep1Modal = document.getElementById("learnerStep1Modal");
 const learnerGetStartedBtn = document.getElementById("learnerGetStartedBtn");

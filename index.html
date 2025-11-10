@@ -17,6 +17,18 @@
 
   <!-- ✅ Web App Manifest -->
   <link rel="manifest" href="manifest.json">
+
+  <script>
+  // Immediately hide Lexi before DOM paints
+  (function() {
+    const userType = localStorage.getItem('userType');
+    const lexiHidden = localStorage.getItem('lexiHidden') === 'true';
+    if (!userType || lexiHidden) {
+      document.write('<style>#lexiContainer, #lexiRestore { display: none !important; }</style>');
+    }
+  })();
+</script>
+  
 </head>
   <!-- Top Navigation Bar -->
   <nav class="top-nav">

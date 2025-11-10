@@ -974,6 +974,32 @@ document.addEventListener("click", function(e) {
   }
 });
 
+// === Lexi AI Companion ===
+const lexiAvatar = document.getElementById("lexiAvatar");
+const lexiModal = document.getElementById("lexiModal");
+const lexiClose = document.getElementById("lexiClose");
+const lexiContainer = document.getElementById("lexiContainer");
+const lexiRestore = document.getElementById("lexiRestore");
+
+if (lexiAvatar) {
+  // Open modal when Lexi is clicked
+  lexiAvatar.addEventListener("click", () => {
+    lexiModal.classList.toggle("hidden");
+  });
+
+  // Close Lexi (hide her)
+  lexiClose.addEventListener("click", () => {
+    lexiContainer.classList.add("hidden");
+    lexiRestore.classList.remove("hidden");
+  });
+
+  // Restore Lexi
+  lexiRestore.addEventListener("click", () => {
+    lexiContainer.classList.remove("hidden");
+    lexiRestore.classList.add("hidden");
+  });
+}
+
 // === Profile Modal Logic ===
 document.getElementById("profileItem")?.addEventListener("click", () => {
   document.getElementById("profileModal").classList.remove("hidden");

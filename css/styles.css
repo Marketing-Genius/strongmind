@@ -177,7 +177,7 @@ body {
   opacity: 0;
   transform: translateY(-6px);
   transition: max-height 280ms ease, opacity 220ms ease, transform 220ms ease;
-  margin-top: 6px;
+  margin-top: 0px;
 }
 
 .onboarding-box.expanded .onboard-more-options {

@@ -1145,3 +1145,34 @@ document.addEventListener("click", (e) => {
     alert("Reply feature coming soon!");
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const box = document.getElementById("onboardingBox");
+  const toggle = document.getElementById("toggleMoreOptions");
+  const panel = document.getElementById("moreOptionsPanel");
+
+  const schools = document.getElementById("schoolsOption");
+  const partner = document.getElementById("partnerOption");
+
+  if (!box || !toggle || !panel) return;
+
+  toggle.addEventListener("click", () => {
+    const isExpanded = box.classList.toggle("expanded");
+    panel.setAttribute("aria-hidden", String(!isExpanded));
+    toggle.textContent = isExpanded ? "fewer options" : "more options";
+  });
+
+  // Placeholders for now (do NOT set userType; do NOT close the modal)
+  schools?.addEventListener("click", () => {
+    showSuccessAnimation("🏫 StrongMind for Schools (coming soon)");
+  });
+
+  partner?.addEventListener("click", () => {
+    showSuccessAnimation("🤝 Partner with StrongMind (coming soon)");
+  });
+
+  // Login placeholder (no-op)
+  document.getElementById("loginPlaceholder")?.addEventListener("click", () => {
+    showSuccessAnimation("🔒 Login (placeholder)");
+  });
+});

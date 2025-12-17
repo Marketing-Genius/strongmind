@@ -186,24 +186,44 @@ body {
   transform: translateY(0);
 }
 
-/* Extra buttons: same look, but NOT .onboard-btn */
-.onboard-extra-btn {
+/* --- Match the original onboard-btn pill geometry --- */
+.onboard-extra-btn{
+  /* mirror your .onboard-btn layout */
+  width: 100%;
+  max-width: 520px;          /* adjust if your .onboard-btn uses a different max */
+  height: 92px;              /* match the height of your existing buttons */
+  border-radius: 999px;
+  margin: 18px auto 0;       /* similar vertical spacing */
+  padding: 0 26px 0 18px;
+
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
-  border-radius: 999px;
-  margin: 14px 0;
+  gap: 16px;
+
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-.onboard-extra-btn img {
-  width: 56px;
-  height: 56px;
+/* icon sizing/placement like the others */
+.onboard-extra-btn img{
+  width: 72px;               /* match your existing icon circle size */
+  height: 72px;
+  flex: 0 0 72px;
   object-fit: contain;
 }
 
-/* Colors to match your screenshot */
+/* text: bold + aligned like the original pills */
+.onboard-extra-btn span{
+  flex: 1;
+  font-weight: 800;          /* bold like your others */
+  font-size: 18px;           /* match your existing .onboard-btn text size */
+  line-height: 1.1;
+  text-align: left;          /* if your existing ones appear “right-ish”, see note below */
+  padding-right: 10px;
+  white-space: nowrap;       /* keep single line like mock */
+}
+
+/* keep your colors */
 .onboard-extra-btn.schools { background: #8f73d6; color: #fff; }
 .onboard-extra-btn.partner { background: #f0b21a; color: #fff; }
 

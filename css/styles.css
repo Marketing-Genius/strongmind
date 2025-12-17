@@ -186,46 +186,49 @@ body {
   transform: translateY(0);
 }
 
-/* --- Match the original onboard-btn pill geometry --- */
-.onboard-extra-btn{
-  /* mirror your .onboard-btn layout */
-  width: 100%;
-  max-width: 520px;          /* adjust if your .onboard-btn uses a different max */
-  height: 92px;              /* match the height of your existing buttons */
-  border-radius: 999px;
-  margin: 18px auto 0;       /* similar vertical spacing */
-  padding: 0 26px 0 18px;
-
+/* --- Extra options: match onboard-btn size/shape/behavior exactly --- */
+.onboard-extra-btn {
+  margin: 18px auto;               /* same as .onboard-btn */
+  padding: 20px 28px 20px 40px;    /* same as .onboard-btn */
+  border-radius: 40px;             /* same as .onboard-btn */
+  cursor: pointer;
+  color: white;
+  font-size: 16px;                 /* same as .onboard-btn */
+  font-weight: bold;               /* same as .onboard-btn */
   display: flex;
   align-items: center;
-  gap: 16px;
-
-  cursor: pointer;
+  justify-content: flex-end;       /* same as .onboard-btn */
+  height: 90px;                    /* same as .onboard-btn */
+  width: 90%;                      /* same as .onboard-btn */
+  max-width: 440px;                /* same as .onboard-btn */
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease-in-out; /* same hover-pop */
   box-sizing: border-box;
 }
 
-/* icon sizing/placement like the others */
-.onboard-extra-btn img{
-  width: 72px;               /* match your existing icon circle size */
-  height: 72px;
-  flex: 0 0 72px;
-  object-fit: contain;
+.onboard-extra-btn:hover {
+  transform: scale(1.03);          /* same as .onboard-btn:hover */
 }
 
-/* text: bold + aligned like the original pills */
-.onboard-extra-btn span{
+.onboard-extra-btn img {
+  height: 80px;                    /* same as .onboard-btn img */
+  width: auto;
+  position: absolute;
+  left: 8px;                       /* same as .onboard-btn img */
+  bottom: -5px;                    /* same as .onboard-btn img */
+}
+
+.onboard-extra-btn span {
+  text-align: right;               /* same alignment as .onboard-btn span */
   flex: 1;
-  font-weight: 800;          /* bold like your others */
-  font-size: 18px;           /* match your existing .onboard-btn text size */
-  line-height: 1.1;
-  text-align: left;          /* if your existing ones appear “right-ish”, see note below */
-  padding-right: 10px;
-  white-space: nowrap;       /* keep single line like mock */
+  padding-right: 24px;             /* same as .onboard-btn span */
 }
 
 /* keep your colors */
-.onboard-extra-btn.schools { background: #8f73d6; color: #fff; }
-.onboard-extra-btn.partner { background: #f0b21a; color: #fff; }
+.onboard-extra-btn.schools { background-color: #8f73d6; }
+.onboard-extra-btn.partner { background-color: #f0b21a; }
 
 /* Footer links */
 .onboard-footer {

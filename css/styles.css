@@ -208,6 +208,9 @@ body {
   box-sizing: border-box;
 }
 
+/* Fix the bigger gap caused by margin-collapsing being blocked by overflow:hidden */
+.onboard-more-options .onboard-extra-btn:first-child { margin-top: 0; }
+
 .onboard-extra-btn:hover {
   transform: scale(1.03);          /* same as .onboard-btn:hover */
 }

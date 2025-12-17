@@ -276,11 +276,12 @@
 
 <!-- Onboarding Modal -->
 <div id="onboardingModal">
-  <div class="onboarding-box">
+  <div class="onboarding-box" id="onboardingBox">
     <img src="assets/sm-logo-1.png" alt="StrongMind logo" class="onboard-logo" />
     <h2>Welcome! We’re glad to see you!</h2>
     <p>Choose an option below to get started.</p>
 
+    <!-- Original 3 options (unchanged) -->
     <div class="onboard-btn homeschool" data-usertype="homeschool">
       <img src="assets/homeschool.png" alt="Homeschool Family" />
       <span>We are a homeschool family</span>
@@ -294,6 +295,26 @@
     <div class="onboard-btn edutech" data-usertype="edutech">
       <img src="assets/edutect.png" alt="Educational Content Creator" />
       <span>I am an educational content creator</span>
+    </div>
+
+    <!-- NEW: expandable options (hidden by default) -->
+    <div class="onboard-more-options" id="moreOptionsPanel" aria-hidden="true">
+      <div class="onboard-extra-btn schools" id="schoolsOption">
+        <img src="assets/icon-school.png" alt="StrongMind for schools" />
+        <span>StrongMind for schools</span>
+      </div>
+
+      <div class="onboard-extra-btn partner" id="partnerOption">
+        <img src="assets/icon-partner.png" alt="Partner with StrongMind" />
+        <span>Partner with strongmind</span>
+      </div>
+    </div>
+
+    <!-- NEW: footer links -->
+    <div class="onboard-footer">
+      <button type="button" class="footer-link" id="toggleMoreOptions">more options</button>
+      <span class="footer-sep">|</span>
+      <span class="footer-link disabled" id="loginPlaceholder">login to strongmind</span>
     </div>
   </div>
 </div>

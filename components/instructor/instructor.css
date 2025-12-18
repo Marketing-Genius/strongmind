@@ -446,3 +446,23 @@
   margin-top: 10px;
 }
 .comment strong{ display:block; margin-bottom:4px; }
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-weight: 700;
+  color: #8dc63e;
+  margin-top: 4px;
+}
+
+.product-note {
+  margin-top: 6px;
+  font-weight: 600;
+  color: #444;
+}

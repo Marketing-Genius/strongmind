@@ -27,3 +27,28 @@
   font-weight: 600;
   text-align: left; /* match your other sections */
 }
+
+/* Make the mount behave like a full-width section row */
+#discoveryMount {
+  width: 100%;
+}
+
+/* Full Discovery section wrapper (matches your other sections) */
+.discovery-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  box-sizing: border-box;
+}
+
+/* Ensure the divider spans full row width */
+.discovery-section .section-divider {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+/* Optional: if your inner content is still too narrow */
+.discovery-inner {
+  width: 100%;
+}

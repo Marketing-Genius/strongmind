@@ -89,18 +89,17 @@ const feed = [
   id: "post-4",
   title: "Happy Holidays from Mrs. Holmes!",
   type: "video",
-  access: "open",
   thumb: "assets/instructor-feed/sarah-04-placeholder.jpg",
   vimeoId: "1147823088",
   vimeoHash: "3e2a92f37a",
-  caption:
-    "Hey all, just wanted to drop in real quick and wish everyone a happy and healthy holiday season! Keep learning with Mrs. Holmes!"
+  caption: "Hey all, just wanted to drop in real quick and wish everyone a happy and healthy holiday season! Keep learning with Mrs. Holmes!",
+  createdAt: 2,
 },
   {
     id: "sarah-post-5",
     type: "image",
     title: "Volcano Experiment! Let's Go!",
-    caption: "Hi, Learners! I'n my next Science Course, we're learning about lava and volvanos! Don't miss it!",
+    caption: "Hi, Learners! In my next Science Course, we're learning about lava and volcanoes! Don't miss it!",
     thumb: "assets/instructor-feed/sarah-05-placeholder.jpg",
     createdAt: 1
   }
@@ -234,17 +233,29 @@ function closeFeedVideoModal() {
   modal.classList.add("hidden");
 }
 
+const THANKS_DEMO_MODE = true;
+
+function canSendThanks(creatorId) {
+  if (THANKS_DEMO_MODE) return true; // always unlocked for the prototype
+  return false; // real gating later
+}
+
     function render() {
       mount.innerHTML = `
         <div class="instructor-page">
 
           <!-- HERO -->
           <section class="instructor-hero">
-            <div class="avatar-col">
+           <div class="avatar-col">
             <img class="instructor-avatar" src="${creator.photo}" alt="${creator.name}">
             <button class="follow-btn" id="followInstructorBtn">Follow</button>
-            </div>
-            <div class="instructor-meta">
+
+            <button class="thanks-btn" id="thanksTokenBtn" title="Say Thanks">
+            <img src="assets/ty.png" alt="ThanksTokens" />
+          </button>
+      </div>
+
+        <div class="instructor-meta">
               <h1>${creator.name}</h1>
               <div class="instructor-handle">${creator.handle}</div>
               <div class="role-pill certified" style="display:inline-block; margin-top:8px;">${creator.role}</div>
@@ -297,6 +308,20 @@ function closeFeedVideoModal() {
       `;
 
   bindFollowButton();
+
+const thanksBtn = document.getElementById("thanksTokenBtn");
+
+if (thanksBtn) {
+  if (!canSendThanks(creator.id)) {
+    thanksBtn.classList.add("locked");
+    thanksBtn.title = "Complete a course to unlock ThanksTokens";
+    thanksBtn.onclick = () => {
+      alert("ThanksTokens unlock after completing a course with this instructor.");
+    };
+  } else {
+    thanksBtn.onclick = openThanksTokensModal;
+  }
+}
 
       // tag pills
       const tagPills = document.getElementById("tagPills");
@@ -417,7 +442,9 @@ feedShell.querySelectorAll("[data-video]").forEach(card => {
 });
 
       // products
-      productGrid.innerHTML = products.map(p => `
+const productGrid = document.getElementById("productGrid");
+
+productGrid.innerHTML = products.map(p => `
   <div class="product-card">
     <img class="product-image" src="${p.image}" alt="${p.title}">
     <h4>${p.title}</h4>
@@ -432,12 +459,12 @@ feedShell.querySelectorAll("[data-video]").forEach(card => {
     </div>
   </div>
 `).join("");
-      
-      productGrid.querySelectorAll("[data-product]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          alert("Placeholder: product detail / affiliate link / cart later.");
-        });
-      });
+
+productGrid.querySelectorAll("[data-product]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    alert("Placeholder: purchase with SparkTokens (future).");
+  });
+});
 
       // ratings
       const ratingsShell = document.getElementById("ratingsShell");
@@ -480,7 +507,109 @@ function bindFollowButton() {
     localStorage.setItem(followKey, String(isFollowing));
   };
 }
-    
+
+function ensureThanksModal() {
+  let modal = document.getElementById("thanksModal");
+  if (modal) return modal;
+
+  modal = document.createElement("div");
+  modal.id = "thanksModal";
+  modal.className = "modal hidden";
+  modal.innerHTML = `
+    <div class="modal-content thanks-modal">
+      <span class="close" id="closeThanksModal">&times;</span>
+
+      <h2>🍎 Say Thanks with ThanksTokens</h2>
+
+      <p class="thanks-intro">
+        You’ve learned with this instructor — and made real progress.<br><br>
+        If their teaching made a meaningful difference, you can choose to say thank you
+        by converting SparkTokens into <strong>ThanksTokens</strong>.
+      </p>
+
+      <p class="thanks-note">
+        ThanksTokens are a one-time way to show appreciation.
+        They go <strong>100%</strong> to the instructor as a gesture of gratitude.
+      </p>
+
+      <hr />
+
+      <h4>How it works</h4>
+      <ul class="thanks-list">
+        <li>Convert SparkTokens into ThanksTokens</li>
+        <li>ThanksTokens go directly to the instructor</li>
+        <li>No perks, no pressure — just appreciation</li>
+      </ul>
+
+      <p class="thanks-foot">
+        You’re not paying for more access.<br>
+        You’re simply saying thanks.
+      </p>
+
+      <hr />
+
+      <h4>Convert SparkTokens to ThanksTokens</h4>
+
+      <label>Choose how many SparkTokens you’d like to convert</label>
+      <input type="number" id="thanksAmount" min="1" max="500" placeholder="Up to 500" />
+
+      <button class="pill primary" id="sendThanksBtn">Send ThanksTokens</button>
+
+      <div class="thanks-terms-link" id="openThanksTerms">
+        ThanksTokens terms
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Close on overlay click
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+
+// Send ThanksTokens (prototype)
+modal.querySelector("#sendThanksBtn").addEventListener("click", () => {
+  const amount = parseInt(modal.querySelector("#thanksAmount").value, 10);
+  if (!amount || amount < 1) return alert("Enter an amount to send.");
+  if (amount > 500) return alert("Max 500 SparkTokens per completed course (prototype limit).");
+
+  alert(`Sent ${amount.toLocaleString()} ThanksTokens to ${creator.name}! (prototype)`);
+  modal.classList.add("hidden");
+});
+
+// Terms modal (simple)
+modal.querySelector("#openThanksTerms").addEventListener("click", () => {
+  alert(
+`ThanksTokens Terms
+
+What are ThanksTokens?
+ThanksTokens are an optional way to express gratitude to an instructor after completing a course. They are created by converting SparkTokens and are sent directly to the instructor.
+
+Important things to know:
+• ThanksTokens are completely optional
+• ThanksTokens unlock only after course completion
+• ThanksTokens are non-refundable and non-reversible
+• 100% of ThanksTokens go to the instructor
+• ThanksTokens do not affect access, grades, or future instruction
+• Instructors cannot request or require ThanksTokens
+• Limits apply to keep things fair and pressure-free
+
+ThanksTokens are meant to recognize meaningful impact — nothing more, nothing less.`
+  );
+});
+
+  modal.querySelector("#closeThanksModal").onclick = () => modal.classList.add("hidden");
+
+  return modal;
+}
+
+function openThanksTokensModal() {
+  const modal = ensureThanksModal();
+  modal.querySelector("#thanksAmount").value = "";
+  modal.classList.remove("hidden");
+}
+ 
     render();
     
   });

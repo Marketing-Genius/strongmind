@@ -57,23 +57,51 @@
       }
     ];
 
-    const feed = [
-      {
-        id: "post-1",
-        title: "Weekly Experiment: DIY Volcano",
-        type: "post",
-        access: "open",
-        body: "Try this safe at-home volcano. I’ll post a follow-up with results and variations.",
-      },
-      {
-        id: "video-1",
-        title: "Bonus Lesson: Balancing Equations (Members)",
-        type: "video",
-        access: "locked",
-        courseGate: "science-101",
-        body: "This video is available after purchasing Science 101.",
-      }
-    ];
+const feed = [
+  {
+    id: "sarah-video-1",
+    type: "video",
+    title: "Quick Welcome",
+    caption: "Here’s what we’re learning this week — and how to make it fun + consistent at home.",
+    thumb: "assets/instructor-feed/sarah-01-video.jpg",
+    vimeoId: "1147814315",
+    vimeoHash: "493e5be159",
+    createdAt: 5
+  },
+  {
+    id: "sarah-locked-1",
+    type: "locked",
+    title: "Members Lesson",
+    caption: "Locked — unlock via Science 101.",
+    thumb: "assets/instructor-feed/sarah-02-locked.jpg",
+    courseGate: "science-101",
+    createdAt: 4
+  },
+  {
+    id: "sarah-image-1",
+    type: "image",
+    title: "Happy Holidays",
+    caption: "Happy Holidays! I’m taking a little time off to be with family. See you soon — and keep those routines light and joyful 💛",
+    thumb: "assets/instructor-feed/sarah-03-holidays.jpg",
+    createdAt: 3
+  },
+  {
+    id: "sarah-post-4",
+    type: "image",
+    title: "Coming Soon",
+    caption: "Placeholder post — we’ll add this next.",
+    thumb: "assets/instructor-feed/sarah-04-placeholder.jpg",
+    createdAt: 2
+  },
+  {
+    id: "sarah-post-5",
+    type: "image",
+    title: "Coming Soon",
+    caption: "Placeholder post — we’ll add this next.",
+    thumb: "assets/instructor-feed/sarah-05-placeholder.jpg",
+    createdAt: 1
+  }
+];
 
     const products = [
       { id: "kit-1", title: "Beginner Science Lab Kit", price: "$39.99", note: "Great for at-home experiments." },
@@ -128,6 +156,56 @@
 
       return list;
     }
+
+    function ensureFeedModal() {
+  let modal = document.getElementById("feedVideoModal");
+  if (modal) return modal;
+
+  modal = document.createElement("div");
+  modal.id = "feedVideoModal";
+  modal.className = "feed-modal hidden";
+  modal.innerHTML = `
+    <div class="feed-modal-inner">
+      <div class="feed-modal-top">
+        <div>Post</div>
+        <button class="feed-modal-close" id="feedModalClose">Close</button>
+      </div>
+      <div class="feed-modal-video" id="feedModalVideo"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // close handlers
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeFeedVideoModal();
+  });
+  modal.querySelector("#feedModalClose").addEventListener("click", closeFeedVideoModal);
+
+  return modal;
+}
+
+function openFeedVideoModal(vimeoId, vimeoHash) {
+  const modal = ensureFeedModal();
+  const shell = modal.querySelector("#feedModalVideo");
+
+  shell.innerHTML = `
+    <iframe
+      src="https://player.vimeo.com/video/${vimeoId}?h=${vimeoHash}&autoplay=1&title=0&byline=0&portrait=0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+
+  modal.classList.remove("hidden");
+}
+
+function closeFeedVideoModal() {
+  const modal = document.getElementById("feedVideoModal");
+  if (!modal) return;
+  const shell = modal.querySelector("#feedModalVideo");
+  shell.innerHTML = ""; // stop playback
+  modal.classList.add("hidden");
+}
 
     function render() {
       mount.innerHTML = `
@@ -243,37 +321,73 @@
         });
       });
 
-      // feed
-      const feedShell = document.getElementById("feedShell");
-      feedShell.innerHTML = feed.map(item => {
-        const unlocked = isUnlocked(item);
-        const badgeClass = unlocked ? "" : "locked";
-        const badgeText = unlocked ? "Open" : "Locked";
-        const body = unlocked ? item.body : "Purchase the linked course to unlock this post.";
+      // feed (horizontal cards)
+const feedShell = document.getElementById("feedShell");
+
+// Newest on left: sort desc by createdAt
+const feedSorted = feed.slice().sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+feedShell.innerHTML = `
+  <div class="feed-rail">
+    ${feedSorted.map(item => {
+      if (item.type === "locked") {
         return `
-          <div class="feed-item">
-            <div class="feed-top">
-              <div class="feed-title">${item.title}</div>
-              <div class="feed-badge ${badgeClass}">${badgeText}</div>
+          <div class="feed-card">
+            <div class="feed-media locked">
+              <img src="${item.thumb}" alt="${item.title}">
+              <div class="locked-overlay">
+                <div>
+                  <div class="lock-icon">🔒</div>
+                  <div class="lock-hover">
+                    <div class="lock-title">Unlock Via Course</div>
+                    <button class="lock-btn" data-unlock="${item.courseGate}">View Course</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="color:#444; line-height:1.5;">${body}</div>
-            ${
-              (!unlocked && item.courseGate)
-                ? `<div style="margin-top:10px;">
-                     <button class="pill" data-buy="${item.courseGate}">Unlock via Course</button>
-                   </div>`
-                : ""
-            }
+            <div class="feed-caption">
+              <div class="feed-title">${item.title}</div>
+              <div class="feed-text">${item.caption}</div>
+            </div>
           </div>
         `;
-      }).join("");
+      }
 
-      feedShell.querySelectorAll("[data-buy]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const courseGate = btn.getAttribute("data-buy");
-          alert(`Placeholder: open purchase flow for course "${courseGate}"`);
-        });
-      });
+      // image/video
+      const isVideo = item.type === "video";
+      return `
+        <div class="feed-card" ${isVideo ? `data-video="${item.vimeoId}" data-hash="${item.vimeoHash}"` : ""}>
+          <div class="feed-media ${isVideo ? "is-video" : ""}">
+            <img src="${item.thumb}" alt="${item.title}">
+            ${isVideo ? `<div class="play-badge"><span>▶</span></div>` : ``}
+          </div>
+          <div class="feed-caption">
+            <div class="feed-title">${item.title}</div>
+            <div class="feed-text">${item.caption}</div>
+          </div>
+        </div>
+      `;
+    }).join("")}
+  </div>
+`;
+
+// Locked hover button
+feedShell.querySelectorAll("[data-unlock]").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const courseGate = btn.getAttribute("data-unlock");
+    alert(`Placeholder: View course "${courseGate}" to unlock.`);
+  });
+});
+
+// Video modal on card click
+feedShell.querySelectorAll("[data-video]").forEach(card => {
+  card.addEventListener("click", () => {
+    const id = card.getAttribute("data-video");
+    const hash = card.getAttribute("data-hash");
+    openFeedVideoModal(id, hash);
+  });
+});
 
       // products
       const productGrid = document.getElementById("productGrid");

@@ -107,11 +107,35 @@ const feed = [
 ];
 
     const products = [
-      { id: "kit-1", title: "Beginner Science Lab Kit", price: "$39.99", note: "Great for at-home experiments." },
-      { id: "kit-2", title: "Microscope Starter Set", price: "$59.99", note: "Perfect with Science 101." },
-      { id: "kit-3", title: "Math Manipulatives Pack", price: "$24.99", note: "Pairs well with Algebra 1." },
-      { id: "kit-4", title: "World Map + Timeline Bundle", price: "$29.99", note: "History visual learning." }
-    ];
+  {
+    id: "product-1",
+    title: "Volcano Lab Kit",
+    image: "assets/products/product-1.jpg",
+    priceTokens: 3999, // $39.99 → 3,999 SparkTokens
+    note: "Hands-on science experiment kit."
+  },
+  {
+    id: "product-2",
+    title: "Beginner’s Reading Kit",
+    image: "assets/products/product-2.jpg",
+    priceTokens: 2499, // $24.99 → 2,499 SparkTokens
+    note: "Perfect for early literacy development."
+  },
+  {
+    id: "product-3",
+    title: "Science STEM Lab",
+    image: "assets/products/product-3.jpg",
+    priceTokens: 5999, // $59.99 → 5,999 SparkTokens
+    note: "Advanced STEM exploration at home."
+  },
+  {
+    id: "product-4",
+    title: "Hey Clay – Art Supply",
+    image: "assets/products/product-4.jpg",
+    priceTokens: 2999, // $29.99 → 2,999 SparkTokens
+    note: "Creative sculpting and fine motor fun."
+  }
+];
 
     const rating = {
       avg: 4.8,
@@ -393,18 +417,22 @@ feedShell.querySelectorAll("[data-video]").forEach(card => {
 });
 
       // products
-      const productGrid = document.getElementById("productGrid");
       productGrid.innerHTML = products.map(p => `
-        <div class="product-card">
-          <h4>${p.title}</h4>
-          <p>${p.price}</p>
-          <p style="margin-top:6px; font-weight:600;">${p.note}</p>
-          <div style="margin-top:10px;">
-            <button class="pill" data-product="${p.id}">View</button>
-          </div>
-        </div>
-      `).join("");
-
+  <div class="product-card">
+    <img class="product-image" src="${p.image}" alt="${p.title}">
+    <h4>${p.title}</h4>
+    <p class="product-price">
+      ${p.priceTokens.toLocaleString()} SparkTokens
+    </p>
+    <p class="product-note">${p.note}</p>
+    <div style="margin-top:10px;">
+      <button class="pill" data-product="${p.id}">
+        Buy with SparkTokens
+      </button>
+    </div>
+  </div>
+`).join("");
+      
       productGrid.querySelectorAll("[data-product]").forEach(btn => {
         btn.addEventListener("click", () => {
           alert("Placeholder: product detail / affiliate link / cart later.");

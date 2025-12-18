@@ -92,13 +92,13 @@
         <p>Homeschool Advocate<br>15+ published courses<br>90K Followers<br>⭐ 4.6 Avg. Rating</p>
         <button class="follow-btn">Follow</button>
       </div>
-      <div class="edutect-card">
-        <img src="assets/edutect-3.png" alt="Sarah Holmes">
-        <h4>Sarah Holmes</h4>
-        <span class="role-pill certified">Certified Teacher</span>
-        <p>STEM Expert<br>40+ published courses<br>28K Followers<br>⭐ 4.1 Avg. Rating</p>
-        <button class="follow-btn">Follow</button>
-      </div>
+      <div class="edutect-card" id="sarahCard">
+  <img src="assets/edutect-3.png" alt="Sarah Holmes">
+  <h4>Sarah Holmes</h4>
+  <span class="role-pill certified">Certified Teacher</span>
+  <p>STEM Expert<br>40+ published courses<br>28K Followers<br>⭐ 4.1 Avg. Rating</p>
+  <button class="follow-btn">Follow</button>
+</div>
       <div class="edutect-card">
         <img src="assets/edutect-4.png" alt="Elena Rivera">
         <h4>Elena Rivera</h4>
@@ -437,6 +437,27 @@
   
 <script src="js/app.js"></script>
 <script src="components/discovery/discovery.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sarahCard = document.getElementById("sarahCard");
+    if (!sarahCard) return;
+
+    sarahCard.addEventListener("click", (e) => {
+      // Don't navigate if they clicked the Follow button (or anything inside it)
+      if (e.target.closest(".follow-btn")) return;
+
+      // Optional: store which instructor to open later (future-proof)
+      localStorage.setItem("activeInstructorId", "sarah-holmes");
+
+      // Go to the instructor page
+      window.location.href = "instructor.html";
+    });
+
+    // Optional: cursor feels clickable
+    sarahCard.style.cursor = "pointer";
+  });
+</script>
   
 </body>
 </html>

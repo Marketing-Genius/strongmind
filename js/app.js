@@ -281,14 +281,17 @@ function applyUserTypeBackground(type) {
 document.addEventListener("DOMContentLoaded", () => {
   const page = document.body.dataset.page;
 
-  if (page === "home") {
-    renderDashboardHeader();
-    renderDashboardCards();
-  }
-
+  // Safe everywhere
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();
+
+  // ✅ Bail early on non-home pages
+  if (page !== "home") return;
+
+  // Home-only
+  renderDashboardHeader();
+  renderDashboardCards();
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");

@@ -86,13 +86,16 @@ const feed = [
     createdAt: 3
   },
   {
-    id: "sarah-post-4",
-    type: "image",
-    title: "Coming Soon",
-    caption: "Placeholder post — we’ll add this next.",
-    thumb: "assets/instructor-feed/sarah-04-placeholder.jpg",
-    createdAt: 2
-  },
+  id: "post-4",
+  title: "Happy Holidays from Mrs. Holmes!",
+  type: "video",
+  access: "open",
+  thumb: "assets/instructor-feed/sarah-04-placeholder.jpg"
+  vimeoId: "1147823088",
+  vimeoHash: "3e2a92f37a",
+  caption:
+    "Hey all, just wanted to drop in real quick and wish everyone a happy and healthy holiday season! Keep learning with Mrs. Holmes!"
+},
   {
     id: "sarah-post-5",
     type: "image",

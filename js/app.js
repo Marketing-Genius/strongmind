@@ -279,7 +279,7 @@ function applyUserTypeBackground(type) {
 
 // === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
-  const page = document.body.dataset.page;
+  const page = document.body.dataset.page || "home";
 
   // Safe everywhere
   updateSparkButtonLabel();

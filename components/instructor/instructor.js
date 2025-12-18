@@ -140,6 +140,9 @@
           <!-- HERO -->
           <section class="instructor-hero">
             <img class="instructor-avatar" src="${creator.photo}" alt="${creator.name}">
+            <div style="text-align:center; margin-top:10px;">
+            <button class="follow-btn" id="followInstructorBtn">Follow</button>
+            </div>
             <div class="instructor-meta">
               <h1>${creator.name}</h1>
               <div class="instructor-handle">${creator.handle}</div>

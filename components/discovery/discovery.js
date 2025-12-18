@@ -9,9 +9,7 @@
 
         <div class="discovery-content">
           <div class="recommended-label">RECOMMENDED FOR YOU</div>
-          <div class="discovery-placeholder">
-            Discovery content will appear here.
-          </div>
+          <div class="discovery-placeholder">Discovery content will appear here.</div>
         </div>
       </div>
     `;

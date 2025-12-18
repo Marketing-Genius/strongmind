@@ -5,14 +5,19 @@
 
     // ---- Mock creator + content data (replace later with real data/API) ----
     const creator = {
-      id: "sam-russ",
-      name: "Dr. Samuel Russ",
-      handle: "@drsamruss",
-      photo: "assets/edutect-1.png",
-      bio:
-        "Professor and lifelong educator focused on making complex ideas feel simple. Expect short lessons, practical experiments, and big curiosity energy.",
-      introVimeoId: "280382232" // replace with your vimeo id
-    };
+  id: "sarah-holmes",
+  name: "Sarah Holmes",
+  handle: "@mrs_holmes",
+  <div class="instructor-handle">${creator.handle}</div>
+  <div class="role-pill certified" style="display:inline-block; margin-top:8px;">${creator.role}</div>
+  role: "Certified Teacher",
+  photo: "assets/sarah-holmes.png",
+  bio:
+    "Certified teacher who blends warm structure with hands-on learning. Expect bite-sized lessons, clear routines, and practical activities you can do at home—built to boost confidence, consistency, and real progress.",
+  // Vimeo: https://vimeo.com/1147775555/7da67761df
+  introVimeoId: "1147775555",
+  introVimeoHash: "7da67761df"
+};
 
     const learnerInterests = (JSON.parse(localStorage.getItem("learnerInterests") || "[]"));
     const purchasedCourses = new Set(JSON.parse(localStorage.getItem("purchasedCourses") || "[]"));
@@ -143,7 +148,7 @@
 
             <div class="video-card">
               <iframe
-                src="https://player.vimeo.com/video/${creator.introVimeoId}?title=0&byline=0&portrait=0"
+                src="https://player.vimeo.com/video/${creator.introVimeoId}?h=${creator.introVimeoHash}&title=0&byline=0&portrait=0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowfullscreen>
               </iframe>
@@ -307,6 +312,22 @@
         alert("Placeholder: review modal (future).");
       });
     }
+
+const followBtn = document.getElementById("followInstructorBtn");
+const followKey = `follow_${creator.id}`;
+
+// Restore state
+if (localStorage.getItem(followKey) === "true") {
+  followBtn.classList.add("following");
+  followBtn.textContent = "Following";
+}
+
+// Toggle
+followBtn.addEventListener("click", () => {
+  const isFollowing = followBtn.classList.toggle("following");
+  followBtn.textContent = isFollowing ? "Following" : "Follow";
+  localStorage.setItem(followKey, isFollowing);
+});
 
     render();
   });

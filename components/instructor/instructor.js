@@ -8,13 +8,9 @@
   id: "sarah-holmes",
   name: "Sarah Holmes",
   handle: "@mrs_holmes",
-  <div class="instructor-handle">${creator.handle}</div>
-  <div class="role-pill certified" style="display:inline-block; margin-top:8px;">${creator.role}</div>
   role: "Certified Teacher",
   photo: "assets/sarah-holmes.png",
-  bio:
-    "Certified teacher who blends warm structure with hands-on learning. Expect bite-sized lessons, clear routines, and practical activities you can do at home—built to boost confidence, consistency, and real progress.",
-  // Vimeo: https://vimeo.com/1147775555/7da67761df
+  bio: "Certified teacher who blends warm structure with hands-on learning. Expect bite-sized lessons, clear routines, and practical activities you can do at home—built to boost confidence, consistency, and real progress.",
   introVimeoId: "1147775555",
   introVimeoHash: "7da67761df"
 };
@@ -139,13 +135,14 @@
 
           <!-- HERO -->
           <section class="instructor-hero">
+            <div class="avatar-col">
             <img class="instructor-avatar" src="${creator.photo}" alt="${creator.name}">
-            <div style="text-align:center; margin-top:10px;">
             <button class="follow-btn" id="followInstructorBtn">Follow</button>
             </div>
             <div class="instructor-meta">
               <h1>${creator.name}</h1>
               <div class="instructor-handle">${creator.handle}</div>
+              <div class="role-pill certified" style="display:inline-block; margin-top:8px;">${creator.role}</div>
               <div class="instructor-bio">${creator.bio}</div>
             </div>
 
@@ -193,6 +190,23 @@
 
         </div>
       `;
+
+  // ✅ FOLLOW BUTTON (AFTER innerHTML)
+  const followBtn = document.getElementById("followInstructorBtn");
+  if (followBtn) {
+    const followKey = `follow_${creator.id}`;
+
+    if (localStorage.getItem(followKey) === "true") {
+      followBtn.classList.add("following");
+      followBtn.textContent = "Following";
+    }
+
+    followBtn.addEventListener("click", () => {
+      const isFollowing = followBtn.classList.toggle("following");
+      followBtn.textContent = isFollowing ? "Following" : "Follow";
+      localStorage.setItem(followKey, String(isFollowing));
+    });
+  }
 
       // tag pills
       const tagPills = document.getElementById("tagPills");
@@ -315,22 +329,6 @@
         alert("Placeholder: review modal (future).");
       });
     }
-
-const followBtn = document.getElementById("followInstructorBtn");
-const followKey = `follow_${creator.id}`;
-
-// Restore state
-if (localStorage.getItem(followKey) === "true") {
-  followBtn.classList.add("following");
-  followBtn.textContent = "Following";
-}
-
-// Toggle
-followBtn.addEventListener("click", () => {
-  const isFollowing = followBtn.classList.toggle("following");
-  followBtn.textContent = isFollowing ? "Following" : "Follow";
-  localStorage.setItem(followKey, isFollowing);
-});
 
     render();
   });

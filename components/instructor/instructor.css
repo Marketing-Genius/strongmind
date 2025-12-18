@@ -223,6 +223,175 @@
   color: #fbd561;
 }
 
+/* ===== FEED RAIL ===== */
+.feed-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 6px 2px 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feed-rail::-webkit-scrollbar {
+  height: 10px;
+}
+.feed-rail::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 999px;
+}
+
+.feed-card {
+  flex: 0 0 230px;
+  scroll-snap-align: start;
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+
+.feed-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #111;
+  overflow: hidden;
+}
+
+.feed-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-caption {
+  padding: 12px 12px 14px;
+}
+
+.feed-caption .feed-title {
+  font-weight: 900;
+  margin: 0 0 6px;
+  color: #222;
+  font-size: 0.95rem;
+}
+
+.feed-caption .feed-text {
+  color: #444;
+  line-height: 1.35;
+  font-size: 0.92rem;
+}
+
+/* play button overlay */
+.play-badge {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.45));
+}
+
+.play-badge span {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+/* locked overlay */
+.locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.locked-overlay .lock-icon {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.locked-overlay .lock-hover {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: 160ms ease;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.feed-media.locked:hover .lock-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lock-hover .lock-title {
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.lock-hover .lock-btn {
+  border: none;
+  background: #fbd561;
+  color: #000;
+  font-weight: 900;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* ===== FEED MODAL (video) ===== */
+.feed-modal.hidden { display: none; }
+.feed-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.65);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.feed-modal-inner {
+  width: min(920px, 96vw);
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.feed-modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  font-weight: 900;
+}
+
+.feed-modal-close {
+  border: none;
+  background: #eee;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.feed-modal-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.feed-modal-video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* ===== PRODUCTS ===== */
 .products-shell{
   background: rgba(255,255,255,0.95);

@@ -1,0 +1,267 @@
+/* keeps spacing correct under fixed top-nav */
+.page-shell{
+  width: 100%;
+  padding-top: 90px; /* space below fixed nav */
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* main content width matches your dashboard rhythm */
+.instructor-page{
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* ===== HERO ===== */
+.instructor-hero{
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 110px 1fr 420px;
+  gap: 18px;
+  align-items: start;
+}
+
+.instructor-avatar{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0,0,0,0.06);
+}
+
+.instructor-meta h1{
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.instructor-handle{
+  margin-top: 4px;
+  color: #666;
+  font-weight: 700;
+}
+
+.instructor-bio{
+  margin-top: 10px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.instructor-hero .video-card{
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+
+.instructor-hero iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== SECTION DIVIDER (reuse your style concept) ===== */
+.instructor-divider{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 14px;
+  color: #fff4da;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.instructor-divider::before{
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.55);
+  margin-right: 12px;
+}
+
+/* ===== COURSES ===== */
+.courses-shell{
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 18px;
+}
+
+.course-controls{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.pill-row{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill{
+  border: 2px solid rgba(0,0,0,0.08);
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.pill.active{
+  border-color: rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+.select{
+  border: 2px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-weight: 700;
+}
+
+.course-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 1050px){
+  .instructor-hero{ grid-template-columns: 110px 1fr; }
+  .instructor-hero .video-card{ grid-column: 1 / -1; }
+  .course-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px){
+  .course-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px){
+  .course-grid{ grid-template-columns: 1fr; }
+}
+
+.course-card{
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.course-card:hover{ transform: translateY(-4px); }
+
+.course-thumb{
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.course-title{ font-weight: 900; color:#222; margin-bottom: 4px; }
+.course-meta{ font-size: 0.85rem; color:#666; display:flex; justify-content:space-between; }
+
+/* ===== FEED ===== */
+.feed-shell{
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 18px;
+}
+
+.feed-item{
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+  margin-bottom: 12px;
+}
+
+.feed-item:last-child{ margin-bottom: 0; }
+
+.feed-top{
+  display:flex;
+  justify-content:space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.feed-title{ font-weight: 900; color:#222; }
+.feed-badge{
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f3f3f3;
+  color: #333;
+}
+.feed-badge.locked{
+  background: #000;
+  color: #fbd561;
+}
+
+/* ===== PRODUCTS ===== */
+.products-shell{
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 18px;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1050px){ .product-grid{ grid-template-columns: repeat(3,1fr);} }
+@media (max-width: 760px){ .product-grid{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 520px){ .product-grid{ grid-template-columns: 1fr;} }
+
+.product-card{
+  background:#fff;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+}
+.product-card h4{ margin: 6px 0 4px; font-weight: 900; }
+.product-card p{ margin: 0; color:#666; font-weight: 700; }
+
+/* ===== RATINGS ===== */
+.ratings-shell{
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  padding: 18px;
+}
+
+.rating-summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.star-line{
+  font-weight: 900;
+  color:#222;
+}
+.comment{
+  background:#fff;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  margin-top: 10px;
+}
+.comment strong{ display:block; margin-bottom:4px; }

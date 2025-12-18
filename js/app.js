@@ -1176,3 +1176,31 @@ document.addEventListener("DOMContentLoaded", () => {
     showSuccessAnimation("🔒 Login (placeholder)");
   });
 });
+
+async function loadDiscoverySection() {
+  const mount = document.getElementById("discoveryMount");
+  if (!mount) return;
+
+  // CSS once
+  if (!document.getElementById("discoveryCSS")) {
+    const link = document.createElement("link");
+    link.id = "discoveryCSS";
+    link.rel = "stylesheet";
+    link.href = "components/discovery/discovery.css";
+    document.head.appendChild(link);
+  }
+
+  // HTML
+  const html = await fetch("components/discovery/discovery.html").then(r => r.text());
+  mount.innerHTML = html;
+
+  // JS once
+  if (!document.getElementById("discoveryJS")) {
+    const script = document.createElement("script");
+    script.id = "discoveryJS";
+    script.src = "components/discovery/discovery.js";
+    document.body.appendChild(script);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadDiscoverySection);

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Instructor • StrongMind</title>
+
+  <!-- Shared -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Page-specific -->
+  <link rel="stylesheet" href="components/instructor/instructor.css" />
+
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // Keep Lexi hidden if onboarding not done (same behavior as index)
+    (function() {
+      const userType = localStorage.getItem('userType');
+      const lexiHidden = localStorage.getItem('lexiHidden') === 'true';
+      if (!userType || lexiHidden) {
+        document.write('<style>#lexiContainer, #lexiRestore { display:none !important; }</style>');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- ✅ SAME TOP NAV AS INDEX -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="assets/sm-icon.png" alt="StrongMind" class="nav-logo">
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <img id="userTypeIcon" class="user-type-icon" src="" alt="User Type Icon" />
+      <button id="plan-button" class="plan-button">Plan: Starter</button>
+
+      <button class="spark-button">
+        <span id="token-label">SparkTokens</span>
+        <img src="assets/spark-tokens-white.png" class="spark-icon" />
+      </button>
+
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" id="hamburger">☰</div>
+        <div class="hamburger-dropdown hidden" id="hamburgerDropdown">
+          <div id="profileItem">Profile</div>
+          <div id="settingsItem">Settings</div>
+          <div id="walletItem">Wallet</div>
+          <div id="subscriptionsItem">Subscriptions</div>
+          <div id="infoItem">Information</div>
+          <div id="resetItem">Reset Demo</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- overlay used by your onboarding flow -->
+  <div id="screenOverlay"></div>
+
+  <!-- ✅ This is the ONLY page-specific mount you need -->
+  <main class="page-shell">
+    <div id="instructorMount"></div>
+  </main>
+
+  <!-- ✅ REUSE YOUR EXISTING MODALS (copy/paste from index.html) -->
+  <!-- SparkTokens Modal -->
+  <div id="sparkModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-header-text">
+        <h2>SparkTokens: Unlock unlimited learning potential!</h2>
+        <p>
+          StrongMind's SparkTokens allow anyone in the world to gain access to the best educational content imaginable —
+          with courses from the world’s top curriculum providers, StrongMind Edutect creators, and more.
+        </p>
+      </div>
+      <div class="token-options"></div>
+
+      <div class="spark-bonus-row">
+        <div class="bonus-card">
+          <h3>Thank you for joining StrongMind!</h3>
+          <p>Enjoy <strong>500 SparkTokens</strong>, on us!</p>
+          <button id="claimWelcomeBonus" class="claim-btn">Claim Now</button>
+        </div>
+
+        <div class="referral-card">
+          <h3>Referral Bonus!</h3>
+          <p>
+            Share the learning fun, and grow your <strong>Homeschooling Network!</strong><br>
+            Refer <strong>5</strong> more families and receive <strong>500 more SparkTokens!</strong><br>
+            Your referrals also receive 500 free SparkTokens when they sign up!
+          </p>
+          <button id="sendReferralLink" class="referral-btn">Send Referral Link</button>
+          <small class="referral-note">Remaining: 5</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscription Modal -->
+  <div id="subscriptionModal" class="modal hidden">
+    <div class="modal-content subscription-content">
+      <span class="close" id="closeSubscriptionModal">&times;</span>
+      <h2 class="sub-header">Choose the best fit for your family.</h2>
+      <p class="subtext">No pressure, cancel anytime.</p>
+      <div class="plans-container">
+        <div class="plan-card starter">
+          <h3><span class="highlight">Starter</span></h3>
+          <p>$19.99/mo</p>
+          <ul>
+            <li>✅ Unlimited access to all <strong>StrongMind</strong>-created curriculum</li>
+            <li>🛠️ Structured, affordable foundation</li>
+            <li>💰 SparkTokens available separately</li>
+            <li>🧑‍🎓 Includes 1 learner</li>
+          </ul>
+          <button onclick="selectPlan('Starter')">Current Plan</button>
+        </div>
+
+        <div class="plan-card plus">
+          <img src="assets/popular.png" alt="Popular" class="plan-banner" />
+          <h3><span>Spark</span><strong>Plus</strong></h3>
+          <p>$29.99/mo</p>
+          <ul>
+            <li>✅ All Basic features</li>
+            <li>➕ 1,000 <strong>SparkTokens</strong>/mo (Save $5)</li>
+            <li>🤖 Access to Lexi AI</li>
+            <li>💡 Ideal for enrichment</li>
+            <li>🧑‍🎓 Includes 1 learner</li>
+          </ul>
+          <button onclick="selectPlan('SparkPlus')">Subscribe</button>
+        </div>
+
+        <div class="plan-card premium">
+          <img src="assets/1-mo-free.png" alt="1 Month Free" class="plan-banner" />
+          <h3><span>Spark</span><strong>Premium</strong></h3>
+          <p>$59.99/mo</p>
+          <ul>
+            <li>✅ All SparkPlus features</li>
+            <li>➕ 2,500 <strong>SparkTokens</strong>/mo (Save $15)</li>
+            <li>🎯 Best for full ecosystem</li>
+            <li>🔓 Broadest access to content</li>
+            <li>👨‍👩‍👧‍👦 Includes 2 learners</li>
+          </ul>
+          <button onclick="selectPlan('SparkPremium')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal (copy from index.html) -->
+  <div id="profileModal" class="modal hidden">
+    <div class="modal-content profile-modal-content">
+      <span class="close" id="closeProfileModal">&times;</span>
+      <div class="profile-photo">
+        <img id="profileImage" src="assets/default-profile.png" alt="Profile Photo" />
+        <button type="button" id="updatePhotoBtn" class="update-photo-btn">Update Photo</button>
+        <input type="file" id="profileUpload" accept="image/*" />
+      </div>
+
+      <form id="profileForm" class="profile-form-fields">
+        <h2 id="profileName">Your Name</h2>
+        <input type="text" id="nameInput" placeholder="First Last" />
+        <input type="email" id="emailInput" placeholder="you@email.com" />
+        <input type="tel" id="phoneInput" placeholder="(123) 456-7890" />
+        <input type="text" id="schoolNameInput" placeholder="Your Homeschool" />
+
+        <label class="full-width">Bio</label>
+        <textarea id="bioInput" placeholder="Tell us a bit about yourself..." rows="3"></textarea>
+
+        <label class="full-width">Manage Family / Learners</label>
+        <div class="mock-button full-width">Manage Family</div>
+
+        <label class="full-width">Payment Info</label>
+        <div class="mock-button full-width" id="paymentInfo">Loading plan info...</div>
+
+        <label class="toggle-label">
+          <span id="profileVisibilityLabel">Private Profile</span>
+          <label class="switch">
+            <input type="checkbox" id="publicProfileToggle" />
+            <span class="slider"></span>
+          </label>
+        </label>
+
+        <button type="submit" class="save-btn">Save Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="infoModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" id="closeInfoModal">&times;</span>
+      <h2>About This PWA</h2>
+      <p>This is a proof-of-concept for the StrongMind experience.</p>
+    </div>
+  </div>
+
+  <!-- Lexi -->
+  <div id="lexiContainer" class="lexi-container">
+    <img src="assets/lexi.gif" alt="Lexi AI Companion" class="lexi-avatar" id="lexiAvatar" />
+    <div id="lexiModal" class="lexi-modal hidden">
+      <p><strong>Lexi AI Companion</strong><br>coming soon!</p>
+    </div>
+    <button id="lexiClose" class="lexi-close">×</button>
+  </div>
+  <button id="lexiRestore" class="lexi-restore hidden">+</button>
+
+  <!-- Shared logic (nav/modals/tokens/etc) -->
+  <script src="js/app.js"></script>
+  <!-- Page-specific logic -->
+  <script src="components/instructor/instructor.js"></script>
+
+</body>
+</html>

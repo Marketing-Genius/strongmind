@@ -71,8 +71,8 @@ const feed = [
   {
     id: "sarah-locked-1",
     type: "locked",
-    title: "Members Lesson",
-    caption: "Locked — unlock via Science 101.",
+    title: "Course Update! New experiments!",
+    caption: "Locked — Purchase Science 101 from @mrs_holmes to view this post.",
     thumb: "assets/instructor-feed/sarah-02-locked.jpg",
     courseGate: "science-101",
     createdAt: 4
@@ -99,8 +99,8 @@ const feed = [
   {
     id: "sarah-post-5",
     type: "image",
-    title: "Coming Soon",
-    caption: "Placeholder post — we’ll add this next.",
+    title: "Volcano Experiment! Let's Go!",
+    caption: "Hi, Learners! I'n my next Science Course, we're learning about lava and volvanos! Don't miss it!",
     thumb: "assets/instructor-feed/sarah-05-placeholder.jpg",
     createdAt: 1
   }
@@ -111,28 +111,28 @@ const feed = [
     id: "product-1",
     title: "Volcano Lab Kit",
     image: "assets/products/product-1.jpg",
-    priceTokens: 3999, // $39.99 → 3,999 SparkTokens
+    priceTokens: 3999, // $39.99 → 4k SparkTokens
     note: "Hands-on science experiment kit."
   },
   {
     id: "product-2",
     title: "Beginner’s Reading Kit",
     image: "assets/products/product-2.jpg",
-    priceTokens: 2499, // $24.99 → 2,499 SparkTokens
+    priceTokens: 2499, // $24.99 → 3k SparkTokens
     note: "Perfect for early literacy development."
   },
   {
     id: "product-3",
     title: "Science STEM Lab",
     image: "assets/products/product-3.jpg",
-    priceTokens: 5999, // $59.99 → 5,999 SparkTokens
+    priceTokens: 5999, // $59.99 → 6k SparkTokens
     note: "Advanced STEM exploration at home."
   },
   {
     id: "product-4",
     title: "Hey Clay – Art Supply",
     image: "assets/products/product-4.jpg",
-    priceTokens: 2999, // $29.99 → 2,999 SparkTokens
+    priceTokens: 2999, // $29.99 → 3k SparkTokens
     note: "Creative sculpting and fine motor fun."
   }
 ];

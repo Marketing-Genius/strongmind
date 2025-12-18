@@ -1,22 +1,22 @@
-// ================================
-// Discovery Section (placeholder)
-// ================================
-
 (function () {
   function initDiscovery() {
-    const container = document.getElementById("discoveryScroll");
-    if (!container) return;
+    const mount = document.getElementById("discoveryMount");
+    if (!mount) return;
 
-    // Simple placeholder content
-    container.innerHTML = `
-      <div class="discovery-placeholder">
-        Discovery content will appear here.
+    mount.innerHTML = `
+      <div class="discovery-wrapper">
+        <div class="section-divider"><span>Discovery</span></div>
+
+        <div class="discovery-content">
+          <div class="recommended-label">RECOMMENDED FOR YOU</div>
+          <div class="discovery-placeholder">
+            Discovery content will appear here.
+          </div>
+        </div>
       </div>
     `;
   }
 
-  // Run immediately if DOM is ready,
-  // otherwise wait (safe for async load)
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initDiscovery);
   } else {

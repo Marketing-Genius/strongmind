@@ -191,22 +191,7 @@
         </div>
       `;
 
-  // ✅ FOLLOW BUTTON (AFTER innerHTML)
-  const followBtn = document.getElementById("followInstructorBtn");
-  if (followBtn) {
-    const followKey = `follow_${creator.id}`;
-
-    if (localStorage.getItem(followKey) === "true") {
-      followBtn.classList.add("following");
-      followBtn.textContent = "Following";
-    }
-
-    followBtn.addEventListener("click", () => {
-      const isFollowing = followBtn.classList.toggle("following");
-      followBtn.textContent = isFollowing ? "Following" : "Follow";
-      localStorage.setItem(followKey, String(isFollowing));
-    });
-  }
+  bindFollowButton();
 
       // tag pills
       const tagPills = document.getElementById("tagPills");
@@ -330,6 +315,28 @@
       });
     }
 
+function bindFollowButton() {
+  const followBtn = document.getElementById("followInstructorBtn");
+  if (!followBtn) return;
+
+  const followKey = `follow_${creator.id}`;
+
+  if (localStorage.getItem(followKey) === "true") {
+    followBtn.classList.add("following");
+    followBtn.textContent = "Following";
+  } else {
+    followBtn.classList.remove("following");
+    followBtn.textContent = "Follow";
+  }
+
+  followBtn.onclick = () => {
+    const isFollowing = followBtn.classList.toggle("following");
+    followBtn.textContent = isFollowing ? "Following" : "Follow";
+    localStorage.setItem(followKey, String(isFollowing));
+  };
+}
+    
     render();
+    
   });
 })();

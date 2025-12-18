@@ -17,6 +17,7 @@ function updateSparkButtonLabel() {
 function updatePlanButton() {
   const plan = localStorage.getItem("subscriptionPlan") || "none";
   const button = document.getElementById("plan-button");
+  if (!button) return; // ✅
 
   if (plan === "none") {
     button.textContent = "Plan: None";
@@ -278,8 +279,13 @@ function applyUserTypeBackground(type) {
 
 // === DOM Ready Setup ===
 document.addEventListener("DOMContentLoaded", () => {
-  renderDashboardHeader();
+  const page = document.body.dataset.page;
+
+  if (page === "home") {
+    renderDashboardHeader();
     renderDashboardCards();
+  }
+
   updateSparkButtonLabel();
   updatePlanButton();
   updatePlanCards();
@@ -287,6 +293,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
   const storedType = localStorage.getItem("userType");
+
+    // Recovery: If overlay is visible but modal is not, show modal again
+  if (
+    !storedType &&
+    overlay && !overlay.classList.contains("hidden") &&
+    onboardingModal && onboardingModal.style.display === "none"
+  ) {
+    onboardingModal.style.display = "flex";
+  }
 
   // Show modal if not set
   if (!storedType) {
@@ -412,14 +427,6 @@ learnerGetStartedBtn?.addEventListener("click", () => {
   document.body.style.overflow = "auto"; // unlock scroll when modal closes
 });
 
-  // Recovery: If overlay is visible but modal is not, show modal again
-  if (
-    !storedType &&
-    overlay && !overlay.classList.contains("hidden") &&
-    onboardingModal && onboardingModal.style.display === "none"
-  ) {
-    onboardingModal.style.display = "flex";
-  }
 
   // === Plan modal ===
   document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
@@ -615,6 +622,8 @@ function loadProfileData() {
 }
 
 function renderDashboardHeader() {
+  const header = document.getElementById('dashboardHeader');
+  if (!header) return; // ✅
   const profileData = JSON.parse(localStorage.getItem('homeschoolProfile')) || {};
   const firstName = profileData.first || 'Friend';
   const homeschool = profileData.school || 'Your Homeschool';
@@ -645,6 +654,7 @@ function renderDashboardHeader() {
 
 function renderDashboardCards() {
   const grid = document.getElementById("dashboardGrid");
+  if (!grid) return; // ✅
   grid.innerHTML = "";
 
   // ---- SECTION: YOUR HUB ----
@@ -1061,8 +1071,8 @@ document.getElementById("closeProfileModal")?.addEventListener("click", () => {
   document.getElementById("profileModal").classList.add("hidden");
 });
 
-document.getElementById('updatePhotoBtn').addEventListener('click', () => {
-  document.getElementById('profileUpload').click();
+document.getElementById('updatePhotoBtn')?.addEventListener('click', () => {
+  document.getElementById('profileUpload')?.click();
 });
 
 function loadProfileData() {

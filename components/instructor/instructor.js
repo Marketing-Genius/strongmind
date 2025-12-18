@@ -90,7 +90,7 @@ const feed = [
   title: "Happy Holidays from Mrs. Holmes!",
   type: "video",
   access: "open",
-  thumb: "assets/instructor-feed/sarah-04-placeholder.jpg"
+  thumb: "assets/instructor-feed/sarah-04-placeholder.jpg",
   vimeoId: "1147823088",
   vimeoHash: "3e2a92f37a",
   caption:

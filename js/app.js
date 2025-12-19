@@ -360,35 +360,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Fix: Ensure onboarding buttons are clickable ===
   const buttons = document.querySelectorAll(".onboard-btn");
-  buttons.forEach(button => {
+  buttons.forEach((button) => {
     button.addEventListener("click", () => {
-    const selectedType = button.dataset.usertype;
-    localStorage.setItem("userType", selectedType);
-    applyUserTypeBackground(selectedType);
+      const selectedType = button.dataset.usertype;
+      localStorage.setItem("userType", selectedType);
+      applyUserTypeBackground(selectedType);
 
-    // Hide the onboarding modal, but keep overlay visible for setup flow
-    onboardingModal.style.display = "none";
+      // Hide the onboarding modal, but keep overlay visible for setup flow
+      onboardingModal.style.display = "none";
 
-    // If homeschool, continue to setup; otherwise remove overlay right away
-    if (selectedType === "homeschool") {
-    document.getElementById("homeschoolStep1Modal").style.display = "flex";
-    } else {
-    overlay.classList.add("hidden"); // only hide for non-homeschool types
-    // Trigger learner modal immediately after selecting that type
-    if (selectedType === "learner") {
-    setTimeout(() => {
-    const learnerModal = document.getElementById("learnerStep1Modal");
-    if (learnerModal) {
-    learnerModal.classList.remove("hidden");
-    overlay.classList.add("hidden"); // ensure the gradient overlay disappears cleanly
-    requestAnimationFrame(() => learnerModal.classList.add("show"));
-    document.body.style.overflow = "hidden"; // lock scroll behind modal
-   }
-    }, 400);
-  }
-}
-});
-});
+      if (selectedType === "homeschool") {
+        document.getElementById("homeschoolStep1Modal").style.display = "flex";
+      } else {
+        overlay.classList.add("hidden");
+
+        if (selectedType === "learner") {
+          setTimeout(() => {
+            const learnerModal = document.getElementById("learnerStep1Modal");
+            if (learnerModal) {
+              learnerModal.classList.remove("hidden");
+              overlay.classList.add("hidden");
+              requestAnimationFrame(() => learnerModal.classList.add("show"));
+              document.body.style.overflow = "hidden";
+            }
+          }, 400);
+        }
+      }
+    });
+  });
+
+}); // ✅ <-- THIS closes the DOMContentLoaded
 
 // === Lexi AI Companion Visibility Logic ===
 document.addEventListener("DOMContentLoaded", () => {

@@ -286,49 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePlanButton();
   updatePlanCards();
 
-  // ✅ Apply user type everywhere (so icon shows on instructor page)
-  const storedType = localStorage.getItem("userType");
-  if (storedType) applyUserTypeBackground(storedType);
-
-  // ✅ Bind top-nav interactions everywhere
-  document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
-  document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);
-
-  document.querySelector(".spark-button")?.addEventListener("click", openSparkModal);
-  document.querySelector("#sparkModal .close")?.addEventListener("click", closeSparkModal);
-
-  const hamburger = document.getElementById("hamburger");
-  const dropdown = document.getElementById("hamburgerDropdown");
-
-  hamburger?.addEventListener("click", () => dropdown?.classList.toggle("hidden"));
-
-  // Close hamburger if click outside (guard for nulls)
-  window.addEventListener("click", (e) => {
-    if (!hamburger || !dropdown) return;
-    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.classList.add("hidden");
-    }
-  });
-
-  document.getElementById("profileItem")?.addEventListener("click", () => openProfileModal());
-
-  document.getElementById("infoItem")?.addEventListener("click", () => {
-    document.getElementById("infoModal")?.classList.remove("hidden");
-    dropdown?.classList.add("hidden");
-  });
-
-  document.getElementById("closeInfoModal")?.addEventListener("click", () => {
-    document.getElementById("infoModal")?.classList.add("hidden");
-  });
-
-  document.getElementById("resetItem")?.addEventListener("click", () => {
-    if (confirm("Reset all demo data?")) {
-      localStorage.clear();
-      location.reload();
-    }
-  });
-
-  // ✅ NOW you can bail on non-home pages
+  // ✅ Bail early on non-home pages
   if (page !== "home") return;
 
   // Home-only
@@ -337,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
-  // ✅ don't redeclare storedType — you already have it above
+  const storedType = localStorage.getItem("userType");
 
     // Recovery: If overlay is visible but modal is not, show modal again
   if (
@@ -360,36 +318,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Fix: Ensure onboarding buttons are clickable ===
   const buttons = document.querySelectorAll(".onboard-btn");
-  buttons.forEach((button) => {
+  buttons.forEach(button => {
     button.addEventListener("click", () => {
-      const selectedType = button.dataset.usertype;
-      localStorage.setItem("userType", selectedType);
-      applyUserTypeBackground(selectedType);
+    const selectedType = button.dataset.usertype;
+    localStorage.setItem("userType", selectedType);
+    applyUserTypeBackground(selectedType);
 
-      // Hide the onboarding modal, but keep overlay visible for setup flow
-      onboardingModal.style.display = "none";
+    // Hide the onboarding modal, but keep overlay visible for setup flow
+    onboardingModal.style.display = "none";
 
-      if (selectedType === "homeschool") {
-        document.getElementById("homeschoolStep1Modal").style.display = "flex";
-      } else {
-        overlay.classList.add("hidden");
-
-        if (selectedType === "learner") {
-          setTimeout(() => {
-            const learnerModal = document.getElementById("learnerStep1Modal");
-            if (learnerModal) {
-              learnerModal.classList.remove("hidden");
-              overlay.classList.add("hidden");
-              requestAnimationFrame(() => learnerModal.classList.add("show"));
-              document.body.style.overflow = "hidden";
-            }
-          }, 400);
-        }
-      }
-    });
-  });
-
-}); // ✅ <-- THIS closes the DOMContentLoaded
+    // If homeschool, continue to setup; otherwise remove overlay right away
+    if (selectedType === "homeschool") {
+    document.getElementById("homeschoolStep1Modal").style.display = "flex";
+    } else {
+    overlay.classList.add("hidden"); // only hide for non-homeschool types
+    // Trigger learner modal immediately after selecting that type
+    if (selectedType === "learner") {
+    setTimeout(() => {
+    const learnerModal = document.getElementById("learnerStep1Modal");
+    if (learnerModal) {
+    learnerModal.classList.remove("hidden");
+    overlay.classList.add("hidden"); // ensure the gradient overlay disappears cleanly
+    requestAnimationFrame(() => learnerModal.classList.add("show"));
+    document.body.style.overflow = "hidden"; // lock scroll behind modal
+   }
+    }, 400);
+  }
+}
+});
+});
 
 // === Lexi AI Companion Visibility Logic ===
 document.addEventListener("DOMContentLoaded", () => {

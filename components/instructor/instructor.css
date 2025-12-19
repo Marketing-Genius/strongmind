@@ -47,65 +47,49 @@
   max-width: 110px;
 }
 
-.thanks-btn {
-  background: none;
-  border: none;
-  padding: 4px;
-  margin-top: 8px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.thanks-btn img {
-  width: 28px;      /* ← sweet spot */
-  height: 28px;
-  object-fit: contain;
-}
-
-.thanks-btn:hover img {
-  transform: scale(1.08);
-}
-
-.thanks-btn img {
-  transition: transform 0.15s ease;
-}
-
-.avatar-actions {
+/* --- Under-Follow action row (published / purchased / thanks) --- */
+.avatar-actions{
   display: flex;
   gap: 12px;
   margin-top: 10px;
   align-items: center;
 }
 
-.stat-pill {
+.thanks-btn,
+.stat-pill{
   background: none;
   border: none;
   padding: 0;
-  cursor: default;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-pill{
+  cursor: default; /* not clickable */
   position: relative;
 }
 
-.stat-pill img {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
-
-.avatar-actions img {
-  transition: transform 0.15s ease;
-}
-
-.avatar-actions .thanks-btn:hover img,
-.avatar-actions .stat-pill:hover img {
-  transform: scale(1.08);
-}
-
-.stat-pill img {
+.thanks-btn img,
+.stat-pill img{
   width: 28px;
   height: 28px;
   object-fit: contain;
+  display: block;          /* kills baseline alignment */
+  vertical-align: middle;  /* defensive */
+  transition: transform 0.15s ease;
+}
+
+/* subtle hover */
+.avatar-actions .thanks-btn:hover img,
+.avatar-actions .stat-pill:hover img{
+  transform: scale(1.08);
+}
+
+/* if apple still optically sits low, nudge it 1px */
+.thanks-btn{
+  transform: translateY(-1px);
 }
 
 .instructor-meta h1{

@@ -648,7 +648,7 @@ function buildThanksDropdown(eligibleMax) {
   // clamp + round down to nearest 100
   const max = Math.max(100, Math.min(1000, Math.floor(eligibleMax / 100) * 100));
 
-  capText.textContent = `(up to ${max.toLocaleString()} per completed courses in this prototype)`;
+  capText.textContent = `(up to ${max.toLocaleString()} total for this instructor)`;
 
   select.innerHTML = "";
   for (let v = 100; v <= max; v += 100) {

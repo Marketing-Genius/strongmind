@@ -286,7 +286,49 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePlanButton();
   updatePlanCards();
 
-  // ✅ Bail early on non-home pages
+  // ✅ Apply user type everywhere (so icon shows on instructor page)
+  const storedType = localStorage.getItem("userType");
+  if (storedType) applyUserTypeBackground(storedType);
+
+  // ✅ Bind top-nav interactions everywhere
+  document.getElementById("plan-button")?.addEventListener("click", openSubscriptionModal);
+  document.getElementById("closeSubscriptionModal")?.addEventListener("click", closeSubscriptionModal);
+
+  document.querySelector(".spark-button")?.addEventListener("click", openSparkModal);
+  document.querySelector("#sparkModal .close")?.addEventListener("click", closeSparkModal);
+
+  const hamburger = document.getElementById("hamburger");
+  const dropdown = document.getElementById("hamburgerDropdown");
+
+  hamburger?.addEventListener("click", () => dropdown?.classList.toggle("hidden"));
+
+  // Close hamburger if click outside (guard for nulls)
+  window.addEventListener("click", (e) => {
+    if (!hamburger || !dropdown) return;
+    if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+
+  document.getElementById("profileItem")?.addEventListener("click", () => openProfileModal());
+
+  document.getElementById("infoItem")?.addEventListener("click", () => {
+    document.getElementById("infoModal")?.classList.remove("hidden");
+    dropdown?.classList.add("hidden");
+  });
+
+  document.getElementById("closeInfoModal")?.addEventListener("click", () => {
+    document.getElementById("infoModal")?.classList.add("hidden");
+  });
+
+  document.getElementById("resetItem")?.addEventListener("click", () => {
+    if (confirm("Reset all demo data?")) {
+      localStorage.clear();
+      location.reload();
+    }
+  });
+
+  // ✅ NOW you can bail on non-home pages
   if (page !== "home") return;
 
   // Home-only

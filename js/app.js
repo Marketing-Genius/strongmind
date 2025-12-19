@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("screenOverlay");
   const onboardingModal = document.getElementById("onboardingModal");
-  const storedType = localStorage.getItem("userType");
+  // ✅ don't redeclare storedType — you already have it above
 
     // Recovery: If overlay is visible but modal is not, show modal again
   if (

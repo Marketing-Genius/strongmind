@@ -568,16 +568,13 @@ function ensureThanksModal() {
           <div class="thanks-prompt">Choose how many SparkTokens you’d like to convert?</div>
           <div class="thanks-cap" id="thanksCapText">(up to 500 per completed course)</div>
 
-         <div class="thanks-actions">
-           <select id="thanksAmountSelect" class="thanks-select" aria-label="ThanksTokens amount"></select>
 
-           <button class="thanks-send" id="sendThanksBtn">Send ThanksTokens</button>
-
-           <button class="thanks-terms" id="openThanksTerms" type="button">ThanksTokens Terms</button>
-        </div>
-      </div>
-    </div>
+  <div class="thanks-actions">
+    <select id="thanksAmountSelect" class="thanks-select" aria-label="ThanksTokens amount"></select>
+    <button class="thanks-send" id="sendThanksBtn">Send ThanksTokens</button>
+    <button class="thanks-terms" id="openThanksTerms" type="button">ThanksTokens Terms</button>
   </div>
+</div>
 `;
 
   document.body.appendChild(modal);

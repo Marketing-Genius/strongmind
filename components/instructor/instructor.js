@@ -250,9 +250,24 @@ function canSendThanks(creatorId) {
             <img class="instructor-avatar" src="${creator.photo}" alt="${creator.name}">
             <button class="follow-btn" id="followInstructorBtn">Follow</button>
 
-            <button class="thanks-btn" id="thanksTokenBtn" title="Say Thanks">
-            <img src="assets/ty.png" alt="ThanksTokens" />
-          </button>
+<div class="avatar-actions">
+
+  <!-- Published courses -->
+  <div class="stat-pill" title="Published courses by this instructor">
+    <img src="assets/published.png" alt="25 courses" />
+  </div>
+
+  <!-- Purchased courses -->
+  <div class="stat-pill" title="Courses you've purchased from this instructor">
+    <img src="assets/purchased.png" alt="2 courses purchased" />
+  </div>
+
+  <!-- ThanksTokens -->
+  <button class="thanks-btn" id="thanksTokenBtn" title="Say Thanks">
+    <img src="assets/ty.png" alt="ThanksTokens" />
+  </button>
+
+</div>
       </div>
 
         <div class="instructor-meta">

@@ -81,6 +81,14 @@
   transition: transform 0.15s ease;
 }
 
+.thanks-overlay{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
 /* subtle hover */
 .avatar-actions .thanks-btn:hover img,
 .avatar-actions .stat-pill:hover img{

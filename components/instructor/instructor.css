@@ -266,14 +266,40 @@
   width: min(280px, 88%);
 }
 
-/* your toned-down button */
-#thanksModal .thanks-send{
-  width: min(420px, 88%);
-}
-
 /* terms under button */
 #thanksModal .thanks-terms{
   margin-top: 2px;
+}
+
+#thanksModal .thanks-send {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: min(420px, 88%);
+  height: 58px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #e07b63;
+  color: #fff;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+#thanksModal .thanks-send:hover {
+  filter: brightness(0.97);
+}
+
+#thanksModal .thanks-send:active {
+  transform: translateY(1px);
 }
 
 /* ===== SECTION DIVIDER (reuse your style concept) ===== */

@@ -260,15 +260,15 @@
   text-align: center;
 }
 
-/* big CTA */
+/* big CTA (toned down) */
 #thanksModal .thanks-send{
-  width: min(520px, 90%);
-  height: 74px;
+  width: min(420px, 88%);
+  height: 58px;
   border: none;
   border-radius: 999px;
   background: #e07b63;
   color: #fff;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 900;
   cursor: pointer;
 }
@@ -277,9 +277,10 @@
   filter: brightness(0.97);
 }
 
-/* terms link */
+/* terms link under button */
 #thanksModal .thanks-terms{
-  margin-top: 16px;
+  display: inline-block;
+  margin-top: 12px;
   border: none;
   background: transparent;
   color: #999;

@@ -47,6 +47,31 @@
   max-width: 110px;
 }
 
+.thanks-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thanks-btn img {
+  width: 28px;      /* ← sweet spot */
+  height: 28px;
+  object-fit: contain;
+}
+
+.thanks-btn:hover img {
+  transform: scale(1.08);
+}
+
+.thanks-btn img {
+  transition: transform 0.15s ease;
+}
+
 .instructor-meta h1{
   margin: 0;
   font-size: 1.6rem;

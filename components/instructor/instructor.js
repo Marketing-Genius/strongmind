@@ -530,70 +530,76 @@ function ensureThanksModal() {
   modal = document.createElement("div");
   modal.id = "thanksModal";
   modal.className = "modal hidden";
-  modal.innerHTML = `
-    <div class="modal-content thanks-modal">
-      <span class="close" id="closeThanksModal">&times;</span>
+ modal.innerHTML = `
+  <div class="thanks-overlay">
+    <div class="thanks-modal-card">
+      <button class="thanks-x" id="closeThanksModal" aria-label="Close">×</button>
 
-      <h2>🍎 Say Thanks with ThanksTokens</h2>
+      <div class="thanks-top">
+        <img class="thanks-gif" src="assets/ty.gif" alt="ThanksTokens" />
+        <h2 class="thanks-title">Say <em>Thanks</em> with <em>ThanksTokens</em></h2>
+        <div class="thanks-subtitle">You’ve learned with this instructor — and made real progress.</div>
+      </div>
 
-      <p class="thanks-intro">
-        You’ve learned with this instructor — and made real progress.<br><br>
-        If their teaching made a meaningful difference, you can choose to say thank you
-        by converting SparkTokens into <strong>ThanksTokens</strong>.
-      </p>
+      <div class="thanks-body">
+        <p class="thanks-lead">
+          If their teaching made a meaningful difference, you can choose to say thank you by converting
+          <strong>SparkTokens</strong> into <strong>ThanksTokens</strong>.
+        </p>
 
-      <p class="thanks-note">
-        ThanksTokens are a one-time way to show appreciation.
-        They go <strong>100%</strong> to the instructor as a gesture of gratitude.
-      </p>
+        <p class="thanks-lead">
+          <strong>ThanksTokens</strong> are a one-time way to show appreciation. They go <strong>100%</strong> to the instructor
+          as a gesture of gratitude.
+        </p>
 
-      <hr />
+        <div class="thanks-section">
+          <div class="thanks-section-title">How it works</div>
+          <ul class="thanks-bullets">
+            <li>Convert SparkTokens into ThanksTokens</li>
+            <li>ThanksTokens go directly to the instructor</li>
+            <li>No perks, no pressure — just appreciation</li>
+          </ul>
+          <div class="thanks-center-note">You’re not paying for more access.</div>
+          <div class="thanks-center-note">You’re simply saying thanks.</div>
+        </div>
 
-      <h4>How it works</h4>
-      <ul class="thanks-list">
-        <li>Convert SparkTokens into ThanksTokens</li>
-        <li>ThanksTokens go directly to the instructor</li>
-        <li>No perks, no pressure — just appreciation</li>
-      </ul>
+        <div class="thanks-section">
+          <div class="thanks-section-title big">Convert SparkTokens to ThanksTokens</div>
+          <div class="thanks-prompt">Choose how many SparkTokens you’d like to convert?</div>
+          <div class="thanks-cap" id="thanksCapText">(up to 500 per completed course)</div>
 
-      <p class="thanks-foot">
-        You’re not paying for more access.<br>
-        You’re simply saying thanks.
-      </p>
+          <select id="thanksAmountSelect" class="thanks-select" aria-label="ThanksTokens amount"></select>
 
-      <hr />
+          <button class="thanks-send" id="sendThanksBtn">Send ThanksTokens</button>
 
-      <h4>Convert SparkTokens to ThanksTokens</h4>
-
-      <label>Choose how many SparkTokens you’d like to convert</label>
-      <input type="number" id="thanksAmount" min="1" max="500" placeholder="Up to 500" />
-
-      <button class="pill primary" id="sendThanksBtn">Send ThanksTokens</button>
-
-      <div class="thanks-terms-link" id="openThanksTerms">
-        ThanksTokens terms
+          <button class="thanks-terms" id="openThanksTerms" type="button">ThanksTokens Terms</button>
+        </div>
       </div>
     </div>
-  `;
+  </div>
+`;
 
   document.body.appendChild(modal);
 
-  // Close on overlay click
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
+// Close when clicking the dark overlay (not the card)
+modal.querySelector(".thanks-overlay").addEventListener("click", (e) => {
+  if (e.target.classList.contains("thanks-overlay")) {
+    modal.classList.add("hidden");
+  }
 });
 
 // Send ThanksTokens (prototype)
 modal.querySelector("#sendThanksBtn").addEventListener("click", () => {
-  const amount = parseInt(modal.querySelector("#thanksAmount").value, 10);
-  if (!amount || amount < 1) return alert("Enter an amount to send.");
-  if (amount > 500) return alert("Max 500 SparkTokens per completed course (prototype limit).");
+  const select = modal.querySelector("#thanksAmountSelect");
+  const amount = parseInt(select.value, 10);
+
+  if (!amount) return alert("Choose an amount to send.");
 
   alert(`Sent ${amount.toLocaleString()} ThanksTokens to ${creator.name}! (prototype)`);
   modal.classList.add("hidden");
 });
 
-// Terms modal (simple)
+// Terms (keep your alert text as-is)
 modal.querySelector("#openThanksTerms").addEventListener("click", () => {
   alert(
 `ThanksTokens Terms
@@ -621,8 +627,39 @@ ThanksTokens are meant to recognize meaningful impact — nothing more, nothing 
 
 function openThanksTokensModal() {
   const modal = ensureThanksModal();
-  modal.querySelector("#thanksAmount").value = "";
+
+  // PROTOTYPE LOGIC:
+  // user completed 2 courses with this instructor
+  const completedCoursesWithCreator = 2;
+  const eligibleMax = completedCoursesWithCreator * 500; // = 1000
+
   modal.classList.remove("hidden");
+  buildThanksDropdown(eligibleMax);
+}
+
+function buildThanksDropdown(eligibleMax) {
+  const modal = document.getElementById("thanksModal");
+  if (!modal) return;
+
+  const select = modal.querySelector("#thanksAmountSelect");
+  const capText = modal.querySelector("#thanksCapText");
+  if (!select) return;
+
+  // clamp + round down to nearest 100
+  const max = Math.max(100, Math.min(1000, Math.floor(eligibleMax / 100) * 100));
+
+  capText.textContent = `(up to ${max.toLocaleString()} per completed courses in this prototype)`;
+
+  select.innerHTML = "";
+  for (let v = 100; v <= max; v += 100) {
+    const opt = document.createElement("option");
+    opt.value = String(v);
+    opt.textContent = v.toLocaleString();
+    select.appendChild(opt);
+  }
+
+  // default to 100
+  select.value = "100";
 }
  
     render();

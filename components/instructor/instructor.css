@@ -81,9 +81,9 @@
   transition: transform 0.15s ease;
 }
 
-.thanks-overlay{
-  width: 100%;
-  height: 100%;
+#thanksModal .thanks-overlay{
+  position: fixed;
+  inset: 0;
   display: grid;
   place-items: center;
   padding: 18px;
@@ -248,44 +248,32 @@
   font-size: 13px;
 }
 
-/* dropdown */
-#thanksModal .thanks-select{
-  margin: 14px auto 18px;
-  width: 220px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: none;
-  background: #e9e9e9;
-  font-weight: 800;
-  text-align: center;
-}
-
-/* big CTA (toned down) */
-#thanksModal .thanks-send{
-  width: min(420px, 88%);
-  height: 58px;
-  border: none;
-  border-radius: 999px;
-  background: #e07b63;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 900;
-  cursor: pointer;
-}
-
 #thanksModal .thanks-send:hover{
   filter: brightness(0.97);
 }
 
-/* terms link under button */
+/* stack the select + button + terms */
+#thanksModal .thanks-actions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* ensure select isn't being stretched weirdly */
+#thanksModal .thanks-select{
+  width: min(280px, 88%);
+}
+
+/* your toned-down button */
+#thanksModal .thanks-send{
+  width: min(420px, 88%);
+}
+
+/* terms under button */
 #thanksModal .thanks-terms{
-  display: inline-block;
-  margin-top: 12px;
-  border: none;
-  background: transparent;
-  color: #999;
-  font-weight: 700;
-  cursor: pointer;
+  margin-top: 2px;
 }
 
 /* ===== SECTION DIVIDER (reuse your style concept) ===== */

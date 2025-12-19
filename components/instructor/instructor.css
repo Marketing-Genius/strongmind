@@ -102,6 +102,12 @@
   transform: scale(1.08);
 }
 
+.stat-pill img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 .instructor-meta h1{
   margin: 0;
   font-size: 1.6rem;

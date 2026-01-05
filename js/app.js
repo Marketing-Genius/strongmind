@@ -170,23 +170,23 @@ function openSparkModal() {
   container.innerHTML = "";
 
   const tiers = [
-    { amount: 1000, price: 14.99 },
-    { amount: 2000, price: 24.99, bonus: "20% Extra!" },
-    { amount: 5000, price: 54.99, bonus: "36% Extra!" },
-    { amount: 10000, price: 94.99, bonus: "58% Extra!" },
+    { amount: 500, price: 50.00 },
+    { amount: 1500, price: 144.00, bonus: "Great for Electives" },
+    { amount: 3000, price: 289.00, bonus: "Semester Ready" },
+    { amount: 5000, price: 459.00, bonus: "Advanced Learning" },
   ];
 
-  const colorMap = {
-    1000: "#e87d66",
-    2000: "#4ea6c0",
-    5000: "#a178c9",
-    10000: "#f3b51b",
-  };
+const colorMap = {
+  500:  "#e87d66",
+  1500: "#4ea6c0",
+  3000: "#a178c9",
+  5000: "#f3b51b",
+};
 
   const bonusMap = {
-    2000: "20-extra.png",
-    5000: "36-extra.png",
-    10000: "59-extra.png",
+    1500: "20-extra.png",
+    3000: "36-extra.png",
+    5000: "59-extra.png",
   };
 
   tiers.forEach(tier => {
@@ -235,11 +235,11 @@ document.addEventListener("click", (e) => {
 
     // Add 500 tokens
     const balance = parseInt(localStorage.getItem("sparkBalance")) || 0;
-    localStorage.setItem("sparkBalance", balance + 500);
+    localStorage.setItem("sparkBalance", balance + 250);
     localStorage.setItem("welcomeBonusClaimed", "true"); // ✅ remember they claimed
 
     updateSparkButtonLabel();
-    showSuccessAnimation("🎉 500 SparkTokens added to your wallet!");
+    showSuccessAnimation("🎉 250 SparkTokens added to your wallet!");
 
     // Update button
     e.target.textContent = "Claimed!";

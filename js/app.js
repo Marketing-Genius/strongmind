@@ -184,6 +184,7 @@ const colorMap = {
 };
 
   const bonusMap = {
+    250: "20-extra.png",
     600: "20-extra.png",
     1400: "36-extra.png",
     2000: "59-extra.png",

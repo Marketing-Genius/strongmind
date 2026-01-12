@@ -170,23 +170,23 @@ function openSparkModal() {
   container.innerHTML = "";
 
   const tiers = [
-    { amount: 500, price: 50.00 },
-    { amount: 1500, price: 144.00, bonus: "Great for Electives" },
-    { amount: 3000, price: 289.00, bonus: "Semester Ready" },
-    { amount: 5000, price: 459.00, bonus: "Advanced Learning" },
+    { amount: 250, price: 9.99, bonus: "Boost" },
+    { amount: 600, price: 19.99, bonus: "Momentum" },
+    { amount: 1400, price: 39.99, bonus: "Deep Learning" },
+    { amount: 2000, price: 54.99, bonus: "Extended Learning" },
   ];
 
 const colorMap = {
-  500:  "#e87d66",
-  1500: "#4ea6c0",
-  3000: "#a178c9",
-  5000: "#f3b51b",
+  250:  "#e87d66",
+  600: "#4ea6c0",
+  1400: "#a178c9",
+  2000: "#f3b51b",
 };
 
   const bonusMap = {
-    1500: "20-extra.png",
-    3000: "36-extra.png",
-    5000: "59-extra.png",
+    600: "20-extra.png",
+    1400: "36-extra.png",
+    2000: "59-extra.png",
   };
 
   tiers.forEach(tier => {

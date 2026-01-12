@@ -2,7 +2,7 @@
 const PLAN_TIERS = {
   Starter: { tokens: 250, color: "#fbd561", text: "#000" },
   SparkPlus: { tokens: 500, color: "#a178c9", text: "#fff" },
-  SparkPremium: { tokens: 1000, color: "#000", text: "#fbd561" }
+  SparkPremium: { tokens: 1000, color: "#000", text: "#fbd561" } 
 };
 
 // === UI Update Functions ===

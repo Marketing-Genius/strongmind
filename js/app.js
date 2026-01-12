@@ -171,9 +171,9 @@ function openSparkModal() {
 
   const tiers = [
     { amount: 250, price: 9.99, bonus: "Boost" },
-    { amount: 600, price: 19.99, bonus: "Momentum" },
+    { amount: 600, price: 19.99, bonus: "Explore Pack" },
     { amount: 1400, price: 39.99, bonus: "Deep Learning" },
-    { amount: 2000, price: 54.99, bonus: "Extended Learning" },
+    { amount: 2000, price: 54.99, bonus: "Extended Pack" },
   ];
 
 const colorMap = {
@@ -184,10 +184,10 @@ const colorMap = {
 };
 
   const bonusMap = {
-    250: "20-extra.png",
-    600: "20-extra.png",
-    1400: "36-extra.png",
-    2000: "59-extra.png",
+    250: "250-tag.png",
+    600: "600-tag.png",
+    1400: "1400-tag.png",
+    2000: "2000-tag.png",
   };
 
   tiers.forEach(tier => {

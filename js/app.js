@@ -171,9 +171,9 @@ function openSparkModal() {
 
   const tiers = [
     { amount: 300, price: 19.99, bonus: "Boost" },
-    { amount: 700, price: 19.99, bonus: "Explore Pack" },
-    { amount: 1500, price: 39.99, bonus: "Deep Learning" },
-    { amount: 2000, price: 54.99, bonus: "Extended Pack" },
+    { amount: 700, price: 39.99, bonus: "Explore Pack" },
+    { amount: 1500, price: 69.99, bonus: "Deep Learning" },
+    { amount: 2000, price: 99.99, bonus: "Extended Pack" },
   ];
 
 const colorMap = {

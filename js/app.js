@@ -173,21 +173,21 @@ function openSparkModal() {
     { amount: 300, price: 19.99, bonus: "Boost" },
     { amount: 700, price: 39.99, bonus: "Explore Pack" },
     { amount: 1500, price: 69.99, bonus: "Deep Learning" },
-    { amount: 2000, price: 99.99, bonus: "Extended Pack" },
+    { amount: 2200, price: 99.99, bonus: "Extended Pack" },
   ];
 
 const colorMap = {
   300:  "#e87d66",
   700: "#4ea6c0",
   1500: "#a178c9",
-  2000: "#f3b51b",
+  2200: "#f3b51b",
 };
 
   const bonusMap = {
     300: "250-tag.png",
     700: "600-tag.png",
     1500: "1400-tag.png",
-    2000: "2000-tag.png",
+    2200: "2000-tag.png",
   };
 
   tiers.forEach(tier => {
